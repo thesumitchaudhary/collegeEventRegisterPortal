@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import Dashboard from './page/Dashboard'
-import './App.css'
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from './page/Dashboard';
+import RegisterForm from './component/RegisterForm';
+import EventsList from './component/EventList';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-      <>
-      <div className="flex min-h-svh flex-col items-center justify-center">
-        <Button>Click me</Button>
-      </div>
-      </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/events" element={<EventsList />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
