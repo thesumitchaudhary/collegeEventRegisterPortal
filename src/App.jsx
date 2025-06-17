@@ -2,6 +2,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './page/Dashboard';
 import RegisterForm from './component/RegisterForm';
 import EventsList from './component/EventList';
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+
 
 function App() {
   return (
