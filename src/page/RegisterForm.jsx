@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { supabase } from "@/supabaseClient"; // adjust the path if needed
+import { Link, useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
   const [form, setForm] = useState({ name: "", email: "", event: "" });
@@ -36,6 +37,9 @@ export default function RegisterForm() {
         <Button type="submit">Submit</Button>
       </form>
       {message && <p className="text-sm text-center text-blue-600">{message}</p>}
+      <Link to="/" className="text-black   text-lg  no-underline">
+          Home
+      </Link>
     </div>
   );
 }

@@ -7,10 +7,26 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Meteors } from "../components/ui/Meteors";
+import { Marquee } from "../components/magicui/Marquee";
+import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
+import {
+  DraggableCardBody,
+  DraggableCardContainer,
+} from "../components/ui/draggable-card";
+import { OrbitingCircles } from "../components/magicui/orbiting-circles";
+import CursorShadow from "../components/ui/CursorShadow";
+import { Icons } from "../components/ui/icons";
+import { Instagram } from "lucide-react";
+import { Facebook } from "lucide-react";
+import { Linkedin } from "lucide-react";
+import { X } from "lucide-react";
 
 // Hackathon Images
 import herossectionImage from "../images/herossection-image.avif";
 import herossectionMiddleImage from "../images/herossection-image-2.avif";
+import RuleImage from "../images/rule-regimage.avif";
+import footerImage from "../images/footer-img.avif";
 import firstImage from "../images/1-image.avif";
 import secondImage from "../images/2-image.avif";
 import thirdImage from "../images/3-image.avif";
@@ -23,13 +39,7 @@ import ICA2025Hackathon from "../images/ICA2025Hackathon.jpeg";
 import StartUpHackathon from "../images/StartUpHackathon.jpeg";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { Meteors } from "../components/ui/Meteors";
-import { Marquee } from "../components/magicui/Marquee";
-import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
-import {
-  DraggableCardBody,
-  DraggableCardContainer,
-} from "../components/ui/draggable-card";
+
 
 export default function Dashboard() {
   const items = [
@@ -82,42 +92,43 @@ export default function Dashboard() {
   return (
     <div className="relative w-full text-white min-h-screen">
       <Meteors number={30} />
+      <CursorShadow />
       <img
-        className="absolute w-[1405px] h-[1400px] -z-10"
+        className="absolute w-[1265px] h-[1400px] -z-10"
         src={herossectionImage}
         alt=""
       />
       {/* ------------------- Header ------------------- */}
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
-          <h1 className=" text-white text-4xl mt-[20px] font-bold">C E R</h1>
+          <h1 className=" text-white text-4xl mt-[20px] ">C E R</h1>
           <nav className="flex gap-[20px] mt-[20px] text-sm font-medium">
-            <Link to="/" className="text-white text-lg font-bold no-underline">
+            <Link to="/" className="text-white text-lg  no-underline">
               Home
             </Link>
             <Link
               to="/events"
-              className="text-white text-lg font-bold no-underline"
+              className="text-white text-lg  no-underline"
             >
               Events
             </Link>
             <Link
-              to="/about"
-              className="text-white text-lg font-bold no-underline"
+              to="/resource"
+              className="text-white text-lg  no-underline"
             >
-              About Us
+              Resource
             </Link>
             <Link
-              to="/contact"
-              className="text-white text-lg font-bold no-underline"
+              to="/blog"
+              className="text-white text-lg  no-underline"
             >
-              Contact Us
+              Blog
             </Link>
           </nav>
           <div>
-            <button className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[20px] rounded-[7px] font-[700] tracking-[1px]">
+            <Link to="/register" className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[20px] rounded-[7px] font-[700] tracking-[1px]">
               SignIn
-            </button>
+            </Link>
           </div>
         </div>
       </header>
@@ -145,10 +156,10 @@ export default function Dashboard() {
       <main className="pt-20 flex flex-col items-center text-center px-4">
         <section className="z-100">
           <p>4.7/5.0 on google.com</p>
-          <h2 className="text-8xl mt-7 font-bold mb-4">
+          <h2 className="text-8xl mt-7  mb-4">
             Register for Upcoming College Events
           </h2>
-          <p className="text-gray-400 mx-auto mt-6 font-bold max-w-md mb-6">
+          <p className="text-gray-400 mx-auto mt-6  max-w-md mb-6">
             Your all-in-one platform for college event discovery.
             <br />
             Simple registrations, instant updates, zero hassle.
@@ -207,10 +218,12 @@ export default function Dashboard() {
             </div>
           </div>
         </section>
-        <section className="overflow-hidden bg-[#04060e] w-[1405px]">
-          <p>Helping businesses succeed worldwide</p>
+        <section className="overflow-hidden bg-[#04060e] w-[1265px]">
+          <p className=" mt-[120px] text-[20px]">
+            Simplifying event participation for every student
+          </p>
           <div className="relative flex w-full h-20 flex-col items-center justify-center overflow-hidden">
-            <Marquee pauseOnHover className="[--duration:20s]">
+            <Marquee className="[--duration:20s]">
               <div className="flex justify-around align-center">
                 <img className="w-5 h-5" src={reactLogo} alt="" />
                 <p>react</p>
@@ -273,14 +286,14 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="h-[600px] bg-[#04060e] text-white w-[1405px]">
+          <div className="h-[600px] bg-[#04060e] text-white w-[1265px]">
             <h2>The smartest way to automate your tasks</h2>
             <div className="flex justify-center gap-10">
-              <CardContainer className="inter-var w-100">
+              <CardContainer className="inter-var w-90">
                 <CardBody className="bg-[#070b15] relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
                   <CardItem
                     translateZ="50"
-                    className="text-xl font-bold text-neutral-600 dark:text-white"
+                    className="text-xl  text-neutral-600 dark:text-white"
                   >
                     Make things float in air
                   </CardItem>
@@ -313,18 +326,18 @@ export default function Dashboard() {
                     <CardItem
                       translateZ={20}
                       as="button"
-                      className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                      className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
                       Sign up
                     </CardItem>
                   </div>
                 </CardBody>
               </CardContainer>
-              <CardContainer className="inter-var w-100">
+              <CardContainer className="inter-var w-90">
                 <CardBody className="bg-[#070b15] relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
                   <CardItem
                     translateZ="50"
-                    className="text-xl font-bold text-neutral-600 dark:text-white"
+                    className="text-xl  text-neutral-600 dark:text-white"
                   >
                     Make things float in air
                   </CardItem>
@@ -357,18 +370,18 @@ export default function Dashboard() {
                     <CardItem
                       translateZ={20}
                       as="button"
-                      className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                      className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
                       Sign up
                     </CardItem>
                   </div>
                 </CardBody>
               </CardContainer>
-              <CardContainer className="inter-var w-100">
+              <CardContainer className="inter-var w-90">
                 <CardBody className="bg-[#070b15] relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
                   <CardItem
                     translateZ="50"
-                    className="text-xl font-bold text-neutral-600 dark:text-white"
+                    className="text-xl  text-neutral-600 dark:text-white"
                   >
                     Make things float in air
                   </CardItem>
@@ -401,7 +414,7 @@ export default function Dashboard() {
                     <CardItem
                       translateZ={20}
                       as="button"
-                      className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                      className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
                       Sign up
                     </CardItem>
@@ -412,9 +425,9 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="h-[700px] bg-[#04060e] text-white w-[1405px] px-10">
+          <div className="h-[700px] bg-[#04060e] text-white w-[1265px] px-10">
             <div className="flex justify-between ">
-              <h2 className="font-bold text-2xl mt-10">
+              <h2 className=" text-2xl mt-10">
                 Advanced AI features for smarter automation
               </h2>
               <button className="bg-blue-500 p-[10px] mt-10">
@@ -448,21 +461,48 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[1405px] h-[600px]">
+          <div className="w-[1265px] h-[800px]">
             <img
-              className="absolute  -z-10"
+              className="absolute w-[1265px] h-[800px] -z-10"
               src={herossectionMiddleImage}
               alt=""
             />
             <div className="z-10 ">
-              <div>
-                <h3 className="">sumit</h3>
+              <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg ">
+                <OrbitingCircles
+                  className="h-[50px] w-[50px] border-none [animation-delay:-3s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.notion />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[50px] w-[50px] border-none [animation-delay:-9s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.whatsapp />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[50px] w-[50px] border-none [animation-delay:-15s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.googleDrive />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[50px] w-[50px] border-none [animation-delay:-21s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.openai />
+                </OrbitingCircles>
               </div>
             </div>
           </div>
         </section>
         <section>
-          <div className="w-[1405px] h-[600px] bg-[#04060e]">
+          <div className="w-[1265px] h-[600px] bg-[#04060e]">
             <div className="">
               <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
                 <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
@@ -475,7 +515,7 @@ export default function Dashboard() {
                       alt={item.title}
                       className="pointer-events-none relative z-10 h-80 w-80 object-cover"
                     />
-                    <h3 className="mt-4 text-center text-2xl font-bold text-neutral-700 dark:text-neutral-300">
+                    <h3 className="mt-4 text-center text-2xl  text-neutral-700 dark:text-neutral-300">
                       {item.title}
                     </h3>
                   </DraggableCardBody>
@@ -490,7 +530,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[1405px] h-[200px] bg-[#04060e]">
+          <div className="w-[1265px] h-[200px] bg-[#04060e]">
             <ul className="flex">
               <li>
                 <h3>Increased efficiency</h3>
@@ -524,37 +564,160 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-            <div className="w-[1405px] h-[600px] bg-[#04060e]">
-              <h2>Rules for registration</h2>
-              <div className="flex justify-between">
-                <div className="py-[100px] mt-30 bg-[#070b15]">
-                  <h3>Do</h3>
-                  <ul className="">
-                    <li>sumit</li>
-                    <li>sumit</li>
-                    <li>sumit</li>
-                  </ul>
-                </div>
-                <div className="w-[300px] mt-30 bg-[#070b15]">
-                  <h3>Don't</h3>
-                  <ul className="">
-                    <li>pradip</li>
-                    <li>pradip</li>
-                    <li>pradip</li>
-                  </ul>
-                </div>
+          <div className="w-[1265px] h-[600px] bg-[#04060e]">
+            <h2>Rules for registration</h2>
+            <div className="flex justify-between">
+              <div className="py-[100px] mt-30 bg-[#070b15]">
+                <h3>Do</h3>
+                <ul className="">
+                  <li>sumit</li>
+                  <li>sumit</li>
+                  <li>sumit</li>
+                </ul>
+              </div>
+              <div className="w-[300px] mt-30 bg-[#070b15]">
+                <h3>Don't</h3>
+                <ul className="">
+                  <li>pradip</li>
+                  <li>pradip</li>
+                  <li>pradip</li>
+                </ul>
               </div>
             </div>
-
-
+          </div>
         </section>
       </main>
 
       {/* ------------------- Footer (optional) ------------------- */}
 
-      {/* <footer className="mt-20 py-10 text-center text-gray-400">
-          &copy; 2025 College Event Registration Portal. All rights reserved.
-        </footer>  */}
+      <footer className="h-[900px]">
+        <div className="absolute -z-10">
+          <img className="h-[900px]" src={footerImage} alt="" />
+        </div>
+        <div className="z-10">
+          <div className="flex flex-col justify-center">
+            <div className="mt-20 ml-100">
+              <h2 className=" text-4xl w-150 text-center">
+                Enter your Email for getting Event Notification Timely
+              </h2>
+              <p className="mt-5">
+                Subscribe to our newsletter and get updates on upcoming college
+                events, registration deadlines, and exclusive student
+                opportunities—delivered straight to your inbox.
+              </p>
+              <div className="mt-30">
+                <div className="flex gap-5">
+                  <input
+                    type="text"
+                    className="text-white bg-black w-[400px]"
+                  />
+                  <button className="px-[15px] py-[10px] rounded-2xl bg-blue-900">
+                    Submit
+                  </button>
+                </div>
+                <div className="mt-5 flex gap-10">
+                  <p>No credit card is required</p>
+                  <p>Early access & Special offers</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-between mx-30">
+            <div>
+              <h2 className="mt-50 text-center">CER</h2>
+              <div className="flex gap-5 mt-10">
+                <Facebook />
+                <Linkedin />
+                <X />
+                <Instagram />
+              </div>
+            </div>
+            <div className="flex gap-10 mt-50">
+              <div>
+                <h4 className="text-base mb-5">Main mages</h4>
+                <div className="flex flex-col gap-5">
+                  <Link
+                    to="/"
+                    className="text-white text-lg  no-underline"
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    to="/"
+                    className="text-white text-lg  no-underline"
+                  >
+                    Features
+                  </Link>
+                  <Link
+                    to="/"
+                    className="text-white text-lg  no-underline"
+                  >
+                    Pricing
+                  </Link>
+                  <Link
+                    to="/"
+                    className="text-white text-lg  no-underline"
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+              </div>
+              <div>
+                <h4 className="text-base mb-5">Information</h4>
+                <div className="flex flex-col gap-5">
+                  <Link
+                    to="/about"
+                    className="text-white text-lg  no-underline"
+                  >
+                    About
+                  </Link>
+                  <Link
+                    to="/"
+                    className="text-white text-lg  no-underline"
+                  >
+                    FAQ
+                  </Link>
+                  <Link
+                    to="/"
+                    className="text-white text-lg  no-underline"
+                  >
+                    Privacy Policy
+                  </Link>
+                </div>
+              </div>
+              <div>
+                <h4 className="text-base mb-5">Utilities</h4>
+                <div className="flex flex-col gap-5">
+                  <Link
+                    to="/"
+                    className="text-white text-lg  no-underline"
+                  >
+                    Event Schedule
+                  </Link>
+                  <Link
+                    to="/"
+                    className="text-white text-lg  no-underline"
+                  >
+                    Download Certificate
+                  </Link>
+                  <Link
+                    to="/"
+                    className="text-white text-lg  no-underline"
+                  >
+                    Feedback
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-5 flex gap-10">
+            <p>Developed by Chaudhary Sumit And Chaudhary Raj</p>
+            <p className="text-white ">
+              2025 College Event Registration Portal. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

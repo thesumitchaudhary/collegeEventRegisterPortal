@@ -2,7 +2,20 @@
 module.exports = {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // Make sure all component files are included
+    "./src/**/*.{js,ts,jsx,tsx}", // Ensure all relevant files are included
   ],
+  theme: {
+    extend: {
+      animation: {
+        pulse: 'pulse 2s infinite',
+      },
+      keyframes: {
+        pulse: {
+          '0%, 100%': { transform: 'scale(1)', opacity: '0.6' },
+          '50%': { transform: 'scale(1.3)', opacity: '0.4' },
+        },
+      },
+    },
+  },
   plugins: [],
-}
+};
