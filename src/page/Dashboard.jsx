@@ -261,7 +261,7 @@ export default function Dashboard() {
         </section>
         <section className="w-[100%] h-[800px]">
           <div
-            className="mt-[40px] flex gap-[470px]"
+            className="mt-[40px] grid grid-cols-3 gap-10"
             style={{
               backgroundColor:
                 "var(--token-7f644d3c-fafa-4df1-9482-cf8ab29882f1, rgb(7, 11, 21))",
@@ -272,21 +272,21 @@ export default function Dashboard() {
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="h-[630px]" src={firstImage} alt="" />
+                  <img className="h-[630px] mt-20" src={firstImage} alt="" />
                 </div>
               </div>
             </div>
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="h-[630px]" src={secondImage} alt="" />
+                  <img className="h-[630px] mt-10" src={secondImage} alt="" />
                 </div>
               </div>
             </div>
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="h-[630px]" src={thirdImage} alt="" />
+                  <img className="h-[630px] mt-5" src={thirdImage} alt="" />
                 </div>
               </div>
             </div>
