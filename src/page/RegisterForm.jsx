@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import CursorShadow from "../components/ui/CursorShadow";
 import { useState } from "react";
 import { supabase } from "@/supabaseClient"; // adjust the path if needed
 import { Link, useNavigate } from "react-router-dom";
@@ -29,6 +30,7 @@ export default function RegisterForm() {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 shadow-md rounded-xl border space-y-4">
+      <CursorShadow />
       <h2 className="text-xl font-semibold">Register for Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required />

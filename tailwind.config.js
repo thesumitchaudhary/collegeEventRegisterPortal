@@ -15,6 +15,9 @@ module.exports = {
           '50%': { transform: 'scale(1.3)', opacity: '0.4' },
         },
       },
+      screens: {
+        'xs' : {'max': '375px'},
+      }
     },
   },
   plugins: [],

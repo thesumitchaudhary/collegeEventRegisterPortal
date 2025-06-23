@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -15,6 +16,12 @@ import {
   DraggableCardContainer,
 } from "../components/ui/draggable-card";
 import { OrbitingCircles } from "../components/magicui/orbiting-circles";
+import {
+  HoveredLink,
+  Menu,
+  MenuItem,
+  ProductItem,
+} from "../components/ui/navbar-menu";
 import CursorShadow from "../components/ui/CursorShadow";
 import { Icons } from "../components/ui/icons";
 import { Instagram } from "lucide-react";
@@ -40,8 +47,8 @@ import StartUpHackathon from "../images/StartUpHackathon.jpeg";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
-
 export default function Dashboard() {
+  const [active, setActive] = useState();
   const items = [
     {
       title: "Tyler Durden",
@@ -90,11 +97,13 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   return (
-    <div className="relative w-full text-white min-h-screen">
+    <div className="relative w-full text-white min-h-screen xs:w-[370px] lg:bg-transparent xl:">
       <Meteors number={30} />
-      <CursorShadow />
+      <div className="">
+        <CursorShadow />
+      </div>
       <img
-        className="absolute w-[1265px] h-[1400px] -z-10"
+        className="absolute w-[1265px] h-[1400px] -z-10 xs:w-[370px] xs:bg-[#ff00ff]"
         src={herossectionImage}
         alt=""
       />
@@ -102,7 +111,7 @@ export default function Dashboard() {
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
           <h1 className=" text-white text-4xl mt-[20px] ">C E R</h1>
-          <nav className="flex gap-[20px] mt-[20px] text-sm font-medium">
+          {/* <nav className="flex gap-[20px] mt-[20px] text-sm font-medium">
             <Link to="/" className="text-white text-lg  no-underline">
               Home
             </Link>
@@ -124,9 +133,74 @@ export default function Dashboard() {
             >
               Blog
             </Link>
-          </nav>
+          </nav> */}
+          <div className={"max-w-2xl mx-auto"}>
+            <Menu setActive={setActive}>
+              <MenuItem setActive={setActive} active={active} item="Home">
+                <div className="flex flex-col space-y-4 text-sm  bg-black ">
+                  <HoveredLink to="/">Web Development</HoveredLink>
+                  <HoveredLink to="/">Interface Design</HoveredLink>
+                  <HoveredLink to="/">
+                    Search Engine Optimization
+                  </HoveredLink>
+                  <HoveredLink href="/branding">Branding</HoveredLink>
+                </div>
+              </MenuItem>
+              <MenuItem setActive={setActive} active={active} item="Event">
+                <div className="flex flex-col space-y-4 text-sm  bg-black ">
+                  <HoveredLink href="/web-dev">Web Development</HoveredLink>
+                  <HoveredLink href="/interface-design">
+                    Interface Design
+                  </HoveredLink>
+                  <HoveredLink href="/seo">
+                    Search Engine Optimization
+                  </HoveredLink>
+                  <HoveredLink href="/branding">Branding</HoveredLink>
+                </div>
+              </MenuItem>
+              <MenuItem setActive={setActive} active={active} item="Resource">
+                <div className="  text-sm grid grid-cols-2 gap-10 p-4">
+                  <ProductItem
+                    title="Algochurn"
+                    href="https://algochurn.com"
+                    src="https://assets.aceternity.com/demos/algochurn.webp"
+                    description="Prepare for tech interviews like never before."
+                  />
+                  <ProductItem
+                    title="Tailwind Master Kit"
+                    href="https://tailwindmasterkit.com"
+                    src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
+                    description="Production ready Tailwind css components for your next project"
+                  />
+                  <ProductItem
+                    title="Moonbeam"
+                    href="https://gomoonbeam.com"
+                    src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
+                    description="Never write from scratch again. Go from idea to blog in minutes."
+                  />
+                  <ProductItem
+                    title="Rogue"
+                    href="https://userogue.com"
+                    src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
+                    description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+                  />
+                </div>
+              </MenuItem>
+              <MenuItem setActive={setActive} active={active} item="Blog">
+                <div className="flex flex-col space-y-4 text-sm">
+                  <HoveredLink to="/hobby">Hobby</HoveredLink>
+                  <HoveredLink to="/individual">Individual</HoveredLink>
+                  <HoveredLink to="/team">Team</HoveredLink>
+                  <HoveredLink to="/enterprise">Enterprise</HoveredLink>
+                </div>
+              </MenuItem>
+            </Menu>
+          </div>
           <div>
-            <Link to="/register" className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[20px] rounded-[7px] font-[700] tracking-[1px]">
+            <Link
+              to="/register"
+              className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[20px] rounded-[7px] font-[700] tracking-[1px]"
+            >
               SignIn
             </Link>
           </div>
@@ -615,7 +689,7 @@ export default function Dashboard() {
                     Submit
                   </button>
                 </div>
-                <div className="mt-5 flex gap-10">
+                <div className="mt-5 flex gap-10 text-white">
                   <p>No credit card is required</p>
                   <p>Early access & Special offers</p>
                 </div>
@@ -624,7 +698,7 @@ export default function Dashboard() {
           </div>
           <div className="flex justify-between mx-30">
             <div>
-              <h2 className="mt-50 text-center">CER</h2>
+              <h2 className="mt-50 text-center text-white">CER</h2>
               <div className="flex gap-5 mt-10">
                 <Facebook />
                 <Linkedin />
@@ -634,36 +708,24 @@ export default function Dashboard() {
             </div>
             <div className="flex gap-10 mt-50">
               <div>
-                <h4 className="text-base mb-5">Main mages</h4>
+                <h4 className="text-base mb-5 text-white">Main mages</h4>
                 <div className="flex flex-col gap-5">
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Home
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/feature" className="text-white text-lg  no-underline">
                     Features
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Pricing
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Contact Us
                   </Link>
                 </div>
               </div>
               <div>
-                <h4 className="text-base mb-5">Information</h4>
+                <h4 className="text-base mb-5 text-white">Information</h4>
                 <div className="flex flex-col gap-5">
                   <Link
                     to="/about"
@@ -671,39 +733,24 @@ export default function Dashboard() {
                   >
                     About
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     FAQ
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Privacy Policy
                   </Link>
                 </div>
               </div>
               <div>
-                <h4 className="text-base mb-5">Utilities</h4>
+                <h4 className="text-base mb-5 text-white">Utilities</h4>
                 <div className="flex flex-col gap-5">
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Event Schedule
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Download Certificate
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Feedback
                   </Link>
                 </div>
@@ -711,7 +758,9 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="mt-5 flex gap-10">
-            <p>Developed by Chaudhary Sumit And Chaudhary Raj</p>
+            <p className="text-white">
+              Developed by Chaudhary Sumit And Chaudhary Raj
+            </p>
             <p className="text-white ">
               2025 College Event Registration Portal. All rights reserved.
             </p>

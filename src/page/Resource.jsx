@@ -1,16 +1,16 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CursorShadow from "../components/ui/CursorShadow";
+import footerImage from "../images/footer-img.avif";
 import { Instagram } from "lucide-react";
 import { Facebook } from "lucide-react";
 import { Linkedin } from "lucide-react";
 import { X } from "lucide-react";
 
-import footerImage from "../images/footer-img.avif";
-
-export default function Blog() {
+export default function Resource() {
   return (
-    <div className="bg-black">
+    <div className="bg-black text-white">
+      <CursorShadow />
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
           <h1 className=" text-white text-4xl mt-[20px] ">C E R</h1>
@@ -38,9 +38,8 @@ export default function Blog() {
           </div>
         </div>
       </header>
-      <main className="h-[600px]"> </main>
-      
-            {/* ------------------- Footer (optional) ------------------- */}
+
+      {/* ------------------- Footer (optional) ------------------- */}
 
       <footer className="h-[900px]">
         <div className="absolute -z-10">
@@ -88,28 +87,16 @@ export default function Blog() {
               <div>
                 <h4 className="text-base mb-5 text-white">Main mages</h4>
                 <div className="flex flex-col gap-5">
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Home
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Features
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Pricing
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Contact Us
                   </Link>
                 </div>
@@ -123,16 +110,10 @@ export default function Blog() {
                   >
                     About
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     FAQ
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Privacy Policy
                   </Link>
                 </div>
@@ -140,22 +121,13 @@ export default function Blog() {
               <div>
                 <h4 className="text-base mb-5 text-white">Utilities</h4>
                 <div className="flex flex-col gap-5">
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Event Schedule
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Download Certificate
                   </Link>
-                  <Link
-                    to="/"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/" className="text-white text-lg  no-underline">
                     Feedback
                   </Link>
                 </div>
@@ -163,7 +135,9 @@ export default function Blog() {
             </div>
           </div>
           <div className="mt-5 flex gap-10">
-            <p className="text-white">Developed by Chaudhary Sumit And Chaudhary Raj</p>
+            <p className="text-white">
+              Developed by Chaudhary Sumit And Chaudhary Raj
+            </p>
             <p className="text-white ">
               2025 College Event Registration Portal. All rights reserved.
             </p>

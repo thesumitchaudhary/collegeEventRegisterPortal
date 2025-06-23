@@ -3,6 +3,9 @@ import Dashboard from './page/Dashboard';
 import RegisterForm from './page/RegisterForm';
 import EventsList from './page/EventList';
 import About from './page/About';
+import Blog from './page/Blog';
+import Resource from './page/Resource';
+import Features from './page/Features';
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import './App.css'
@@ -20,6 +23,9 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/events" element={<EventsList />} />
         <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/resource" element={<Resource />} />
+        <Route path="/feature" element={<Features />} />
       </Routes>
     </Router>
   );
