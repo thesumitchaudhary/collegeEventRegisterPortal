@@ -14,7 +14,7 @@ export default function EventsList() {
      <header className="w-full shadow-sm top-0 z-10 bg-[#04060e]">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
           <h1 className=" text-white text-4xl mt-[20px] ">C E R</h1>
-          <nav className="flex gap-[20px] mt-[20px] text-sm font-medium">
+          <nav className="flex gap-[1.25rem] mt-[1.25rem] text-sm font-medium">
             <Link to="/" className="text-white text-lg  no-underline">
               Home
             </Link>

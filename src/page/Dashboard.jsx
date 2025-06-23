@@ -103,14 +103,14 @@ export default function Dashboard() {
         <CursorShadow />
       </div>
       <img
-        className="absolute w-[1265px] h-[1400px] -z-10 xs:w-[370px] xs:bg-[#ff00ff]"
+        className="absolute w-[81.25rem] h-[87.5rem] -z-10 xs:w-[370px] xs:bg-[#ff00ff]"
         src={herossectionImage}
         alt=""
       />
       {/* ------------------- Header ------------------- */}
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
-          <h1 className=" text-white text-4xl mt-[20px] ">C E R</h1>
+          <h1 className=" text-white text-4xl mt-[1.25rem] ">C E R</h1>
           {/* <nav className="flex gap-[20px] mt-[20px] text-sm font-medium">
             <Link to="/" className="text-white text-lg  no-underline">
               Home
@@ -199,7 +199,7 @@ export default function Dashboard() {
           <div>
             <Link
               to="/register"
-              className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[20px] rounded-[7px] font-[700] tracking-[1px]"
+              className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
             >
               SignIn
             </Link>
@@ -244,14 +244,14 @@ export default function Dashboard() {
           <div className="flex gap-4 justify-center mt-50px ml-40%">
             <Button
               size="lg"
-              className={"px-18px py-10px bg-blue-500 rounded-5px"}
+              className={"px-[1.12rem] py-[.62rem] bg-blue-500 rounded-[.31rem]"}
               onClick={() => navigate("/register")}
             >
               Register Now
             </Button>
             <Button
               size="lg"
-              className={"px-[15px] py-[7px] text-black rounded-[5px]"}
+              className={"px-[.93rem] py-[.43rem] text-black rounded-[.31rem]"}
               variant="outline"
               onClick={() => navigate("/events")}
             >
@@ -259,41 +259,41 @@ export default function Dashboard() {
             </Button>
           </div>
         </section>
-        <section className="w-[100%] h-[800px]">
+        <section className="w-[75rem] h-[50rem]">
           <div
-            className="mt-[40px] grid grid-cols-3 gap-10"
+            className="mt-[2.5rem] grid grid-cols-3 gap-10"
             style={{
               backgroundColor:
                 "var(--token-7f644d3c-fafa-4df1-9482-cf8ab29882f1, rgb(7, 11, 21))",
-              borderRadius: "16px",
+              borderRadius: "1rem",
               opacity: "1",
             }}
           >
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="h-[630px] mt-20" src={firstImage} alt="" />
+                  <img className="h-[39.37rem] mt-20" src={firstImage} alt="" />
                 </div>
               </div>
             </div>
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="h-[630px] mt-10" src={secondImage} alt="" />
+                  <img className="h-[39.37rem] mt-10" src={secondImage} alt="" />
                 </div>
               </div>
             </div>
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="h-[630px] mt-5" src={thirdImage} alt="" />
+                  <img className="h-[39.37rem] mt-5" src={thirdImage} alt="" />
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section className="overflow-hidden bg-[#04060e] w-[1265px]">
-          <p className=" mt-[120px] text-[20px]">
+        <section className="overflow-hidden bg-[#04060e] w-[81.25rem]">
+          <p className=" mt-[7.5rem] text-[1.25rem]">
             Simplifying event participation for every student
           </p>
           <div className="relative flex w-full h-20 flex-col items-center justify-center overflow-hidden">
@@ -360,7 +360,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="h-[600px] bg-[#04060e] text-white w-[1265px]">
+          <div className="h-[37.5rem] bg-[#04060e] text-white w-[81.25rem]">
             <h2>The smartest way to automate your tasks</h2>
             <div className="flex justify-center gap-10">
               <CardContainer className="inter-var w-90">
@@ -499,7 +499,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="h-[700px] bg-[#04060e] text-white w-[1265px] px-10">
+          <div className="h-[43.75rem] bg-[#04060e] text-white w-[81.25rem] px-10">
             <div className="flex justify-between ">
               <h2 className=" text-2xl mt-10">
                 Advanced AI features for smarter automation
@@ -535,37 +535,37 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[1265px] h-[800px]">
+          <div className="w-[81.25rem] h-[50rem]">
             <img
-              className="absolute w-[1265px] h-[800px] -z-10"
+              className="absolute w-[81.25rem] h-[50rem] -z-10"
               src={herossectionMiddleImage}
               alt=""
             />
             <div className="z-10 ">
-              <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg ">
+              <div className="relative flex h-[31.25] w-full flex-col items-center justify-center overflow-hidden rounded-lg ">
                 <OrbitingCircles
-                  className="h-[50px] w-[50px] border-none [animation-delay:-3s]"
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-3s]"
                   radius={180}
                   duration={20}
                 >
                   <Icons.notion />
                 </OrbitingCircles>
                 <OrbitingCircles
-                  className="h-[50px] w-[50px] border-none [animation-delay:-9s]"
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-9s]"
                   radius={180}
                   duration={20}
                 >
                   <Icons.whatsapp />
                 </OrbitingCircles>
                 <OrbitingCircles
-                  className="h-[50px] w-[50px] border-none [animation-delay:-15s]"
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-15s]"
                   radius={180}
                   duration={20}
                 >
                   <Icons.googleDrive />
                 </OrbitingCircles>
                 <OrbitingCircles
-                  className="h-[50px] w-[50px] border-none [animation-delay:-21s]"
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-21s]"
                   radius={180}
                   duration={20}
                 >
@@ -576,7 +576,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[1265px] h-[600px] bg-[#04060e]">
+          <div className="w-[81.25rem] h-[37.5rem] bg-[#04060e]">
             <div className="">
               <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
                 <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
@@ -604,7 +604,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[1265px] h-[200px] bg-[#04060e]">
+          <div className="w-[81.25rem] h-[12.5rem] bg-[#04060e]">
             <ul className="flex">
               <li>
                 <h3>Increased efficiency</h3>
@@ -638,10 +638,10 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[1265px] h-[600px] bg-[#04060e]">
+          <div className="w-[81.25rem] h-[37.5rem] bg-[#04060e]">
             <h2>Rules for registration</h2>
             <div className="flex justify-between">
-              <div className="py-[100px] mt-30 bg-[#070b15]">
+              <div className="py-[6.25rem] mt-30 bg-[#070b15]">
                 <h3>Do</h3>
                 <ul className="">
                   <li>sumit</li>
@@ -649,7 +649,7 @@ export default function Dashboard() {
                   <li>sumit</li>
                 </ul>
               </div>
-              <div className="w-[300px] mt-30 bg-[#070b15]">
+              <div className="w-[18.75rem] mt-30 bg-[#070b15]">
                 <h3>Don't</h3>
                 <ul className="">
                   <li>pradip</li>
@@ -664,9 +664,9 @@ export default function Dashboard() {
 
       {/* ------------------- Footer (optional) ------------------- */}
 
-      <footer className="h-[900px]">
+      <footer className="h-[56.25rem]">
         <div className="absolute -z-10">
-          <img className="h-[900px]" src={footerImage} alt="" />
+          <img className="h-[56.25rem]" src={footerImage} alt="" />
         </div>
         <div className="z-10">
           <div className="flex flex-col justify-center">
