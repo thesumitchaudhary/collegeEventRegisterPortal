@@ -28,6 +28,7 @@ import { Instagram } from "lucide-react";
 import { Facebook } from "lucide-react";
 import { Linkedin } from "lucide-react";
 import { X } from "lucide-react";
+import { Menu as MenuIcon } from 'lucide-react';
 
 // Hackathon Images
 import herossectionImage from "../images/herossection-image.avif";
@@ -48,6 +49,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
 export default function Dashboard() {
+
+  const [menuActive,setMenuActive] = useState();
   const [active, setActive] = useState();
   const items = [
     {
@@ -97,20 +100,22 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   return (
-    <div className="relative w-full text-white min-h-screen xs:w-[370px] lg:bg-transparent xl:">
-      <Meteors number={30} />
+    <div className="relative w-full text-white min-h-screen">
+        <Meteors number={30} />
       <div className="">
         <CursorShadow />
       </div>
       <img
-        className="absolute w-[81.25rem] h-[87.5rem] -z-10 xs:w-[370px] xs:bg-[#ff00ff]"
+        className="absolute w-[79.06rem] h-[97.5rem] -z-10 xs:w-[370px]"
         src={herossectionImage}
         alt=""
       />
       {/* ------------------- Header ------------------- */}
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
-          <h1 className=" text-white text-4xl mt-[1.25rem] ">C E R</h1>
+          <h1 className={`text-white text-[19px]  mt-[1.25rem]`}>
+            C E R
+          </h1>
           {/* <nav className="flex gap-[20px] mt-[20px] text-sm font-medium">
             <Link to="/" className="text-white text-lg  no-underline">
               Home
@@ -134,15 +139,13 @@ export default function Dashboard() {
               Blog
             </Link>
           </nav> */}
-          <div className={"max-w-2xl mx-auto"}>
+          <div className={`max-w-2xl mx-auto text-[10px] ${menuActive ? "block" : "hidden"}`}>
             <Menu setActive={setActive}>
               <MenuItem setActive={setActive} active={active} item="Home">
                 <div className="flex flex-col space-y-4 text-sm  bg-black ">
                   <HoveredLink to="/">Web Development</HoveredLink>
                   <HoveredLink to="/">Interface Design</HoveredLink>
-                  <HoveredLink to="/">
-                    Search Engine Optimization
-                  </HoveredLink>
+                  <HoveredLink to="/">Search Engine Optimization</HoveredLink>
                   <HoveredLink href="/branding">Branding</HoveredLink>
                 </div>
               </MenuItem>
@@ -196,7 +199,7 @@ export default function Dashboard() {
               </MenuItem>
             </Menu>
           </div>
-          <div>
+          <div className={`${menuActive ? "block" : "hidden"}`}>
             <Link
               to="/register"
               className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
@@ -204,6 +207,12 @@ export default function Dashboard() {
               SignIn
             </Link>
           </div>
+          <Button size={"icon"} className={`${menuActive ? 'hidden' : 'block'}`} onClick={() => setMenuActive(true)} >
+            <MenuIcon />
+          </Button>
+          <Button size={"icon"} className={`${menuActive ? 'block' : 'hidden'}`} onClick={() => setMenuActive(false)} >
+            <X/>
+          </Button>
         </div>
       </header>
 
@@ -230,7 +239,7 @@ export default function Dashboard() {
       <main className="pt-20 flex flex-col items-center text-center px-4">
         <section className="z-100">
           <p>4.7/5.0 on google.com</p>
-          <h2 className="text-8xl mt-7  mb-4">
+          <h2 className="text-1xl mt-7  mb-4">
             Register for Upcoming College Events
           </h2>
           <p className="text-gray-400 mx-auto mt-6  max-w-md mb-6">
@@ -244,7 +253,9 @@ export default function Dashboard() {
           <div className="flex gap-4 justify-center mt-50px ml-40%">
             <Button
               size="lg"
-              className={"px-[1.12rem] py-[.62rem] bg-blue-500 rounded-[.31rem]"}
+              className={
+                "px-[1.12rem] py-[.62rem] bg-blue-500 rounded-[.31rem]"
+              }
               onClick={() => navigate("/register")}
             >
               Register Now
@@ -261,7 +272,7 @@ export default function Dashboard() {
         </section>
         <section className="w-[75rem] h-[50rem]">
           <div
-            className="mt-[2.5rem] grid grid-cols-3 gap-10"
+            className="mt-[2.5rem] grid grid-cols-3   "
             style={{
               backgroundColor:
                 "var(--token-7f644d3c-fafa-4df1-9482-cf8ab29882f1, rgb(7, 11, 21))",
@@ -272,27 +283,31 @@ export default function Dashboard() {
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="h-[39.37rem] mt-20" src={firstImage} alt="" />
+                  <img className="w-[10rem] mt-15" src={firstImage} alt="" />
                 </div>
               </div>
             </div>
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="h-[39.37rem] mt-10" src={secondImage} alt="" />
+                  <img
+                    className="w-[10rem] mt-10"
+                    src={secondImage}
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="h-[39.37rem] mt-5" src={thirdImage} alt="" />
+                  <img className="w-[10rem] mt-5" src={thirdImage} alt="" />
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section className="overflow-hidden bg-[#04060e] w-[81.25rem]">
+        <section className="overflow-hidden bg-[#04060e] w-[25rem]">
           <p className=" mt-[7.5rem] text-[1.25rem]">
             Simplifying event participation for every student
           </p>
@@ -360,9 +375,9 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="h-[37.5rem] bg-[#04060e] text-white w-[81.25rem]">
+          <div className="h-[88.5rem] bg-[#04060e] text-white w-[25rem]">
             <h2>The smartest way to automate your tasks</h2>
-            <div className="flex justify-center gap-10">
+            <div className="gap-10">
               <CardContainer className="inter-var w-90">
                 <CardBody className="bg-[#070b15] relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
                   <CardItem
@@ -499,7 +514,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="h-[43.75rem] bg-[#04060e] text-white w-[81.25rem] px-10">
+          <div className="h-[63.75rem] bg-[#04060e] text-white w-[25rem] px-10">
             <div className="flex justify-between ">
               <h2 className=" text-2xl mt-10">
                 Advanced AI features for smarter automation
@@ -535,7 +550,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[81.25rem] h-[50rem]">
+          <div className="w-[25rem] h-[50rem]">
             <img
               className="absolute w-[81.25rem] h-[50rem] -z-10"
               src={herossectionMiddleImage}
@@ -576,7 +591,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[81.25rem] h-[37.5rem] bg-[#04060e]">
+          <div className="w-[25rem] h-[37.5rem] bg-[#04060e]">
             <div className="">
               <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
                 <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
@@ -604,7 +619,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[81.25rem] h-[12.5rem] bg-[#04060e]">
+          <div className="w-[25rem] h-[12.5rem] bg-[#04060e]">
             <ul className="flex">
               <li>
                 <h3>Increased efficiency</h3>
@@ -638,7 +653,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[81.25rem] h-[37.5rem] bg-[#04060e]">
+          <div className="w-[25rem] h-[37.5rem] bg-[#04060e]">
             <h2>Rules for registration</h2>
             <div className="flex justify-between">
               <div className="py-[6.25rem] mt-30 bg-[#070b15]">
@@ -664,7 +679,7 @@ export default function Dashboard() {
 
       {/* ------------------- Footer (optional) ------------------- */}
 
-      <footer className="h-[56.25rem]">
+      <footer className="h-[56.25rem] ">
         <div className="absolute -z-10">
           <img className="h-[56.25rem]" src={footerImage} alt="" />
         </div>
@@ -713,7 +728,10 @@ export default function Dashboard() {
                   <Link to="/" className="text-white text-lg  no-underline">
                     Home
                   </Link>
-                  <Link to="/feature" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/feature"
+                    className="text-white text-lg  no-underline"
+                  >
                     Features
                   </Link>
                   <Link to="/" className="text-white text-lg  no-underline">
