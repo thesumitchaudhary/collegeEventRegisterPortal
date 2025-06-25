@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Meteors } from "../components/ui/Meteors";
 import { Marquee } from "../components/magicui/Marquee";
 import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
@@ -28,7 +21,7 @@ import { Instagram } from "lucide-react";
 import { Facebook } from "lucide-react";
 import { Linkedin } from "lucide-react";
 import { X } from "lucide-react";
-import { Menu as MenuIcon } from 'lucide-react';
+import { Menu as MenuIcon } from "lucide-react";
 
 // Hackathon Images
 import herossectionImage from "../images/herossection-image.avif";
@@ -49,8 +42,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
 export default function Dashboard() {
-
-  const [menuActive,setMenuActive] = useState();
+  const [menuActive, setMenuActive] = useState();
   const [active, setActive] = useState();
   const items = [
     {
@@ -101,21 +93,19 @@ export default function Dashboard() {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   return (
     <div className="relative w-full text-white min-h-screen">
-        <Meteors number={30} />
+      <Meteors number={30} />
       <div className="">
         <CursorShadow />
       </div>
       <img
-        className="absolute w-[79.06rem] h-[97.5rem] -z-10 xs:w-[370px]"
+        className="absolute w-[25rem] h-[57.5rem] -z-10 xs:w-[370px] lg:w-[79.06rem]"
         src={herossectionImage}
         alt=""
       />
       {/* ------------------- Header ------------------- */}
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
-          <h1 className={`text-white text-[19px]  mt-[1.25rem]`}>
-            C E R
-          </h1>
+          <h1 className={`text-white text-[19px]  mt-[1.25rem]`}>C E R</h1>
           {/* <nav className="flex gap-[20px] mt-[20px] text-sm font-medium">
             <Link to="/" className="text-white text-lg  no-underline">
               Home
@@ -139,7 +129,11 @@ export default function Dashboard() {
               Blog
             </Link>
           </nav> */}
-          <div className={`max-w-2xl mx-auto text-[10px] ${menuActive ? "block" : "hidden"}`}>
+          <div
+            className={`max-w-2xl mx-auto text-[10px] ${
+              menuActive ? "block" : "hidden"
+            }`}
+          >
             <Menu setActive={setActive}>
               <MenuItem setActive={setActive} active={active} item="Home">
                 <div className="flex flex-col space-y-4 text-sm  bg-black ">
@@ -207,38 +201,26 @@ export default function Dashboard() {
               SignIn
             </Link>
           </div>
-          <Button size={"icon"} className={`${menuActive ? 'hidden' : 'block'}`} onClick={() => setMenuActive(true)} >
-            <MenuIcon />
-          </Button>
-          <Button size={"icon"} className={`${menuActive ? 'block' : 'hidden'}`} onClick={() => setMenuActive(false)} >
-            <X/>
-          </Button>
+            <Button
+              size={"icon"}
+              className={`${menuActive ? "hidden" : "block"}`}
+              onClick={() => setMenuActive(true)}
+            >
+              <MenuIcon />
+            </Button>
+            <Button
+              size={"icon"}
+              className={`${menuActive ? "block" : "hidden"}`}
+              onClick={() => setMenuActive(false)}
+            >
+              <X />
+            </Button>
         </div>
       </header>
-
-      {/* ------------------- Carousel ------------------- */}
-      {/* <section className="w-full max-w-3xl mx-auto mt-10 relative">
-  <div ref={emblaRef} className="overflow-hidden">
-    <Carousel className="h-64">
-      <CarouselContent>
-        <CarouselItem><img className="" className="object-cover" src={AICreativeMediaHackathon} alt="AI Hackathon" /></CarouselItem>
-        <CarouselItem><img className="" className="object-cover" src={BiotechnologyBreakThroughHackathon} alt="Biotech Hackathon" /></CarouselItem>
-        <CarouselItem><img className="" className="object-cover" src={COOPHackathon} alt="CO-OP Hackathon" /></CarouselItem>
-        <CarouselItem><img className="" className="object-cover" src={DebugOnHackathon} alt="DebugOn Hackathon" /></CarouselItem>
-        <CarouselItem><img className="" className="object-cover" src={ICA2025Hackathon} alt="ICA 2025 Hackathon" /></CarouselItem>
-        <CarouselItem><img className="" className="object-cover" src={StartUpHackathon} alt="Startup Hackathon" /></CarouselItem>
-      </CarouselContent>
-
-      <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow" />
-      <CarouselNext className="ml-[1380px] absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow" />
-    </Carousel>
-  </div>
-</section> */}
 
       {/* ------------------- Main Content ------------------- */}
       <main className="pt-20 flex flex-col items-center text-center px-4">
         <section className="z-100">
-          <p>4.7/5.0 on google.com</p>
           <h2 className="text-1xl mt-7  mb-4">
             Register for Upcoming College Events
           </h2>
@@ -270,7 +252,7 @@ export default function Dashboard() {
             </Button>
           </div>
         </section>
-        <section className="w-[75rem] h-[50rem]">
+        <section className="w-[25rem] h-[28.2rem] lg:w-[79.06rem] lg:h-[34.2rem]">
           <div
             className="mt-[2.5rem] grid grid-cols-3   "
             style={{
@@ -283,18 +265,14 @@ export default function Dashboard() {
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="w-[10rem] mt-15" src={firstImage} alt="" />
+                  <img className="w-[10rem] mt-15 lg:h-[20rem] lg:w-[30rem]" src={firstImage} alt="" />
                 </div>
               </div>
             </div>
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img
-                    className="w-[10rem] mt-10"
-                    src={secondImage}
-                    alt=""
-                  />
+                  <img className="w-[10rem] mt-10" src={secondImage} alt="" />
                 </div>
               </div>
             </div>
@@ -307,7 +285,7 @@ export default function Dashboard() {
             </div>
           </div>
         </section>
-        <section className="overflow-hidden bg-[#04060e] w-[25rem]">
+        <section className="overflow-hidden bg-[#04060e] w-[25rem] lg:w-[79.06rem]">
           <p className=" mt-[7.5rem] text-[1.25rem]">
             Simplifying event participation for every student
           </p>
@@ -374,10 +352,10 @@ export default function Dashboard() {
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 from-background"></div>
           </div>
         </section>
-        <section>
-          <div className="h-[88.5rem] bg-[#04060e] text-white w-[25rem]">
+        <section className="h-[98.5rem] w-[25rem] bg-[#04060e] lg:w-[79.06rem] lg:h-[40rem] ">
+          <div className=" text-white">
             <h2>The smartest way to automate your tasks</h2>
-            <div className="gap-10">
+            <div className="lg:flex lg:gap-10">
               <CardContainer className="inter-var w-90">
                 <CardBody className="bg-[#070b15] relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
                   <CardItem
@@ -513,8 +491,8 @@ export default function Dashboard() {
             </div>
           </div>
         </section>
-        <section>
-          <div className="h-[63.75rem] bg-[#04060e] text-white w-[25rem] px-10">
+        <section className="h-[63.75rem] bg-[#04060e] lg:w-[79.06rem] lg:h-[43rem]">
+          <div className="mt-[20rem] text-white px-10 lg:mt-[5rem]">
             <div className="flex justify-between ">
               <h2 className=" text-2xl mt-10">
                 Advanced AI features for smarter automation
@@ -550,9 +528,9 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[25rem] h-[50rem]">
+          <div className="w-[25rem] h-[50rem] lg:w-[79.09rem]">
             <img
-              className="absolute w-[81.25rem] h-[50rem] -z-10"
+              className="absolute w-[25rem] h-[50rem] -z-10v lg:w-[79.09rem]"
               src={herossectionMiddleImage}
               alt=""
             />
@@ -591,8 +569,8 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[25rem] h-[37.5rem] bg-[#04060e]">
-            <div className="">
+          <div className="w-[25rem] h-[37.5rem] bg-[#04060e] lg:w-[79.09rem]">
+            <div className="lg:w-[79.09rem]">
               <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
                 <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
                   If its your first day at Fight Club, you have to fight.
@@ -619,8 +597,8 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[25rem] h-[12.5rem] bg-[#04060e]">
-            <ul className="flex">
+          <div className="w-[25rem] h-[12.5rem] bg-[#04060e] lg:w-[79.09rem]">
+            <ul className="">
               <li>
                 <h3>Increased efficiency</h3>
                 <p>
@@ -653,7 +631,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[25rem] h-[37.5rem] bg-[#04060e]">
+          <div className="w-[25rem] h-[37.5rem] bg-[#04060e] lg:w-[79.09rem]">
             <h2>Rules for registration</h2>
             <div className="flex justify-between">
               <div className="py-[6.25rem] mt-30 bg-[#070b15]">
@@ -685,26 +663,27 @@ export default function Dashboard() {
         </div>
         <div className="z-10">
           <div className="flex flex-col justify-center">
-            <div className="mt-20 ml-100">
-              <h2 className=" text-4xl w-150 text-center">
+            <div className="mt-20">
+              <h2 className="text-xl text-center">
                 Enter your Email for getting Event Notification Timely
               </h2>
-              <p className="mt-5">
+              <p className="mt-5 text-center">
                 Subscribe to our newsletter and get updates on upcoming college
                 events, registration deadlines, and exclusive student
                 opportunities—delivered straight to your inbox.
               </p>
-              <div className="mt-30">
-                <div className="flex gap-5">
+              <div className="mt-20">
+                <div className="flex flex-col gap-5">
                   <input
                     type="text"
-                    className="text-white bg-black w-[400px]"
+                    className="text-white bg-black px-20 py-[.65rem]"
+                    placeholder="Enter email"
                   />
-                  <button className="px-[15px] py-[10px] rounded-2xl bg-blue-900">
+                  <button className="w-[5.9rem] mx-[5rem] py-[10px] rounded-2xl bg-blue-900">
                     Submit
                   </button>
                 </div>
-                <div className="mt-5 flex gap-10 text-white">
+                <div className="mt-5 block gap-10 text-white">
                   <p>No credit card is required</p>
                   <p>Early access & Special offers</p>
                 </div>

@@ -1,11 +1,27 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CursorShadow from "../components/ui/CursorShadow";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import footerImage from "../images/footer-img.avif";
 import { Instagram } from "lucide-react";
 import { Facebook } from "lucide-react";
 import { Linkedin } from "lucide-react";
 import { X } from "lucide-react";
+
+// Hackathon Image
+
+import AICreativeMediaHackathon from "../images/AICreativeMediaHackathon.jpeg";
+import BiotechnologyBreakThroughHackathon from "../images/BiotechnologyBreakThroughHackathon.jpeg";
+import COOPHackathon from "../images/CO-OPHackathon.jpeg";
+import DebugOnHackathon from "../images/DebugOnHackathon.jpeg";
+import ICA2025Hackathon from "../images/ICA2025Hackathon.jpeg";
+import StartUpHackathon from "../images/StartUpHackathon.jpeg";
 
 export default function EventsList() {
   return (
@@ -45,6 +61,24 @@ export default function EventsList() {
         </div>
       </header>
       <main className="h-[900px] bg-[#04060e]">
+         {/* ------------------- Carousel ------------------- */}
+      {/* <section className="w-full max-w-3xl mx-auto mt-10 relative">
+  <div ref={emblaRef} className="overflow-hidden">
+    <Carousel className="h-64">
+      <CarouselContent>
+        <CarouselItem><img className="" className="object-cover" src={AICreativeMediaHackathon} alt="AI Hackathon" /></CarouselItem>
+        <CarouselItem><img className="" className="object-cover" src={BiotechnologyBreakThroughHackathon} alt="Biotech Hackathon" /></CarouselItem>
+        <CarouselItem><img className="" className="object-cover" src={COOPHackathon} alt="CO-OP Hackathon" /></CarouselItem>
+        <CarouselItem><img className="" className="object-cover" src={DebugOnHackathon} alt="DebugOn Hackathon" /></CarouselItem>
+        <CarouselItem><img className="" className="object-cover" src={ICA2025Hackathon} alt="ICA 2025 Hackathon" /></CarouselItem>
+        <CarouselItem><img className="" className="object-cover" src={StartUpHackathon} alt="Startup Hackathon" /></CarouselItem>
+      </CarouselContent>
+
+      <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow" />
+      <CarouselNext className="ml-[1380px] absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow" />
+    </Carousel>
+  </div>
+</section> */}
 
       </main>
 
