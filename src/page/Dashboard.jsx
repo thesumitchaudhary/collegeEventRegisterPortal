@@ -94,11 +94,11 @@ export default function Dashboard() {
   return (
     <div className="relative w-full text-white min-h-screen">
       <Meteors number={30} />
-      <div className="">
+      <div className="hidden lg:block">
         <CursorShadow />
       </div>
       <img
-        className="absolute w-[25rem] h-[57.5rem] -z-10 xs:w-[370px] lg:w-[79.06rem]"
+        className="absolute w-[25rem] h-[57.5rem] -z-10 lg:h-[85rem] lg:w-[79.06rem]"
         src={herossectionImage}
         alt=""
       />
@@ -201,20 +201,20 @@ export default function Dashboard() {
               SignIn
             </Link>
           </div>
-            <Button
-              size={"icon"}
-              className={`${menuActive ? "hidden" : "block"}`}
-              onClick={() => setMenuActive(true)}
-            >
-              <MenuIcon />
-            </Button>
-            <Button
-              size={"icon"}
-              className={`${menuActive ? "block" : "hidden"}`}
-              onClick={() => setMenuActive(false)}
-            >
-              <X />
-            </Button>
+          <Button
+            size={"icon"}
+            className={`${menuActive ? "hidden" : "block"}`}
+            onClick={() => setMenuActive(true)}
+          >
+            <MenuIcon />
+          </Button>
+          <Button
+            size={"icon"}
+            className={`${menuActive ? "block" : "hidden"}`}
+            onClick={() => setMenuActive(false)}
+          >
+            <X />
+          </Button>
         </div>
       </header>
 
@@ -265,7 +265,11 @@ export default function Dashboard() {
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="w-[10rem] mt-15 lg:h-[20rem] lg:w-[30rem]" src={firstImage} alt="" />
+                  <img
+                    className="w-[10rem] mt-15 lg:h-[20rem] lg:w-[30rem]"
+                    src={firstImage}
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -362,7 +366,7 @@ export default function Dashboard() {
                     translateZ="50"
                     className="text-xl  text-neutral-600 dark:text-white"
                   >
-                    Make things float in air
+                    Hackathon
                   </CardItem>
                   <CardItem
                     as="p"
@@ -388,14 +392,14 @@ export default function Dashboard() {
                       target="__blank"
                       className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
                     >
-                      Try now →
+                      
                     </CardItem>
                     <CardItem
                       translateZ={20}
                       as="button"
                       className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
-                      Sign up
+                     <Link to="/register">Sign up</Link> 
                     </CardItem>
                   </div>
                 </CardBody>
@@ -406,7 +410,7 @@ export default function Dashboard() {
                     translateZ="50"
                     className="text-xl  text-neutral-600 dark:text-white"
                   >
-                    Make things float in air
+                    Sports
                   </CardItem>
                   <CardItem
                     as="p"
@@ -432,14 +436,14 @@ export default function Dashboard() {
                       target="__blank"
                       className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
                     >
-                      Try now →
+                      
                     </CardItem>
                     <CardItem
                       translateZ={20}
                       as="button"
                       className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
-                      Sign up
+                      <Link to="/register">Sign up</Link>
                     </CardItem>
                   </div>
                 </CardBody>
@@ -450,7 +454,7 @@ export default function Dashboard() {
                     translateZ="50"
                     className="text-xl  text-neutral-600 dark:text-white"
                   >
-                    Make things float in air
+                    Oreintation
                   </CardItem>
                   <CardItem
                     as="p"
@@ -476,14 +480,14 @@ export default function Dashboard() {
                       target="__blank"
                       className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
                     >
-                      Try now →
+                      
                     </CardItem>
                     <CardItem
                       translateZ={20}
                       as="button"
                       className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
-                      Sign up
+                      <Link to="/register">Sign up</Link>
                     </CardItem>
                   </div>
                 </CardBody>
@@ -530,7 +534,7 @@ export default function Dashboard() {
         <section>
           <div className="w-[25rem] h-[50rem] lg:w-[79.09rem]">
             <img
-              className="absolute w-[25rem] h-[50rem] -z-10v lg:w-[79.09rem]"
+              className="absolute w-[26rem] h-[50rem] -z-10v lg:w-[79.09rem]"
               src={herossectionMiddleImage}
               alt=""
             />
@@ -569,7 +573,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[25rem] h-[37.5rem] bg-[#04060e] lg:w-[79.09rem]">
+          <div className="w-[25rem] h-[37.5rem] bg-[#04060e] lg:w-[79.06rem]">
             <div className="lg:w-[79.09rem]">
               <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
                 <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
@@ -597,7 +601,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[25rem] h-[12.5rem] bg-[#04060e] lg:w-[79.09rem]">
+          <div className="w-[25rem] h-[12.5rem] bg-[#04060e] lg:w-[79.06rem]">
             <ul className="">
               <li>
                 <h3>Increased efficiency</h3>
@@ -631,7 +635,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[25rem] h-[37.5rem] bg-[#04060e] lg:w-[79.09rem]">
+          <div className="w-[25rem] h-[37.5rem] bg-[#04060e] lg:w-[79.06rem]">
             <h2>Rules for registration</h2>
             <div className="flex justify-between">
               <div className="py-[6.25rem] mt-30 bg-[#070b15]">
@@ -659,51 +663,56 @@ export default function Dashboard() {
 
       <footer className="h-[56.25rem] ">
         <div className="absolute -z-10">
-          <img className="h-[56.25rem]" src={footerImage} alt="" />
+          <img
+            className="h-[76.25rem] w-[25rem] lg:w-[79.06rem]"
+            src={footerImage}
+            alt=""
+          />
         </div>
         <div className="z-10">
-          <div className="flex flex-col justify-center">
-            <div className="mt-20">
-              <h2 className="text-xl text-center">
-                Enter your Email for getting Event Notification Timely
-              </h2>
-              <p className="mt-5 text-center">
-                Subscribe to our newsletter and get updates on upcoming college
-                events, registration deadlines, and exclusive student
-                opportunities—delivered straight to your inbox.
-              </p>
-              <div className="mt-20">
-                <div className="flex flex-col gap-5">
-                  <input
-                    type="text"
-                    className="text-white bg-black px-20 py-[.65rem]"
-                    placeholder="Enter email"
-                  />
-                  <button className="w-[5.9rem] mx-[5rem] py-[10px] rounded-2xl bg-blue-900">
-                    Submit
-                  </button>
-                </div>
-                <div className="mt-5 block gap-10 text-white">
-                  <p>No credit card is required</p>
-                  <p>Early access & Special offers</p>
-                </div>
+          <div className="p-[1rem]">
+            <h2 className="text-xl text-center">
+              Enter your Email for getting Event Notification Timely
+            </h2>
+            <p className="mt-5 text-center">
+              Subscribe to our newsletter and get updates on upcoming college
+              events, registration deadlines, and exclusive student
+              opportunities—delivered straight to your inbox.
+            </p>
+            <div className="mt-20 text-center">
+              <div className="flex flex-col gap-5">
+                <input
+                  type="text"
+                  className="text-white bg-black px-20 py-[.25rem] w-[20rem]"
+                  placeholder="Enter email"
+                />
+                <button className="w-[5.9rem] mx-[5rem] py-[10px] rounded-2xl bg-blue-900">
+                  Submit
+                </button>
+              </div>
+              <div className="mt-5 flex flex-col gap-2 text-center text-white">
+                <p>No credit card is required</p>
+                <p>Early access & Special offers</p>
               </div>
             </div>
           </div>
-          <div className="flex justify-between mx-30">
+          <div className="mx-30">
             <div>
-              <h2 className="mt-50 text-center text-white">CER</h2>
-              <div className="flex gap-5 mt-10">
+              <h2 className="mt-10 text-center text-white">CER</h2>
+              <div className="flex gap-5 mt-5">
                 <Facebook />
                 <Linkedin />
                 <X />
                 <Instagram />
               </div>
+              <p className="text-whie p-[.75rem] text-[10px]">
+                Developed by Chaudhary Sumit And Chaudhary Raj
+              </p>
             </div>
-            <div className="flex gap-10 mt-50">
+            <div className="flex gap-10 mt-10">
               <div>
                 <h4 className="text-base mb-5 text-white">Main mages</h4>
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-3">
                   <Link to="/" className="text-white text-lg  no-underline">
                     Home
                   </Link>
@@ -755,9 +764,6 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="mt-5 flex gap-10">
-            <p className="text-white">
-              Developed by Chaudhary Sumit And Chaudhary Raj
-            </p>
             <p className="text-white ">
               2025 College Event Registration Portal. All rights reserved.
             </p>

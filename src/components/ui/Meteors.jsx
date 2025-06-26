@@ -9,7 +9,8 @@ export const Meteors = ({
 }) => { 
   const meteors = new Array(number || 20).fill(true);
   return (
-    <motion.div
+    <motion.div 
+    className="overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}>
