@@ -92,7 +92,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   return (
-    <div className="relative w-full text-white min-h-screen">
+    <div className="relative w-full overflow-hidden text-white min-h-screen">
       <Meteors number={30} />
       <div className="hidden lg:block">
         <CursorShadow />
