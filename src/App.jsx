@@ -43,8 +43,8 @@ function App() {
 
         {/* for admin */}
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/adminblog" element={<BlogAdmin />} />
-        <Route path="/adminevent" element={<EventAdmin />} />
+        <Route path="/admin/adminblog" element={<BlogAdmin />} />
+        <Route path="/admin/adminevent" element={<EventAdmin />} />
       </Routes>
     </Router>
   );
