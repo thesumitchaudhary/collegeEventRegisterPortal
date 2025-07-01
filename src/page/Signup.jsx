@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
+import {Link, useNavigate} from "react-router-dom"
 
 function Signup() {
   const [name, setName] = useState("");
@@ -94,7 +95,7 @@ function Signup() {
       >
         Sign Up
       </button>
-      {/* <p>Already have Account? <Link to="/"></Link></p> */}
+      <p>Already have Account? <Link className="text-blue-400" to="/signin">SignIn</Link></p>
     </form>
   );
 }

@@ -1,12 +1,49 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Card, CardContent } from '../components/ui/card';
 
 export default function EventAdmin() {
+  const [blogs, setBlogs] = useState([]);
+  const [formData, setFormData] = useState({ title: '', content: '' });
+  const [editingId, setEditingId] = useState(null);
+
+  const fetchBlogs = async () => {
+    const { data, error } = await supabase.from('blogs').select('*').order('created_at', { ascending: false });
+    if (error) console.error(error);
+    else setBlogs(data);
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const handleInputChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async () => {
+    if (editingId) {
+      await supabase.from('blogs').update(formData).eq('id', editingId);
+    } else {
+      await supabase.from('blogs').insert(formData);
+    }
+    setFormData({ title: '', content: '' });
+    setEditingId(null);
+    fetchBlogs();
+  };
+
+  const handleEdit = (blog) => {
+    setFormData({ title: blog.title, content: blog.content });
+    setEditingId(blog.id);
+  };
+
+  const handleDelete = async (id) => {
+    await supabase.from('blogs').delete().eq('id', id);
+    fetchBlogs();
+  };
   return (
     <div>
       <header className="flex justify-between">

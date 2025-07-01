@@ -1,7 +1,6 @@
-// pages/SignInUser.jsx
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signin() {
   const [email, setEmail] = useState("");
@@ -12,7 +11,10 @@ function Signin() {
   const handleSignIn = async (e) => {
     e.preventDefault();
 
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
     if (error) {
       setErrorMsg("Invalid credentials");
@@ -38,11 +40,36 @@ function Signin() {
     <form onSubmit={handleSignIn} className="p-4 max-w-md mx-auto">
       <h2 className="text-xl font-bold mb-4">User Sign In</h2>
       {errorMsg && <p className="text-red-500">{errorMsg}</p>}
-      <input type="email" required placeholder="Email" value={email}
-        onChange={(e) => setEmail(e.target.value)} className="block w-full mb-3 p-2 border rounded" />
-      <input type="password" required placeholder="Password" value={password}
-        onChange={(e) => setPassword(e.target.value)} className="block w-full mb-3 p-2 border rounded" />
-      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Login as User</button>
+      <input
+        type="email"
+        required
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="block w-full mb-3 p-2 border rounded"
+      />
+      <input
+        type="password"
+        required
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="block w-full mb-3 p-2 border rounded"
+      />
+      <button
+        type="submit"
+        className="bg-blue-600 text-white px-4 py-2 rounded"
+      >
+        Login
+      </button>
+      <div>
+        <p>
+          Already have an account?{" "}
+          <Link className="text-blue-400" to="/signup">
+            SignUp
+          </Link>
+        </p>
+      </div>
     </form>
   );
 }

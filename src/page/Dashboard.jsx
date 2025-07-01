@@ -106,115 +106,116 @@ export default function Dashboard() {
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
           <h1 className={`text-white text-[19px]  mt-[1.25rem]`}>C E R</h1>
-          {/* <nav className="flex gap-[20px] mt-[20px] text-sm font-medium">
+          <nav className="lg:flex hidden gap-[20px] mt-[20px] text-sm font-medium">
             <Link to="/" className="text-white text-lg  no-underline">
               Home
             </Link>
-            <Link
-              to="/events"
-              className="text-white text-lg  no-underline"
-            >
+            <Link to="/events" className="text-white text-lg  no-underline">
               Events
             </Link>
-            <Link
-              to="/resource"
-              className="text-white text-lg  no-underline"
-            >
+            <Link to="/resource" className="text-white text-lg  no-underline">
               Resource
             </Link>
-            <Link
-              to="/blog"
-              className="text-white text-lg  no-underline"
-            >
+            <Link to="/blog" className="text-white text-lg  no-underline">
               Blog
             </Link>
-          </nav> */}
-          <div
-            className={`max-w-2xl mx-auto text-[10px]  ${
-              menuActive ? "block" : "hidden"
-            }`}
-          >
-            <Menu setActive={setActive}>
-              <MenuItem setActive={setActive} active={active} item="Home">
-                <div className="flex flex-col space-y-4 text-sm  bg-black ">
-                  <HoveredLink to="/">Web Development</HoveredLink>
-                  <HoveredLink to="/">Interface Design</HoveredLink>
-                  <HoveredLink to="/">Search Engine Optimization</HoveredLink>
-                  <HoveredLink href="/branding">Branding</HoveredLink>
-                </div>
-              </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Event">
-                <div className="flex flex-col space-y-4 text-sm  bg-black ">
-                  <HoveredLink href="/web-dev">Web Development</HoveredLink>
-                  <HoveredLink href="/interface-design">
-                    Interface Design
-                  </HoveredLink>
-                  <HoveredLink href="/seo">
-                    Search Engine Optimization
-                  </HoveredLink>
-                  <HoveredLink href="/branding">Branding</HoveredLink>
-                </div>
-              </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Resource">
-                <div className="  text-sm grid grid-cols-2 gap-10 p-4">
-                  <ProductItem
-                    title="Algochurn"
-                    href="https://algochurn.com"
-                    src="https://assets.aceternity.com/demos/algochurn.webp"
-                    description="Prepare for tech interviews like never before."
-                  />
-                  <ProductItem
-                    title="Tailwind Master Kit"
-                    href="https://tailwindmasterkit.com"
-                    src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-                    description="Production ready Tailwind css components for your next project"
-                  />
-                  <ProductItem
-                    title="Moonbeam"
-                    href="https://gomoonbeam.com"
-                    src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-                    description="Never write from scratch again. Go from idea to blog in minutes."
-                  />
-                  <ProductItem
-                    title="Rogue"
-                    href="https://userogue.com"
-                    src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
-                    description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
-                  />
-                </div>
-              </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Blog">
-                <div className="flex flex-col space-y-4 text-sm">
-                  <HoveredLink to="/hobby">Hobby</HoveredLink>
-                  <HoveredLink to="/individual">Individual</HoveredLink>
-                  <HoveredLink to="/team">Team</HoveredLink>
-                  <HoveredLink to="/enterprise">Enterprise</HoveredLink>
-                </div>
-              </MenuItem>
-            </Menu>
-          </div>
-          <div className={`${menuActive ? "block" : "hidden"}`}>
-            <Link
-              to="/signup"
-              className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
+            <div>
+              <Link
+                to="/signup"
+                className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
+              >
+                SignIn
+              </Link>
+            </div>
+          </nav>
+          <nav className="lg:hidden block">
+            <div
+              className={`max-w-2xl  mx-auto text-[10px]  ${
+                menuActive ? "block" : "hidden"
+              }`}
             >
-              SignIn
-            </Link>
-          </div>
-          <Button
-            size={"icon"}
-            className={`${menuActive ? "hidden" : "block"}`}
-            onClick={() => setMenuActive(true)}
-          >
-            <MenuIcon />
-          </Button>
-          <Button
-            size={"icon"}
-            className={`${menuActive ? "block" : "hidden"}`}
-            onClick={() => setMenuActive(false)}
-          >
-            <X />
-          </Button>
+              <Menu setActive={setActive}>
+                <MenuItem setActive={setActive} active={active} item="Home">
+                  <div className="flex flex-col space-y-4 text-sm  bg-black ">
+                    <HoveredLink to="/">Web Development</HoveredLink>
+                    <HoveredLink to="/">Interface Design</HoveredLink>
+                    <HoveredLink to="/">Search Engine Optimization</HoveredLink>
+                    <HoveredLink href="/branding">Branding</HoveredLink>
+                  </div>
+                </MenuItem>
+                <MenuItem setActive={setActive} active={active} item="Event">
+                  <div className="flex flex-col space-y-4 text-sm  bg-black ">
+                    <HoveredLink href="/web-dev">Web Development</HoveredLink>
+                    <HoveredLink href="/interface-design">
+                      Interface Design
+                    </HoveredLink>
+                    <HoveredLink href="/seo">
+                      Search Engine Optimization
+                    </HoveredLink>
+                    <HoveredLink href="/branding">Branding</HoveredLink>
+                  </div>
+                </MenuItem>
+                <MenuItem setActive={setActive} active={active} item="Resource">
+                  <div className="  text-sm grid grid-cols-2 gap-10 p-4">
+                    <ProductItem
+                      title="Algochurn"
+                      href="https://algochurn.com"
+                      src="https://assets.aceternity.com/demos/algochurn.webp"
+                      description="Prepare for tech interviews like never before."
+                    />
+                    <ProductItem
+                      title="Tailwind Master Kit"
+                      href="https://tailwindmasterkit.com"
+                      src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
+                      description="Production ready Tailwind css components for your next project"
+                    />
+                    <ProductItem
+                      title="Moonbeam"
+                      href="https://gomoonbeam.com"
+                      src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
+                      description="Never write from scratch again. Go from idea to blog in minutes."
+                    />
+                    <ProductItem
+                      title="Rogue"
+                      href="https://userogue.com"
+                      src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
+                      description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+                    />
+                  </div>
+                </MenuItem>
+                <MenuItem setActive={setActive} active={active} item="Blog">
+                  <div className="flex flex-col space-y-4 text-sm">
+                    <HoveredLink to="/hobby">Hobby</HoveredLink>
+                    <HoveredLink to="/individual">Individual</HoveredLink>
+                    <HoveredLink to="/team">Team</HoveredLink>
+                    <HoveredLink to="/enterprise">Enterprise</HoveredLink>
+                  </div>
+                </MenuItem>
+              </Menu>
+            </div>
+            <div className={`${menuActive ? "block" : "hidden"}`}>
+              <Link
+                to="/signup"
+                className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
+              >
+                SignIn
+              </Link>
+            </div>
+            <Button
+              size={"icon"}
+              className={`${menuActive ? "hidden" : "block"}`}
+              onClick={() => setMenuActive(true)}
+            >
+              <MenuIcon />
+            </Button>
+            <Button
+              size={"icon"}
+              className={`${menuActive ? "block" : "hidden"}`}
+              onClick={() => setMenuActive(false)}
+            >
+              <X />
+            </Button>
+          </nav>
         </div>
       </header>
 
@@ -250,7 +251,7 @@ export default function Dashboard() {
             >
               View My Events
             </Button>
-              <Button
+            <Button
               size="lg"
               className={"px-[.93rem] py-[.43rem] text-black rounded-[.31rem]"}
               variant="outline"
@@ -284,14 +285,22 @@ export default function Dashboard() {
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="w-[10rem] mt-10 lg:h-[30rem] lg:w-[22rem]" src={secondImage} alt="" />
+                  <img
+                    className="w-[10rem] mt-10 lg:h-[30rem] lg:w-[22rem]"
+                    src={secondImage}
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="w-[10rem] mt-5 lg:h-[30rem] lg:w-[22rem]" src={thirdImage} alt="" />
+                  <img
+                    className="w-[10rem] mt-5 lg:h-[30rem] lg:w-[22rem]"
+                    src={thirdImage}
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -399,15 +408,13 @@ export default function Dashboard() {
                       href="https://twitter.com/mannupaaji"
                       target="__blank"
                       className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                    >
-                      
-                    </CardItem>
+                    ></CardItem>
                     <CardItem
                       translateZ={20}
                       as="button"
                       className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
-                     <Link to="/register">Sign up</Link> 
+                      <Link to="/register">Sign up</Link>
                     </CardItem>
                   </div>
                 </CardBody>
@@ -443,9 +450,7 @@ export default function Dashboard() {
                       href="https://twitter.com/mannupaaji"
                       target="__blank"
                       className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                    >
-                      
-                    </CardItem>
+                    ></CardItem>
                     <CardItem
                       translateZ={20}
                       as="button"
@@ -487,9 +492,7 @@ export default function Dashboard() {
                       href="https://twitter.com/mannupaaji"
                       target="__blank"
                       className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                    >
-                      
-                    </CardItem>
+                    ></CardItem>
                     <CardItem
                       translateZ={20}
                       as="button"
@@ -659,12 +662,12 @@ export default function Dashboard() {
                   <img src={RuleImage} className="absolute z-10" alt="" />
                 </div>
                 <div className="-z-10">
-                <h3 className="text-white">Don't</h3>
-                <ul className="">
-                  <li>pradip</li>
-                  <li>pradip</li>
-                  <li>pradip</li>
-                </ul>
+                  <h3 className="text-white">Don't</h3>
+                  <ul className="">
+                    <li>pradip</li>
+                    <li>pradip</li>
+                    <li>pradip</li>
+                  </ul>
                 </div>
               </div>
             </div>
