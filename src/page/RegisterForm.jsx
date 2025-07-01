@@ -6,7 +6,7 @@ import { supabase } from "@/supabaseClient"; // adjust the path if needed
 import { Link, useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
-  const [form, setForm] = useState({ name: "", email: "", event: "" });
+  const [form, setForm] = useState({ name: "", email: "", event_id: "" });
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
@@ -24,7 +24,7 @@ export default function RegisterForm() {
       setMessage(`❌ Error: ${error.message}`);
     } else {
       setMessage("✅ Registered successfully!");
-      setForm({ name: "", email: "", event: "" });
+      setForm({ name: "", email: "", event_id: "" });
     }
   };
 
@@ -35,7 +35,7 @@ export default function RegisterForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required />
         <Input name="email" placeholder="Email Address" value={form.email} onChange={handleChange} required />
-        <Input name="event" placeholder="Event Name" value={form.event} onChange={handleChange} required />
+        <Input name="event_id" placeholder="Event Name" value={form.event} onChange={handleChange} required />
         <Button type="submit">Submit</Button>
       </form>
       {message && <p className="text-sm text-center text-blue-600">{message}</p>}

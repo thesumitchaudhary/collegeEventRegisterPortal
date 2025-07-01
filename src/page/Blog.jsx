@@ -9,6 +9,36 @@ import { X } from "lucide-react";
 import blogHeader from "../images/blog-header.avif";
 import footerImage from "../images/footer-img.avif";
 
+const blogPosts = [
+  {
+    title: "Top Events You Can’t Miss This Semester!",
+    description:
+      "A look at some of the most exciting events happening this semester.",
+    date: "April 24, 2024",
+    image: "https://source.unsplash.com/featured/?stage,audience",
+  },
+  {
+    title: "How We Organize a College Event: Start to Finish",
+    description: "A behind-the-scenes look at our event planning process.",
+    date: "April 24, 2024",
+    image: "https://source.unsplash.com/featured/?team,planning",
+  },
+  {
+    title: "5 Tips to Make the Most of College Fests",
+    description:
+      "Discover our best tips for enjoying college festivals to the fullest.",
+    date: "April 24, 2024",
+    image: "https://source.unsplash.com/featured/?students,festival",
+  },
+  {
+    title: "Meet the Winners of the Hackathon!",
+    description:
+      "Learn more about the talented students who took home the trophy.",
+    date: "April 24, 2024",
+    image: "https://source.unsplash.com/featured/?winner,trophy",
+  },
+];
+
 export default function Blog() {
   return (
     <div className="relative w-full text-white min-h-screen xs:w-[370px] lg:bg-transparent">
@@ -44,11 +74,32 @@ export default function Blog() {
           </div>
         </div>
       </header>
-      <main
-        className="h-[600px] bg-black
-      "
-      >
-        {" "}
+      <main className="h-[900px] bg-black">
+        <div className="max-w-6xl mx-auto px-4 py-12">
+          <h1 className="text-4xl font-bold mb-10 text-center">Blog</h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {blogPosts.map((post, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl shadow-md overflow-hidden"
+              >
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4">
+                  <h2 className="text-xl font-semibold">{post.title}</h2>
+                  <p className="text-gray-600 text-sm mt-1">
+                    {post.description}
+                  </p>
+                  <p className="text-gray-400 text-xs mt-3">{post.date}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </main>
 
       {/* ------------------- Footer (optional) ------------------- */}

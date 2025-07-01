@@ -98,7 +98,7 @@ export default function Dashboard() {
         <CursorShadow />
       </div>
       <img
-        className="absolute w-[25rem] h-[57.5rem] -z-10 lg:h-[85rem] lg:w-[79.06rem]"
+        className="absolute w-[25rem] h-[57.5rem] -z-10 lg:h-[68rem] lg:w-[79.06rem]"
         src={herossectionImage}
         alt=""
       />
@@ -130,7 +130,7 @@ export default function Dashboard() {
             </Link>
           </nav> */}
           <div
-            className={`max-w-2xl mx-auto text-[10px] ${
+            className={`max-w-2xl mx-auto text-[10px]  ${
               menuActive ? "block" : "hidden"
             }`}
           >
@@ -195,7 +195,7 @@ export default function Dashboard() {
           </div>
           <div className={`${menuActive ? "block" : "hidden"}`}>
             <Link
-              to="/register"
+              to="/signup"
               className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
             >
               SignIn
@@ -250,11 +250,19 @@ export default function Dashboard() {
             >
               View My Events
             </Button>
+              <Button
+              size="lg"
+              className={"px-[.93rem] py-[.43rem] text-black rounded-[.31rem]"}
+              variant="outline"
+              onClick={() => navigate("/admin")}
+            >
+              View My Events
+            </Button>
           </div>
         </section>
         <section className="w-[25rem] h-[28.2rem] lg:w-[79.06rem] lg:h-[34.2rem]">
           <div
-            className="mt-[2.5rem] grid grid-cols-3   "
+            className="mt-[2.5rem] grid grid-cols-3"
             style={{
               backgroundColor:
                 "var(--token-7f644d3c-fafa-4df1-9482-cf8ab29882f1, rgb(7, 11, 21))",
@@ -266,7 +274,7 @@ export default function Dashboard() {
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
                   <img
-                    className="w-[10rem] mt-15 lg:h-[20rem] lg:w-[30rem]"
+                    className="w-[10rem] mt-15 lg:h-[30rem] lg:w-[22rem]"
                     src={firstImage}
                     alt=""
                   />
@@ -276,14 +284,14 @@ export default function Dashboard() {
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="w-[10rem] mt-10" src={secondImage} alt="" />
+                  <img className="w-[10rem] mt-10 lg:h-[30rem] lg:w-[22rem]" src={secondImage} alt="" />
                 </div>
               </div>
             </div>
             <div className="ssr-variant hidden-natfdx">
               <div className="framer-btk4y7 will-change-transform opacity-[1] skew-y-[8deg]">
                 <div className="absolute rounded-[inherit] top-[0] right-[0] bottom-[0] left-[0]">
-                  <img className="w-[10rem] mt-5" src={thirdImage} alt="" />
+                  <img className="w-[10rem] mt-5 lg:h-[30rem] lg:w-[22rem]" src={thirdImage} alt="" />
                 </div>
               </div>
             </div>
@@ -647,12 +655,17 @@ export default function Dashboard() {
                 </ul>
               </div>
               <div className="w-[18.75rem] mt-30 bg-[#070b15]">
-                <h3>Don't</h3>
+                <div className="relative">
+                  <img src={RuleImage} className="absolute z-10" alt="" />
+                </div>
+                <div className="-z-10">
+                <h3 className="text-white">Don't</h3>
                 <ul className="">
                   <li>pradip</li>
                   <li>pradip</li>
                   <li>pradip</li>
                 </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -664,39 +677,39 @@ export default function Dashboard() {
       <footer className="h-[56.25rem] ">
         <div className="absolute -z-10">
           <img
-            className="h-[76.25rem] w-[25rem] lg:w-[79.06rem]"
+            className="h-[60rem] w-[25rem] lg:h-[60rem] lg:w-[79.06rem]"
             src={footerImage}
             alt=""
           />
         </div>
-        <div className="z-10">
-          <div className="p-[1rem]">
-            <h2 className="text-xl text-center">
+        <div className=" z-10">
+          <div className="p-[1rem] lg:w-[80rem]">
+            <h2 className="text-xl lg:mx-auto text-center lg:w-[20rem]">
               Enter your Email for getting Event Notification Timely
             </h2>
-            <p className="mt-5 text-center">
+            <p className="mt-5 lg:mx-auto lg:w-[50rem] text-center">
               Subscribe to our newsletter and get updates on upcoming college
               events, registration deadlines, and exclusive student
               opportunities—delivered straight to your inbox.
             </p>
-            <div className="mt-20 text-center">
-              <div className="flex flex-col gap-5">
+            <div className="lg:mt-20 text-center mx-[25rem]">
+              <div className="flex flex-col lg:flex-row gap-1">
                 <input
                   type="text"
                   className="text-white bg-black px-20 py-[.25rem] w-[20rem]"
                   placeholder="Enter email"
                 />
-                <button className="w-[5.9rem] mx-[5rem] py-[10px] rounded-2xl bg-blue-900">
+                <button className="w-[5.9rem] mx-[1rem] py-[10px] rounded-2xl bg-blue-900">
                   Submit
                 </button>
               </div>
-              <div className="mt-5 flex flex-col gap-2 text-center text-white">
+              <div className="mt-5 flex flex-col lg:flex-row lg:justify-between gap-2 text-center text-white">
                 <p>No credit card is required</p>
                 <p>Early access & Special offers</p>
               </div>
             </div>
           </div>
-          <div className="mx-30">
+          <div className="mx-30 lg:flex lg:justify-around lg:mt-[5rem]">
             <div>
               <h2 className="mt-10 text-center text-white">CER</h2>
               <div className="flex gap-5 mt-5">
@@ -763,7 +776,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="mt-5 flex gap-10">
+          <div className="mt-5 flex lg:justify-center lg:mt-[4rem] gap-10">
             <p className="text-white ">
               2025 College Event Registration Portal. All rights reserved.
             </p>
