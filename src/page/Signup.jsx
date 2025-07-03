@@ -1,103 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
-import {Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 
-function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+function Signin() {
+  const [session, setSession] = useState(null);
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-
-    // ✅ Confirm Password Check (Frontend)
-    if (password !== confirmPassword) {
-      setErrorMsg("Passwords do not match.");
-      return;
-    }
-
-    // ✅ Supabase Auth Sign Up
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
     });
 
-    if (error) {
-      setErrorMsg(error.message);
-      return;
-    }
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
 
-    // ✅ Insert additional user data into your `users` table
-    const userId = data.user?.id;
-    if (userId) {
-      await supabase.from("users").insert([
-        {
-          id: userId,
-          name,
-          email,
-          role: "user", // or "admin" manually
-        },
-      ]);
-    }
+    return () => subscription.unsubscribe();
+  }, []);
 
-    alert("Signup successful! Please check your email to confirm.");
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
   };
 
+  if (!session) {
+    return (
+      <div className="bg-[#000] w-100 mx-auto rounded-xl p-10 mt-7">
+      <Auth 
+        supabaseClient={supabase}
+        appearance={{ theme: ThemeSupa }}
+        theme="default"
+      />
+      </div>
+    );
+  }
+
   return (
-    <form onSubmit={handleSignUp} className="p-4 max-w-md mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="block w-full mb-3 p-2 border rounded"
-        required
-      />
-
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="block w-full mb-3 p-2 border rounded"
-        required
-      />
-
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="block w-full mb-3 p-2 border rounded"
-        required
-      />
-
-      <input
-        type="password"
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        className="block w-full mb-3 p-2 border rounded"
-        required
-      />
-
-      {errorMsg && (
-        <p className="text-red-500 mb-2">{errorMsg}</p>
-      )}
-
+    <div className="flex bg-[#000] flex-col items-center justify-center h-screen">
+      <h2 className="text-2xl font-semibold mb-4 text-white">You are signed in!</h2>
       <button
-        type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        onClick={handleSignOut}
+        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
       >
-        Sign Up
+        Sign Out
       </button>
-      <p>Already have Account? <Link className="text-blue-400" to="/signin">SignIn</Link></p>
-    </form>
+    </div>
   );
 }
 
-export default Signup;
+export default Signin;
+

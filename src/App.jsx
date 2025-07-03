@@ -5,9 +5,11 @@ import RegisterForm from './page/RegisterForm';
 import EventsList from './page/EventList';
 import About from './page/About';
 import Blog from './page/Blog';
+import Contact from './page/ContactUs';
+import FAQ from './page/FAQs';
 import Resource from './page/Resource';
 import Features from './page/Features';
-import Signin from './page/Signin';
+import PrivacyPolicy from './page/PrivacyPolicys';
 import Signup from './page/Signup';
 
 // for admin
@@ -19,6 +21,7 @@ import EventAdmin from './pagesAdmin/EventAdmin';
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import './App.css'
+import ContactUs from './page/ContactUs';
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -33,12 +36,14 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/signin" element={<Signin />} />
         <Route path="/events" element={<EventsList />} />
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/resource" element={<Resource />} />
         <Route path="/feature" element={<Features />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/policy" element={<PrivacyPolicy />} />
 
 
         {/* for admin */}

@@ -739,9 +739,9 @@ export default function Dashboard() {
                     Features
                   </Link>
                   <Link to="/" className="text-white text-lg  no-underline">
-                    Pricing
+                     Gallery
                   </Link>
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link to="/contact" className="text-white text-lg  no-underline">
                     Contact Us
                   </Link>
                 </div>
@@ -755,10 +755,10 @@ export default function Dashboard() {
                   >
                     About
                   </Link>
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link to="/faq" className="text-white text-lg  no-underline">
                     FAQ
                   </Link>
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link to="/policy" className="text-white text-lg  no-underline">
                     Privacy Policy
                   </Link>
                 </div>

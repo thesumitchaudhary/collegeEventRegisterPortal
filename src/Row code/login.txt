@@ -1,0 +1,116 @@
+
+// function Signin() {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [errorMsg, setErrorMsg] = useState("");
+//   const [session, setSession] = useState(null);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     supabase.auth.getSession().then(({ data: { session } }) => {
+//       setSession(session);
+//     });
+
+//     const {
+//       data: { subscription },
+//     } = supabase.auth.onAuthStateChange((_event, session) => {
+//       setSession(session);
+//     });
+
+//     return () => subscription.unsubscribe();
+//   }, []);
+
+//   const handleSignIn = async (e) => {
+//     e.preventDefault();
+//     setErrorMsg("");
+
+//     const { data, error } = await supabase.auth.signInWithPassword({
+//       email,
+//       password,
+//     });
+
+//     if (error) {
+//       setErrorMsg("Invalid credentials");
+//       return;
+//     }
+
+//     const userId = data.user.id;
+
+//     const { data: userData, error: userError } = await supabase
+//       .from("users")
+//       .select("role")
+//       .eq("id", userId)
+//       .single();
+
+//     if (userError || !userData) {
+//       setErrorMsg("Error fetching user role.");
+//       return;
+//     }
+
+//     if (userData.role === "user") {
+//       navigate("/user/home");
+//     } else {
+//       setErrorMsg("Access denied: Not a user.");
+//     }
+//   };
+
+//   const handleSignOut = async () => {
+//     await supabase.auth.signOut();
+//     setSession(null);
+//     setEmail("");
+//     setPassword("");
+//   };
+
+//   if (session) {
+//     return (
+//       <div className="p-4 max-w-md mx-auto">
+//         <p className="text-xl font-bold mb-4">Welcome, {session.user.email}</p>
+//         <button
+//           onClick={handleSignOut}
+//           className="bg-red-600 text-white px-4 py-2 rounded"
+//         >
+//           Sign Out
+//         </button>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <form onSubmit={handleSignIn} className="p-4 max-w-md mx-auto">
+//       <h2 className="text-xl font-bold mb-4">User Sign In</h2>
+//       {errorMsg && <p className="text-red-500">{errorMsg}</p>}
+//       <input
+//         type="email"
+//         required
+//         placeholder="Email"
+//         value={email}
+//         onChange={(e) => setEmail(e.target.value)}
+//         className="block w-full mb-3 p-2 border rounded"
+//       />
+//       <input
+//         type="password"
+//         required
+//         placeholder="Password"
+//         value={password}
+//         onChange={(e) => setPassword(e.target.value)}
+//         className="block w-full mb-3 p-2 border rounded"
+//       />
+//       <button
+//         type="submit"
+//         className="bg-blue-600 text-white px-4 py-2 rounded"
+//       >
+//         Login
+//       </button>
+//       <div className="mt-2">
+//         <p>
+//           Don’t have an account?{" "}
+//           <Link className="text-blue-400" to="/signup">
+//             SignUp
+//           </Link>
+//         </p>
+//       </div>
+//     </form>
+//   );
+// }
+
+// export default Signin;
