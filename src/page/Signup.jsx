@@ -32,6 +32,7 @@ function Signin() {
       <Auth 
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
+        redirectTo={`${import.meta.VITE_APP_URL}/dashboard`}
         theme="default"
       />
       </div>
