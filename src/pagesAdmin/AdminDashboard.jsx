@@ -11,9 +11,9 @@ export default function AdminDashboard() {
         <h1>CER</h1>
         <nav className="text-black flex gap-10">
           <Link to="/admin">Home</Link>
-          <Link to="/admin/adminblog">Event</Link>
-          <Link to="/admin/adminevent">blog</Link>
-          {/* <Link to="">resource</Link> */}
+          <Link to="/admin/adminevent">Event</Link>
+          <Link to="/admin/adminblog">blog</Link>
+          <Link to="/admin/resouces">resource</Link>
         </nav>
       </header>
       <main>

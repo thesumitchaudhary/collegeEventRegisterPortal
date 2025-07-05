@@ -10,12 +10,15 @@ import FAQ from './page/FAQs';
 import Resource from './page/Resource';
 import Features from './page/Features';
 import PrivacyPolicy from './page/PrivacyPolicys';
+import DownloadCertificate from './page/DownloadCertificate';
+import Feedback from './page/Feedback';
 import Signup  from './page/Signup';
 
 // for admin
 import AdminDashboard from './pagesAdmin/AdminDashboard';
 import BlogAdmin from './pagesAdmin/BlogAdmin';
 import EventAdmin from './pagesAdmin/EventAdmin';
+// import EventAdmin from './pagesAdmin/ResourceAdmin';
 
 // for css
 import { clsx } from "clsx";
@@ -44,6 +47,8 @@ function App() {
         <Route path="/feature" element={<Features />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/policy" element={<PrivacyPolicy />} />
+        <Route path="/certificate" element={<DownloadCertificate />} />
+        <Route path="/feedback" element={<Feedback />} />
 
 
         {/* for admin */}

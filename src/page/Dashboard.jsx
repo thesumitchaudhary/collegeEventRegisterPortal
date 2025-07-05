@@ -16,14 +16,10 @@ import {
   ProductItem,
 } from "../components/ui/navbar-menu";
 import CursorShadow from "../components/ui/CursorShadow";
-import { Icons } from "../components/ui/icons";
-import { Instagram } from "lucide-react";
-import { Facebook } from "lucide-react";
-import { Linkedin } from "lucide-react";
-import { X } from "lucide-react";
-import { Menu as MenuIcon } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
-// Hackathon Images
+// Importing all Images and icon
 import herossectionImage from "../images/herossection-image.avif";
 import herossectionMiddleImage from "../images/herossection-image-2.avif";
 import RuleImage from "../images/rule-regimage.avif";
@@ -32,18 +28,25 @@ import firstImage from "../images/1-image.avif";
 import secondImage from "../images/2-image.avif";
 import thirdImage from "../images/3-image.avif";
 import reactLogo from "../images/react.png";
-import AICreativeMediaHackathon from "../images/AICreativeMediaHackathon.jpeg";
-import BiotechnologyBreakThroughHackathon from "../images/BiotechnologyBreakThroughHackathon.jpeg";
-import COOPHackathon from "../images/CO-OPHackathon.jpeg";
-import DebugOnHackathon from "../images/DebugOnHackathon.jpeg";
-import ICA2025Hackathon from "../images/ICA2025Hackathon.jpeg";
-import StartUpHackathon from "../images/StartUpHackathon.jpeg";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
+import { Icons } from "../components/ui/icons";
+import { Instagram } from "lucide-react";
+import { Facebook } from "lucide-react";
+import { Linkedin } from "lucide-react";
+import { X } from "lucide-react";
+import { Menu as MenuIcon } from "lucide-react";
+
+// importing custom hooks
+
+import { useAuth } from "../hooks/useAuth";
+import { supabase } from "@/supabaseClient";
 
 export default function Dashboard() {
   const [menuActive, setMenuActive] = useState();
   const [active, setActive] = useState();
+
+  // custom hooks
+  const { user, loading } = useAuth();
+
   const items = [
     {
       title: "Tyler Durden",
@@ -119,13 +122,28 @@ export default function Dashboard() {
             <Link to="/blog" className="text-white text-lg  no-underline">
               Blog
             </Link>
+            {/* <div>
+              {user ? <p>welcome,{user}</p> : <p>Please signin</p>}
+            </div> */}
             <div>
+               {user ? (
+              <Button
+                onClick={async () => {
+                  await supabase.auth.signOut();
+                  className =
+                    "text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]";
+                }}
+              >
+                Sign Out
+              </Button>
+              ) : (
               <Link
                 to="/signup"
                 className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
               >
                 SignIn
               </Link>
+              )}
             </div>
           </nav>
           <nav className="lg:hidden block">
@@ -739,9 +757,12 @@ export default function Dashboard() {
                     Features
                   </Link>
                   <Link to="/" className="text-white text-lg  no-underline">
-                     Gallery
+                    Gallery
                   </Link>
-                  <Link to="/contact" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/contact"
+                    className="text-white text-lg  no-underline"
+                  >
                     Contact Us
                   </Link>
                 </div>
@@ -758,7 +779,10 @@ export default function Dashboard() {
                   <Link to="/faq" className="text-white text-lg  no-underline">
                     FAQ
                   </Link>
-                  <Link to="/policy" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/policy"
+                    className="text-white text-lg  no-underline"
+                  >
                     Privacy Policy
                   </Link>
                 </div>
@@ -769,10 +793,16 @@ export default function Dashboard() {
                   <Link to="/" className="text-white text-lg  no-underline">
                     Event Schedule
                   </Link>
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/certificate"
+                    className="text-white text-lg  no-underline"
+                  >
                     Download Certificate
                   </Link>
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/feedback"
+                    className="text-white text-lg  no-underline"
+                  >
                     Feedback
                   </Link>
                 </div>

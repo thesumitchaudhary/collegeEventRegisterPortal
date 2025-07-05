@@ -1,112 +1,167 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Textarea } from '../components/ui/textarea';
-import { Card, CardContent } from '../components/ui/card';
+import { supabase } from "../supabaseClient";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { Button } from "../components/ui/button";
 
 export default function EventAdmin() {
-  const [blogs, setBlogs] = useState([]);
-  const [formData, setFormData] = useState({ title: '', content: '' });
-  const [editingId, setEditingId] = useState(null);
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    date: "",
+    time: "",
+    location: "",
+  });
 
-  const fetchBlogs = async () => {
-    const { data, error } = await supabase.from('blogs').select('*').order('created_at', { ascending: false });
-    if (error) console.error(error);
-    else setBlogs(data);
+  const [imageFile, setImageFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
-
-  const handleInputChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleImageChange = (e) => {
+    setImageFile(e.target.files[0]);
   };
 
-  const handleSubmit = async () => {
-    if (editingId) {
-      await supabase.from('blogs').update(formData).eq('id', editingId);
-    } else {
-      await supabase.from('blogs').insert(formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage(null);
+
+    let imageUrl = null;
+
+    // Upload image if selected
+    if (imageFile) {
+      const fileExt = imageFile.name.split(".").pop();
+      const fileName = `${Date.now()}.${fileExt}`;
+      const filePath = `event-images/${fileName}`;
+
+      const { data, error: uploadError } = await supabase.storage
+        .from("event-images")
+        .upload(filePath, imageFile);
+
+      if (uploadError) {
+        console.log(uploadError);
+        setMessage({ type: "error", text: "Image upload failed!" });
+        setLoading(false);
+        return;
+      }
+
+      const { data: publicUrlData } = supabase.storage
+        .from("event-images")
+        .getPublicUrl(filePath);
+
+      imageUrl = publicUrlData.publicUrl;
     }
-    setFormData({ title: '', content: '' });
-    setEditingId(null);
-    fetchBlogs();
+
+    const generateSlug = (title) => {
+      return title
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9 -]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+    };
+
+    const { error } = await supabase.from("events").insert([
+      {
+        ...formData,
+        slug: generateSlug(formData.title),
+        image: imageUrl,
+      },
+    ]);
+
+    if (error) {
+      setMessage({ type: "error", text: error.message });
+    } else {
+      setMessage({ type: "success", text: "Event added successfully!" });
+      setFormData({
+        title: "",
+        description: "",
+        date: "",
+        time: "",
+        location: "",
+      });
+      setImageFile(null);
+    }
+
+    setLoading(false);
   };
 
-  const handleEdit = (blog) => {
-    setFormData({ title: blog.title, content: blog.content });
-    setEditingId(blog.id);
-  };
-
-  const handleDelete = async (id) => {
-    await supabase.from('blogs').delete().eq('id', id);
-    fetchBlogs();
-  };
   return (
-    <div>
+    <div className=" bg-black text-white">
       <header className="flex justify-between">
         <h1>CER</h1>
         <nav className="text-black flex gap-10">
           <Link to="/admin">Home</Link>
-          <Link>Event control</Link>
-          <Link>blog control</Link>
+          <Link>Event</Link>
+          <Link>blog</Link>
           <Link>resource</Link>
         </nav>
       </header>
-      <main>
-        <div className="p-6 max-w-4xl mx-auto space-y-6">
-          <h1 className="text-2xl font-bold">📝 Blog Manager (Admin)</h1>
-
-          <Card>
-            <CardContent className="space-y-4 p-4">
-              <Input
-                name="title"
-                placeholder="Blog Title"
-                value={formData.title}
-                onChange={handleInputChange}
-              />
-              <Textarea
-                name="content"
-                placeholder="Blog Content"
-                value={formData.content}
-                onChange={handleInputChange}
-              />
-              <Button onClick={handleSubmit}>
-                {editingId ? "Update Blog" : "Create Blog"}
-              </Button>
-            </CardContent>
-          </Card>
-
-          <div className="space-y-4">
-            {blogs.map((blog) => (
-              <Card key={blog.id}>
-                <CardContent className="p-4">
-                  <h2 className="text-xl font-semibold">{blog.title}</h2>
-                  <p className="text-sm text-gray-600">
-                    {new Date(blog.created_at).toLocaleString()}
-                  </p>
-                  <p className="mt-2">{blog.content}</p>
-                  <div className="flex gap-2 mt-4">
-                    <Button variant="outline" onClick={() => handleEdit(blog)}>
-                      Edit
-                    </Button>
-                    <Button
-                      variant="destructive"
-                      onClick={() => handleDelete(blog.id)}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+      <main className="h-200 bg-black">
+        <div className="max-w-xl mx-auto p-6 bg-[#d8d8d8]  text-black shadow rounded-xl">
+          <h2 className="text-2xl font-bold mb-4 text-center">Add New Event</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Input
+              type="text"
+              name="title"
+              placeholder="Event Title"
+              value={formData.title}
+              onChange={handleChange}
+              required
+            />
+            <Textarea
+              name="description"
+              placeholder="Event Description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+            />
+            <Input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+            />
+            <Input
+              type="time"
+              name="time"
+              value={formData.time}
+              onChange={handleChange}
+              required
+            />
+            <Input
+              type="text"
+              name="location"
+              placeholder="Event Location"
+              value={formData.location}
+              onChange={handleChange}
+              required
+            />
+            <Input type="file" accept="image/*" onChange={handleImageChange} />
+            <Button type="submit" disabled={loading}>
+              {loading ? "Adding..." : "Add Event"}
+            </Button>
+            {message && (
+              <p
+                className={`text-sm mt-2 ${
+                  message.type === "error" ? "text-red-500" : "text-green-600"
+                }`}
+              >
+                {message.text}
+              </p>
+            )}
+          </form>
         </div>
-        );
       </main>
-      <footer></footer>
     </div>
   );
 }
