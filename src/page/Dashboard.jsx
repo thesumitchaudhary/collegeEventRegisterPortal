@@ -98,7 +98,7 @@ export default function Dashboard() {
         <CursorShadow />
       </div>
       <img
-        className="absolute w-[25rem] h-[57.5rem] -z-10 lg:h-[68rem] lg:w-[79.06rem]"
+        className="absolute w-[25rem] h-[57.5rem] 3xl:w-[120rem] -z-10 lg:h-[68rem] lg:w-[79.06rem]"
         src={herossectionImage}
         alt=""
       />
