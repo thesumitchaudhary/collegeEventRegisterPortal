@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
-import { Link, useNavigate } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
+import { Navigate } from 'react-router-dom';
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 function Signin() {
@@ -26,20 +25,10 @@ function Signin() {
     await supabase.auth.signOut();
   };
 
-  if (!session) {
-    return (
-      <div className="bg-[#000] w-100 mx-auto rounded-xl p-10 mt-7">
-      <Auth 
-        supabaseClient={supabase}
-        appearance={{ theme: ThemeSupa }}
-        redirectTo={`${import.meta.VITE_APP_URL}/dashboard`}
-        theme="default"
-      />
-      </div>
-    );
-  }
+  // if (session) return <Navigate to="/" replace />;
 
-  return (
+  if (session) {
+    return (
     <div className="flex bg-[#000] flex-col items-center justify-center h-screen">
       <h2 className="text-2xl font-semibold mb-4 text-white">You are signed in!</h2>
       <button
@@ -50,6 +39,18 @@ function Signin() {
       </button>
     </div>
   );
+  }
+  
+    return (
+      <div className="bg-[#000] w-100 mx-auto rounded-xl p-10 mt-7">
+      <Auth 
+        supabaseClient={supabase}
+        appearance={{ theme: ThemeSupa }}
+        redirectTo="http://localhost:5173/dashboard"
+        theme="default"
+      />
+      </div>
+    );
 }
 
 export default Signin;

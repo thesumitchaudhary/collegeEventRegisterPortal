@@ -10,7 +10,7 @@ import FAQ from './page/FAQs';
 import Resource from './page/Resource';
 import Features from './page/Features';
 import PrivacyPolicy from './page/PrivacyPolicys';
-import Signup from './page/Signup';
+import Signup  from './page/Signup';
 
 // for admin
 import AdminDashboard from './pagesAdmin/AdminDashboard';
