@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './page/Dashboard';
 import RegisterForm from './page/RegisterForm';
 import EventsList from './page/EventList';
+import EventDetailPage from './page/EventDetailPage'
 import About from './page/About';
 import Blog from './page/Blog';
 import Contact from './page/ContactUs';
@@ -40,6 +41,7 @@ function App() {
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/events" element={<EventsList />} />
+        <Route path="/event/:slug" element={<EventDetailPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />

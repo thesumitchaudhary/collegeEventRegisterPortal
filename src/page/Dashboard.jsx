@@ -122,27 +122,32 @@ export default function Dashboard() {
             <Link to="/blog" className="text-white text-lg  no-underline">
               Blog
             </Link>
-            {/* <div>
-              {user ? <p>welcome,{user}</p> : <p>Please signin</p>}
-            </div> */}
+
             <div>
-               {user ? (
-              <Button
-                onClick={async () => {
-                  await supabase.auth.signOut();
-                  className =
-                    "text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]";
-                }}
-              >
-                Sign Out
-              </Button>
+              <div>
+                {user ? (
+                  <p>welcome,{user.user_metadata.full_name}</p>
+                ) : (
+                  <p></p>
+                )}
+              </div>
+              {user ? (
+                <Button
+                  onClick={async () => {
+                    await supabase.auth.signOut();
+                    className =
+                      "text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]";
+                  }}
+                >
+                  Sign Out
+                </Button>
               ) : (
-              <Link
-                to="/signup"
-                className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
-              >
-                SignIn
-              </Link>
+                <Link
+                  to="/signup"
+                  className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
+                >
+                  SignIn
+                </Link>
               )}
             </div>
           </nav>

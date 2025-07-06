@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 import {
   HoveredLink,
   Menu,
@@ -23,7 +24,7 @@ import footerImage from "../images/footer-img.avif";
 export default function ContactUs() {
   const [menuActive, setMenuActive] = useState();
   const [active, setActive] = useState();
-  const [formData, setFormData] = useState({
+   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
@@ -38,10 +39,10 @@ export default function ContactUs() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { error } = await supabase.from("contacts").insert([formData]);
+    const { error } = await supabase.from("contactus").insert([formData]);
 
     if (error) {
-      alert("Error sending message!");
+      alert("Error sending message: " + error.message);
     } else {
       setSuccess("Message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
@@ -49,18 +50,16 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="relative w-[79.10rem]">
-      <div className="h-[10rem]">
+    <div className="relative w-full overflow-hidden text-white min-h-screen">
         <img
-          className="absolute block -z-10 h-[10rem] object-center object-cover w-[100%]"
+          className="absolute block -z-10 h-[14rem] object-center object-cover w-[80.10rem]"
           src={headerImg}
           alt="header image"
         />
-      </div>
-      <header className="w-full h-[100px] absolute shadow-sm top-0 z-10">
+      <header className="w-full h-[6.25rem] absolute shadow-sm z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
           <h1 className={`text-white text-[19px]  mt-[1.25rem]`}>C E R</h1>
-          <nav className="lg:flex hidden gap-[20px] mt-[20px] text-sm font-medium">
+          <nav className="lg:flex hidden gap-[20px] text-sm font-medium">
             <Link to="/" className="text-white text-lg  no-underline">
               Home
             </Link>
@@ -172,40 +171,41 @@ export default function ContactUs() {
           </nav>
         </div>
       </header>
-      <main className="h-[1000px] bg-[#000]">
-        <div className="max-w-xl mx-auto p-4 mt-10">
-          <h2 className="text-2xl font-semibold mb-4 text-center">
-            Contact Us
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <Textarea
-              name="message"
-              placeholder="Your Message"
-              rows="5"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            />
-            <Button type="submit">Send Message</Button>
-            {success && <p className="text-green-600">{success}</p>}
-          </form>
-        </div>
-        );
+      <main className="h-[1000px] bg-[#000] mt-[10rem]">
+     <div className="max-w-xl mx-auto p-4 mt-10">
+      <h2 className="text-2xl font-semibold mb-4 text-center">
+        Contact Us
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <Input
+          name="name"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        <Input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <Textarea
+          name="message"
+          placeholder="Your Message"
+          rows="5"
+          value={formData.message}
+          onChange={handleChange}
+          required
+        />
+        <Button type="submit" className="bg-white text-black">
+          Send Message
+        </Button>
+        {success && <p className="text-green-600">{success}</p>}
+      </form>
+    </div>
       </main>
 
        {/* ------------------- Footer (optional) ------------------- */}
