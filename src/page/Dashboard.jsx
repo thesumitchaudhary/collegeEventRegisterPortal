@@ -1,3 +1,11 @@
+// for feature react icon
+import {
+  FaCode,
+  FaFutbol,
+  FaClipboardList,
+  FaCertificate,
+} from "react-icons/fa";
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,7 +27,7 @@ import CursorShadow from "../components/ui/CursorShadow";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 
-// Importing all Images and icon
+// Importing all Images, icon and svg
 import herossectionImage from "../images/herossection-image.avif";
 import herossectionMiddleImage from "../images/herossection-image-2.avif";
 import RuleImage from "../images/rule-regimage.avif";
@@ -29,11 +37,21 @@ import secondImage from "../images/2-image.avif";
 import thirdImage from "../images/3-image.avif";
 import reactLogo from "../images/react.png";
 import { Icons } from "../components/ui/icons";
-import { Instagram } from "lucide-react";
-import { Facebook } from "lucide-react";
-import { Linkedin } from "lucide-react";
+import {
+  ClipboardList,
+  CheckCircle,
+  Layers,
+  PlugZap,
+  Facebook,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
 import { X } from "lucide-react";
 import { Menu as MenuIcon } from "lucide-react";
+import CodeSVG from "../images/SVGs/code-generation.svg";
+import SportsSVG from "../images/SVGs/sports.svg";
+import RegistrationSVG from "../images/SVGs/registration.svg";
+import CertificateSVG from "../images/SVGs/certificate.svg";
 
 // importing custom hooks
 
@@ -43,6 +61,9 @@ import { supabase } from "@/supabaseClient";
 export default function Dashboard() {
   const [menuActive, setMenuActive] = useState();
   const [active, setActive] = useState();
+
+  // for feature selection
+  const [activeTab, setActiveTab] = useState("coding");
 
   // custom hooks
   const { user, loading } = useAuth();
@@ -92,6 +113,37 @@ export default function Dashboard() {
     },
   ];
 
+  const content = {
+    coding: {
+      title: "Join Coding Competitions & Hackathons",
+      description:
+        "Participate in technical fests, hackathons, and code challenges organized by various departments and clubs.",
+      icon: <FaCode className="text-3xl text-blue-400" />,
+      image: CodeSVG,
+    },  
+    sports: {
+      title: "College Sports Meets & Tournaments",
+      description:
+        "Take part in thrilling sports tournaments like cricket, football, badminton, and athletics.",
+      icon: <FaFutbol className="text-3xl text-green-400" />,
+      image: SportsSVG,
+    },
+    registered: {
+      title: "Your Registered Events",
+      description:
+        "View all the events you've registered for in one place. Stay organized and informed.",
+      icon: <FaClipboardList className="text-3xl text-yellow-400" />,
+      image: RegistrationSVG,
+    },
+    certificate: {
+      title: "Download Certificates",
+      description:
+        "Access and download participation and winner certificates after the events are completed.",
+      icon: <FaCertificate className="text-3xl text-purple-400" />,
+      image: CertificateSVG,
+    },
+  };
+
   const navigate = useNavigate();
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   return (
@@ -125,11 +177,7 @@ export default function Dashboard() {
 
             <div>
               <div>
-                {user ? (
-                  <p>welcome,{user.user_metadata.full_name}</p>
-                ) : (
-                  <p></p>
-                )}
+                {user ? <p>welcome,{user.user_metadata.full_name}</p> : <p></p>}
               </div>
               {user ? (
                 <Button
@@ -262,7 +310,7 @@ export default function Dashboard() {
               className={
                 "px-[1.12rem] py-[.62rem] bg-blue-500 rounded-[.31rem]"
               }
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/events")}
             >
               Register Now
             </Button>
@@ -270,7 +318,7 @@ export default function Dashboard() {
               size="lg"
               className={"px-[.93rem] py-[.43rem] text-black rounded-[.31rem]"}
               variant="outline"
-              onClick={() => navigate("/events")}
+              onClick={() => navigate("/viewmyevents")}
             >
               View My Events
             </Button>
@@ -437,7 +485,7 @@ export default function Dashboard() {
                       as="button"
                       className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
-                      <Link to="/register">Sign up</Link>
+                      <Link to="/signup">Sign up</Link>
                     </CardItem>
                   </div>
                 </CardBody>
@@ -479,7 +527,7 @@ export default function Dashboard() {
                       as="button"
                       className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
-                      <Link to="/register">Sign up</Link>
+                      <Link to="/signup">Sign up</Link>
                     </CardItem>
                   </div>
                 </CardBody>
@@ -521,7 +569,7 @@ export default function Dashboard() {
                       as="button"
                       className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs "
                     >
-                      <Link to="/register">Sign up</Link>
+                      <Link to="/signup">Sign up</Link>
                     </CardItem>
                   </div>
                 </CardBody>
@@ -529,38 +577,56 @@ export default function Dashboard() {
             </div>
           </div>
         </section>
-        <section className="h-[63.75rem] bg-[#04060e] lg:w-[79.06rem] lg:h-[43rem]">
+        <section className="h-[89.75rem] bg-[#04060e] lg:w-[79.06rem] lg:h-[43rem]">
           <div className="mt-[20rem] text-white px-10 lg:mt-[5rem]">
-            <div className="flex justify-between ">
-              <h2 className=" text-2xl mt-10">
-                Advanced AI features for smarter automation
-              </h2>
-              <button className="bg-blue-500 p-[10px] mt-10">
-                Get Started
-              </button>
-            </div>
             <div className="flex mt-20 justify-between">
-              <ul>
-                <li>
-                  <a href="#">coding</a>
-                </li>
-                <li>
-                  <a href="#">sports</a>
-                </li>
-                <li>
-                  <a href="#">registered number</a>
-                </li>
-                <li>
-                  <a href="#">cetificate</a>
-                </li>
-              </ul>
-              <div className=" bg-[#070b15] w-250">
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo
-                  pariatur nam, repellat dolor reprehenderit assumenda deleniti
-                  cum velit sunt accusantium reiciendis non architecto, nostrum
-                  ipsam impedit ipsa officiis, dolorum fugit?
-                </p>
+              <div className="bg-[#04060e] text-white min-h-screen p-10">
+                <div className="flex justify-between items-center mb-12">
+                  <h1 className="text-4xl font-semibold">
+                    Explore and Register for Exciting College Events
+                  </h1>
+                  <Button
+                    onClick={() => navigate("/signup")}
+                    className="bg-blue-500 p-[10px] mt-10"
+                  >
+                    signup
+                  </Button>
+                </div>
+
+                <div className="flex gap-10 bg-[#04060e]">
+                  {/* Left Menu */}
+                  <div className="flex flex-col gap-4 w-60">
+                    {Object.keys(content).map((key) => (
+                      <button
+                        key={key}
+                        onClick={() => setActiveTab(key)}
+                        className={`flex items-center gap-3 px-4 py-3 rounded-lg text-left text-lg font-medium transition ${
+                          activeTab === key
+                            ? "bg-gray-900 text-black"
+                            : "hover:bg-gray-800 text-gray-300"
+                        }`}
+                      >
+                        {content[key].icon}
+                        <span className="capitalize">{key}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Right Content */}
+                  <div className="bg-[#070b15] w-[50rem] p-8 rounded-xl flex-1 shadow-lg">
+                    <h2 className="text-2xl font-semibold mb-4">
+                      {content[activeTab].title}
+                    </h2>
+                    <p className="text-lg text-gray-300 leading-relaxed">
+                      {content[activeTab].description}
+                    </p>
+                    <img
+                      src={content[activeTab].image}
+                      alt={activeTab}
+                      className=" mt-5 w-full h-[250px] rounded-xl border border-gray-700 shadow-md"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -573,7 +639,7 @@ export default function Dashboard() {
               alt=""
             />
             <div className="z-10 ">
-              <div className="relative flex h-[31.25] w-full flex-col items-center justify-center overflow-hidden rounded-lg ">
+              <div className="relative flex h-[31.25rem] w-full flex-col items-center justify-center overflow-hidden rounded-lg ">
                 <OrbitingCircles
                   className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-3s]"
                   radius={180}
@@ -597,6 +663,62 @@ export default function Dashboard() {
                 </OrbitingCircles>
                 <OrbitingCircles
                   className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-21s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.openai />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-27s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.notion />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-33s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.whatsapp />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-39s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.googleDrive />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-45s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.openai />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-51s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.notion />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-57s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.whatsapp />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-63s]"
+                  radius={180}
+                  duration={20}
+                >
+                  <Icons.googleDrive />
+                </OrbitingCircles>
+                <OrbitingCircles
+                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-69s]"
                   radius={180}
                   duration={20}
                 >
@@ -635,34 +757,45 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[25rem] h-[12.5rem] bg-[#04060e] lg:w-[79.06rem]">
-            <ul className="">
-              <li>
-                <h3>Increased efficiency</h3>
-                <p>
-                  Automate repetitive tasks and streamline workflows to save
-                  time and resources.
+          <div className="w-[25rem] h-[13.5rem] bg-[#04060e] lg:w-[79.06rem]">
+            <ul className="flex">
+              <li className="mt-5">
+                <ClipboardList className="text-blue-500 w-6 h-6 mb-3" />
+                <h3 className="font-semibold text-xl">
+                  Streamlined Registrations
+                </h3>
+                <p className="mt-5">
+                  Automate student event signups and manage attendees
+                  efficiently to save time and reduce manual effort.
                 </p>
               </li>
-              <li>
-                <h3>AI-driven accuracy</h3>
-                <p>
-                  Reduce human errors with intelligent automation that ensures
-                  precision and reliability.
+              <li className="mt-5">
+                <CheckCircle className="text-blue-500 w-6 h-6 mb-3" />
+                <h3 className="font-semibold text-xl">
+                  Accurate & Smart Management
+                </h3>
+                <p className="mt-5">
+                  Avoid registration errors with intelligent systems that ensure
+                  every student's participation is tracked and confirmed
+                  reliably.
                 </p>
               </li>
-              <li>
-                <h3>Scalable & Flexible</h3>
-                <p>
-                  Adapt AI automation to fit your business needs, whether you're
-                  a startup or an enterprise.
+              <li className="mt-5">
+                <Layers className="text-blue-500 w-6 h-6 mb-3" />
+                <h3 className="font-semibold text-xl">
+                  Scalable for Every Event
+                </h3>
+                <p className="mt-5">
+                  Whether it's a small workshop or a large tech fest, the portal
+                  adapts to fit your event's scale and requirements.
                 </p>
               </li>
-              <li>
-                <h3>Seamless integration</h3>
-                <p>
-                  Easily connect with 50+ tools and platforms to enhance your
-                  existing systems.
+              <li className="mt-5">
+                <PlugZap className="text-blue-500 w-6 h-6 mb-3" />
+                <h3 className="font-semibold text-xl">Easy Integration</h3>
+                <p className="mt-5">
+                  Connect effortlessly with Google Sheets, email systems, and
+                  campus tools to enhance communication and coordination.
                 </p>
               </li>
             </ul>

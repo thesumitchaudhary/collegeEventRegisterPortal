@@ -1,55 +1,37 @@
-import { cn } from "@/lib/utils";
-import React from "react";
+// components/magicui/HalfOrbitingCircle.jsx
+import React, { useEffect, useRef } from "react";
 
-export function OrbitingCircles({
-  className,
-  children,
-  reverse,
-  duration = 20,
-  radius = 160,
-  path = true,
-  iconSize = 30,
-  speed = 1,
-  ...props
-}) {
-  const calculatedDuration = duration / speed;
+export function OrbitingCircles({ radius = 150, duration = 20, children, delay = 0 }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (el) {
+      el.style.animationDelay = `${delay}s`;
+      el.style.animationDuration = `${duration}s`;
+    }
+  }, [delay, duration]);
+
   return (
-    <>
-      {path && (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          version="1.1"
-          className="pointer-events-none absolute inset-0 size-full">
-          <circle
-            className="stroke-1"
-            cx="50%"
-            cy="50%"
-            r={radius}
-            fill="none" />
-        </svg>
-      )}
-      {React.Children.map(children, (child, index) => {
-        const angle = (360 / React.Children.count(children)) * index;
-        return (
-          <div
-            style={
-              {
-                "--duration": calculatedDuration,
-                "--radius": radius,
-                "--angle": angle,
-                "--icon-size": `${iconSize}px`
-              }
-            }
-            className={cn(
-              `absolute flex size-[var(--icon-size)] transform-gpu animate-orbit items-center justify-center rounded-full`,
-              { "[animation-direction:reverse]": reverse },
-              className
-            )}
-            {...props}>
-            {child}
-          </div>
-        );
-      })}
-    </>
+    <div
+      ref={ref}
+      className="absolute animate-halfOrbit origin-center"
+      style={{
+        transformOrigin: `0 ${radius}px`,
+        top: 0,
+        left: "50%",
+      }}
+    >
+      <div
+        className="rounded-full flex items-center justify-center bg-black"
+        style={{
+          width: "4rem",
+          height: "4rem",
+          transform: `translate(-50%, -${radius}px)`,
+        }}
+      >
+        {children}
+      </div>
+    </div>
   );
 }

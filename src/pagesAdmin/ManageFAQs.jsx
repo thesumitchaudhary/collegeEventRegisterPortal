@@ -1,9 +1,8 @@
-import React from 'react'
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabaseClient';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
+// import { supabase } from '@/lib/supabaseClient';
+import { Input } from '../components/ui/input';
+import { Button } from '../components/ui/button';
+import { Textarea } from '../components/ui/textarea';
 
 export default function ManageFAQs() {
   const [faqs, setFaqs] = useState([]);

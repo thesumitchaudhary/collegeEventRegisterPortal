@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { supabase } from "../supabaseClient"; // your Supabase client
+import { supabase } from "../supabaseClient";
 import { Button } from "../components/ui/button";
-
 
 function EventDetailPage() {
   const { slug } = useParams();
   const [event, setEvent] = useState(null);
   const [message, setMessage] = useState("");
 
+  // Fetch event data by slug
   useEffect(() => {
     const fetchEvent = async () => {
       const { data, error } = await supabase
@@ -29,37 +29,45 @@ function EventDetailPage() {
 
   if (!event) return <p>Loading...</p>;
 
-  const register = async () => {
-    // Get currently logged-in user
-    const { data: { user } } = await supabase.auth.getUser();
+  // Register user for event
+ const register = async () => {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
 
-    if (!user) {
-      setMessage("You must be logged in to register.");
-      return;
-    }
+  if (!user) {
+    setMessage("You must be logged in to register.");
+    return;
+  }
 
-    const { error } = await supabase.from("registrations").insert({
-      user_id: user.id,
-      event_id: event.id
-    });
+  console.log("User ID:", user.id); // should log 365cab25...
+  console.log("Event ID:", event.id);
 
-    if (error) {
-        // console.log(error);
-      console.error("Registration error:", error);
-      setMessage("Failed to register. You might already be registered.");
-    } else {
-      setMessage("Successfully registered for the event!");
-    }
-  };
+  const { error } = await supabase.from("registrations").insert({
+    user_id: user.id,
+    event_id: event.id,
+    date: new Date().toISOString(), // only if required
+  });
+
+  if (error) {
+    console.error("Registration error:", error);
+    setMessage("Failed to register. Check console for details.");
+  } else {
+    setMessage("Successfully registered for the event!");
+  }
+};
+
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-black text-white min-h-screen">
       <h1 className="text-2xl font-bold">{event.title}</h1>
-      <p>{event.description}</p>
-      <p>Date: {event.date}</p>
-      <p>Location: {event.location}</p>
-      <div>
-        <Button onClick={register}>click me</Button>
+      <p className="mt-2">{event.description}</p>
+      <p className="mt-2">Date: {event.date}</p>
+      <p className="mt-1">Location: {event.location}</p>
+
+      <div className="mt-4">
+        <Button className="bg-white text-black" onClick={register}>
+          Register
+        </Button>
+        {message && <p className="mt-2 text-sm">{message}</p>}
       </div>
     </div>
   );

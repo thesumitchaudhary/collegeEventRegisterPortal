@@ -19,7 +19,15 @@ export default function AdminDashboard() {
       <main>
         <section></section>
       </main>
-      <footer></footer>
+      <footer>
+          <Link to="/admin/faqs">FAQs</Link>
+          {/* <Link to="/admin/resouces">resource</Link> */}
+          {/* <Link to="/admin/resouces">resource</Link> */}
+          {/* <Link to="/admin/resouces">resource</Link> */}
+          {/* <Link to="/admin/resouces">resource</Link> */}
+          {/* <Link to="/admin/resouces">resource</Link> */}
+
+      </footer>
     </div>
   );
 }
