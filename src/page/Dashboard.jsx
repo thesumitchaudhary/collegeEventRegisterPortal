@@ -120,7 +120,7 @@ export default function Dashboard() {
         "Participate in technical fests, hackathons, and code challenges organized by various departments and clubs.",
       icon: <FaCode className="text-3xl text-blue-400" />,
       image: CodeSVG,
-    },  
+    },
     sports: {
       title: "College Sports Meets & Tournaments",
       description:
@@ -181,10 +181,9 @@ export default function Dashboard() {
               </div>
               {user ? (
                 <Button
+                className ="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
                   onClick={async () => {
                     await supabase.auth.signOut();
-                    className =
-                      "text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]";
                   }}
                 >
                   Sign Out
@@ -623,7 +622,7 @@ export default function Dashboard() {
                     <img
                       src={content[activeTab].image}
                       alt={activeTab}
-                      className=" mt-5 w-full h-[250px] rounded-xl border border-gray-700 shadow-md"
+                      className="object-fill mt-5 w-full h-[270px] rounded-xl border border-gray-700 shadow-md"
                     />
                   </div>
                 </div>
@@ -801,33 +800,76 @@ export default function Dashboard() {
             </ul>
           </div>
         </section>
-        <section>
-          <div className="w-[25rem] h-[37.5rem] bg-[#04060e] lg:w-[79.06rem]">
-            <h2>Rules for registration</h2>
-            <div className="flex justify-between">
-              <div className="py-[6.25rem] mt-30 bg-[#070b15]">
-                <h3>Do</h3>
-                <ul className="">
-                  <li>sumit</li>
-                  <li>sumit</li>
-                  <li>sumit</li>
+        <section className="h-[40rem] bg-[#04060e]">
+          <div className="w-[79.06rem] mx-auto  p-8  shadow-lg">
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">
+              Rules for Registration
+            </h2>
+            <div className="flex flex-col lg:flex-row justify-between gap-8">
+              {/* Do Section */}
+              <div className="flex-1 bg-[#070b15] rounded-xl p-6 text-white shadow-md">
+                <h3 className="text-2xl font-semibold mb-4 text-green-400">
+                  Do
+                </h3>
+                <ul className="list-disc list-inside space-y-2 text-left">
+                  <li>Be respectful to others</li>
+                  <li> Follow event timings</li>
+                  <li>Register with accurate details</li>
+                  <li>Register using your official college email ID.</li>
+                  <li>Carry your college ID card to the event.</li>
+                  <li>Read all event guidelines before registering.</li>
+                  <li>Join official WhatsApp/Telegram groups if provided.</li>
+                  <li>Reach the venue 15 minutes before the event starts.</li>
+                  <li>Submit required documents (if any) on time.</li>
+                  <li>Respect event coordinators and volunteers.</li>
+                  <li>Follow dress code if mentioned for the event.</li>
+                  <li>Ask for help if you face any registration issues.</li>
+                  <li>Maintain cleanliness at the event venue.</li>
                 </ul>
               </div>
-              <div className="w-[18.75rem] mt-30 bg-[#070b15]">
-                <div className="relative">
-                  <img src={RuleImage} className="absolute z-10" alt="" />
+
+              {/* Don't Section */}
+              <div className="flex-1 relative bg-[#070b15] rounded-xl p-6 text-white shadow-md overflow-hidden">
+                <div className="absolute top-0 right-0 w-full h-full opacity-20 z-0">
+                  <img
+                    src={RuleImage}
+                    alt="Rules Illustration"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="-z-10">
-                  <h3 className="text-white">Don't</h3>
-                  <ul className="">
-                    <li>pradip</li>
-                    <li>pradip</li>
-                    <li>pradip</li>
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-semibold mb-4 text-red-400">
+                    Don't
+                  </h3>
+                  <ul className="list-disc list-inside space-y-2 text-left">
+                    <li>Don't provide fake info</li>
+                    <li>Don't spam the portal</li>
+                    <li>Don't miss deadlines</li>
+                    <li>
+                      Don’t register multiple times with different emails.
+                    </li>
+                    <li>Don’t share your registration link with others.</li>
+                    <li>Don’t register for overlapping events.</li>
+                    <li>Don’t misbehave with organizers or attendees.</li>
+                    <li>Don’t bring unauthorized guests.</li>
+                    <li>Don’t tamper with event equipment or resources.</li>
+                    <li>
+                      Don’t skip the rules mentioned in event descriptions.
+                    </li>
+                    <li>
+                      Don’t engage in unfair practices (e.g., cheating in coding
+                      contests).
+                    </li>
+                    <li>Don’t forget to check confirmation mail/SMS.</li>
+                    <li>Don’t leave early without informing the organizers.</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
+        </section>
+        <section className="bg-[#070b15] text-white w-[79.09rem] h-[12rem]">
+          <h1 className="bg-[#070b15]">blogs</h1>
         </section>
       </main>
 

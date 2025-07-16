@@ -20,7 +20,15 @@ import Signup  from './page/Signup';
 import AdminDashboard from './pagesAdmin/AdminDashboard';
 import BlogAdmin from './pagesAdmin/BlogAdmin';
 import EventAdmin from './pagesAdmin/EventAdmin';
+import {ManageAboutUsPage} from './pagesAdmin/ManageAboutPage';
+import {ManageEventSchedule} from './pagesAdmin/ManageEventSchedule';
 import ManageFAQs from './pagesAdmin/ManageFAQs';
+import {ManageFeaturesSection} from './pagesAdmin/ManageFeaturesSection';
+import {ResourceAdmin} from './pagesAdmin/ResourceAdmin';
+import {UploadCertificates} from './pagesAdmin/UploadCertificates';
+import {EditPrivacyPolicy} from './pagesAdmin/EditPrivacyPolicy';
+import {ViewContactSubmissions} from './pagesAdmin/ViewContactSubmissions';
+import {ViewFeedback} from './pagesAdmin/ViewFeedback';
 
 // for css
 import { clsx } from "clsx";
@@ -58,8 +66,14 @@ function App() {
         {/* for admin */}
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/adminblog" element={<BlogAdmin />} />
+        <Route path="/admin/adminprivacypolicy" element={<EditPrivacyPolicy />} />
         <Route path="/admin/adminevent" element={<EventAdmin />} />
+        <Route path="/admin/adminboutus" element={<ManageAboutUsPage />} />
+        <Route path="/admin/admineventschedule" element={<ManageEventSchedule />} />
         <Route path="/admin/faqs" element={<ManageFAQs />} />
+        <Route path="/admin/adminfeatures" element={<ManageFeaturesSection />} />
+        <Route path="/admin/adminresource" element={<ResourceAdmin />} />
+        <Route path="/admin/adminuploadcertificates" element={<ViewFeedback />} />
       </Routes>
     </Router>
   );

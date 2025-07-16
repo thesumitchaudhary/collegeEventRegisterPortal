@@ -23,6 +23,7 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "expo": "^53.0.16",
+    "file-saver": "^2.0.5",
     "framer-motion": "^12.18.1",
     "lucide-react": "^0.515.0",
     "mini-svg-data-uri": "^1.4.4",
