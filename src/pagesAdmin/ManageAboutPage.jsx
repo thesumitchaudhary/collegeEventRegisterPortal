@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ManageAboutPage = () => {
+export default function ManageAboutPage() {
   return (
     <div>ManageAboutPage</div>
   )
