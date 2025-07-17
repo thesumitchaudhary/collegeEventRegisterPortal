@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   HoveredLink,
@@ -15,6 +15,7 @@ import { Facebook } from "lucide-react";
 import { Linkedin } from "lucide-react";
 import { X } from "lucide-react";
 import { Menu as MenuIcon } from "lucide-react";
+import { supabase } from "@/supabaseClient";
 
 // importing image
 import headerImg from "../images/otherPageHeaderImage.avif";
@@ -23,6 +24,32 @@ import footerImage from "../images/footer-img.avif";
 export default function PrivacyPolicy() {
   const [menuActive, setMenuActive] = useState();
   const [active, setActive] = useState();
+
+   const [content, setContent] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [errorMsg, setErrorMsg] = useState("");
+  
+    useEffect(() => {
+      const fetchAbout = async () => {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from("privacypolicy")
+          .select("*")
+          .single();
+  
+        if (error) {
+          console.error("Error fetching aboutus:", error.message);
+          setErrorMsg("Could not fetch About Us content.");
+        } else {
+          setContent(data.content);
+        }
+  
+        setLoading(false);
+      };
+  
+      fetchAbout();
+    }, []);
+  
 
   return (
     <div>
@@ -149,7 +176,18 @@ export default function PrivacyPolicy() {
         </div>
       </header>
       <main className="h-[900px] bg-[#000] text-white">
-        <div className="max-w-4xl mx-auto p-6">
+             <div className="max-w-3xl mx-auto  p-6  rounded-xl shadow space-y-4">
+          <h2 className="text-2xl text-white font-bold">PRIVACY POLICY</h2>
+
+          {loading ? (
+            <p>Loading...</p>
+          ) : errorMsg ? (
+            <p className="text-red-500">{errorMsg}</p>
+          ) : (
+            <p className="text-gray-100 whitespace-pre-wrap ">{content}</p>
+          )}
+        </div>
+        {/* <div className="max-w-4xl mx-auto p-6">
           <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
 
           <p className="mb-4">
@@ -205,7 +243,7 @@ export default function PrivacyPolicy() {
           </p>
 
           <p className="text-sm text-gray-500">Last Updated: July 1, 2025</p>
-        </div>
+        </div> */}
       </main>
       {/* ------------------- Footer (optional) ------------------- */}
 

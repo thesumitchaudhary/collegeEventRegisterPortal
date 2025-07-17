@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import CursorShadow from "../components/ui/CursorShadow";
 import { useState } from "react";
-import { supabase } from "../supabaseClient"; // adjust the path if needed
+import { supabase } from "../supabaseClient";
 import { Link, useNavigate } from "react-router-dom";
 
 function RegistrationForm() {

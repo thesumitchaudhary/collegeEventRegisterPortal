@@ -1,12 +1,12 @@
-import React from "react";
-import {Link,useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
 // Importing image
 import herossectionImage from "../images/herossection-image.avif";
 
 export const ViewFeedback = () => {
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,46 +17,53 @@ export const ViewFeedback = () => {
     setLoading(true);
 
     const { data, error } = await supabase
-      .from("feddback") 
+      .from("feedback") // ✅ Make sure your table name is correct
       .select("*");
 
     if (error) {
-      console.error("Error fetching data:", error);
+      console.log(error);
+      // console.error("Error fetching data:", error.message);
     } else {
       setData(data);
     }
 
     setLoading(false);
   }
+
   return (
     <div className="relative w-full text-white min-h-screen overflow-hidden">
       <img
         src={herossectionImage}
         alt="hero section"
-        className="absolute  w-full h-full object-cover -z-[10]"
+        className="absolute w-full h-full object-cover -z-[10]"
       />
       <div>
-         <header className="flex justify-between p-4  text-white z-[10]">
+        <header className="flex justify-between p-4 text-white z-[10]">
           <h1 className="text-xl font-bold">CER</h1>
-            <Link to="/admin">Home</Link>
+          <Link to="/admin">Home</Link>
         </header>
         <main>
-              <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Fetched Data</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul className="space-y-2">
-          {data.map((item) => (
-            <li key={item.id} className="p-4 border rounded">
-              <p><strong>ID:</strong> {item.id}</p>
-              <p><strong>Name:</strong> {item.name}</p>
-              <p><strong>Email:</strong> {item.email}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+          <div className="p-4">
+            <h1 className="text-xl font-bold mb-4">Fetched Feedback</h1>
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <ul className="space-y-2">
+                {data.length > 0 ? (
+                  data.map((item) => (
+                    <li key={item.id} className="p-4 border rounded bg-white text-black">
+                      <p><strong>ID:</strong> {item.id}</p>
+                      <p><strong>Name:</strong> {item.name || "N/A"}</p>
+                      <p><strong>Email:</strong> {item.email || "N/A"}</p>
+                      <p><strong>Feedback:</strong> {item.message || "N/A"}</p>
+                    </li>
+                  ))
+                ) : (
+                  <p>No feedback found.</p>
+                )}
+              </ul>
+            )}
+          </div>
         </main>
       </div>
     </div>
