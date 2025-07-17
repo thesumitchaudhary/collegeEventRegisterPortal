@@ -5,6 +5,9 @@ import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Button } from "../components/ui/button";
 
+// Importing image
+import herossectionImage from "../images/herossection-image.avif";
+
 export default function EventAdmin() {
   const [formData, setFormData] = useState({
     title: "",
@@ -95,73 +98,81 @@ export default function EventAdmin() {
   };
 
   return (
-    <div className=" bg-black text-white">
-      <header className="flex justify-between">
-        <h1>CER</h1>
-        <nav className="text-black flex gap-10">
-          <Link to="/admin">Home</Link>
-          <Link>Event</Link>
-          <Link>blog</Link>
-          <Link>resource</Link>
-        </nav>
-      </header>
-      <main className="h-200 bg-black">
-        <div className="max-w-xl mx-auto p-6 bg-[#d8d8d8]  text-black shadow rounded-xl">
-          <h2 className="text-2xl font-bold mb-4 text-center">Add New Event</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              type="text"
-              name="title"
-              placeholder="Event Title"
-              value={formData.title}
-              onChange={handleChange}
-              required
+    <div className="relative w-full text-white min-h-screen overflow-hidden">
+        <img
+              src={herossectionImage}
+              alt="hero section"
+              className="absolute  w-full h-full object-cover -z-[10]"
             />
-            <Textarea
-              name="description"
-              placeholder="Event Description"
-              value={formData.description}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="text"
-              name="location"
-              placeholder="Event Location"
-              value={formData.location}
-              onChange={handleChange}
-              required
-            />
-            <Input type="file" accept="image/*" onChange={handleImageChange} />
-            <Button type="submit" disabled={loading}>
-              {loading ? "Adding..." : "Add Event"}
-            </Button>
-            {message && (
-              <p
-                className={`text-sm mt-2 ${
-                  message.type === "error" ? "text-red-500" : "text-green-600"
-                }`}
-              >
-                {message.text}
-              </p>
-            )}
-          </form>
-        </div>
-      </main>
+      <div className="text-white ">
+        <header className="flex justify-between">
+          <h1>CER</h1>
+            <Link to="/admin">Home</Link>
+        </header>
+        <main className="h-200 z-[10]">
+          <div className="max-w-xl mx-auto p-6   text-black shadow rounded-xl">
+            <h2 className="text-2xl font-bold mb-4 text-center">
+              Add New Event
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-4 bo ">
+              <Input
+                type="text"
+                name="title"
+                placeholder="Event Title"
+                value={formData.title}
+                onChange={handleChange}
+                required
+              />
+              <Textarea
+                name="description"
+                placeholder="Event Description"
+                value={formData.description}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                type="time"
+                name="time"
+                value={formData.time}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                type="text"
+                name="location"
+                placeholder="Event Location"
+                value={formData.location}
+                onChange={handleChange}
+                required
+              />
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+              <Button type="submit" disabled={loading}>
+                {loading ? "Adding..." : "Add Event"}
+              </Button>
+              {message && (
+                <p
+                  className={`text-sm mt-2 ${
+                    message.type === "error" ? "text-red-500" : "text-green-600"
+                  }`}
+                >
+                  {message.text}
+                </p>
+              )}
+            </form>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

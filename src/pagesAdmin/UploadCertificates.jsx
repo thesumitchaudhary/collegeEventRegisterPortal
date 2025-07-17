@@ -4,6 +4,10 @@ import { saveAs } from 'file-saver';
 import { supabase } from '../supabaseClient';
 import { useEffect, useState } from 'react';
 
+// Importing image
+import herossectionImage from "../images/herossection-image.avif";
+
+
 export default function UploadCertificate() {
   const [userData, setUserData] = useState(null);
 

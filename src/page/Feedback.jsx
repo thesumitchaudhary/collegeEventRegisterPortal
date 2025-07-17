@@ -14,6 +14,7 @@ import { Facebook } from "lucide-react";
 import { Linkedin } from "lucide-react";
 import { X } from "lucide-react";
 import { Menu as MenuIcon } from "lucide-react";
+import { supabase } from "../supabaseClient";
 
 // importing image
 import headerImg from "../images/otherPageHeaderImage.avif";

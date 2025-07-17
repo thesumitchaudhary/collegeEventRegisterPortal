@@ -62,7 +62,7 @@ export default function AdminDashboard() {
           <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
-              onClick={() => navigate("/admin/adminevent")}
+              onClick={() => navigate("/admin/adminfeedbackview")}
             >
               View Feedback
             </Button>
@@ -70,7 +70,7 @@ export default function AdminDashboard() {
           <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
-              onClick={() => navigate("/admin/editprivacypolicy")}
+              onClick={() => navigate("/admin/adminprivacypolicy")}
             >
               privacyPolicy Manage
             </Button>
@@ -78,7 +78,7 @@ export default function AdminDashboard() {
           <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
-              onClick={() => navigate("/admin/manageaboutus")}
+              onClick={() => navigate("/admin/adminaboutus")}
             >
               About Us Manage
             </Button>
@@ -87,7 +87,7 @@ export default function AdminDashboard() {
           <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
-              onClick={() => navigate("/admin/adminevent")}
+              onClick={() => navigate("/admin/adminfeatures")}
             >
               Features Manage
             </Button>
@@ -96,7 +96,7 @@ export default function AdminDashboard() {
             <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
-              onClick={() => navigate("/admin/adminevent")}
+              onClick={() => navigate("/admin/adminviewcontact")}
             >
               Contact Page Manage
             </Button>
@@ -105,7 +105,7 @@ export default function AdminDashboard() {
             <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
-              onClick={() => navigate("/admin/adminevent")}
+              onClick={() => navigate("/admin/adminuploadcertificates")}
             >
               Upload Certificate
             </Button>
@@ -114,7 +114,7 @@ export default function AdminDashboard() {
           <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
-              onClick={() => navigate("/admin/adminevent")}
+              onClick={() => navigate("/admin/admineventschedule")}
             >
               Event Schedule Manage
             </Button>
@@ -123,7 +123,7 @@ export default function AdminDashboard() {
            <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
-              onClick={() => navigate("/admin/adminevent")}
+              onClick={() => navigate("/admin/adminresource")}
             >
               Resource Manage
             </Button>

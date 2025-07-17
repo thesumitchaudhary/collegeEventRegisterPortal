@@ -2,11 +2,13 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import { Button } from "../components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 function EventDetailPage() {
   const { slug } = useParams();
   const [event, setEvent] = useState(null);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   // Fetch event data by slug
   useEffect(() => {
@@ -34,7 +36,7 @@ function EventDetailPage() {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
 
   if (!user) {
-    setMessage("You must be logged in to register.");
+    navigate("/signup");
     return;
   }
 
