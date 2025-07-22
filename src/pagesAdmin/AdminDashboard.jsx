@@ -1,14 +1,17 @@
-import {useState,useEffect} from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ParticleBackground from "../components/ui/ParticleBackground";
 import { Button } from "../components/ui/button";
 import { Meteors } from "../components/ui/Meteors";
+import { useAuth } from "../context/AuthContext";
+import { supabase } from "@/supabaseClient";
 
 // Importing image
 
 import herossectionImage from "../images/herossection-image.avif";
 
 export default function AdminDashboard() {
+  const { user, role, loading } = useAuth();
   const navigate = useNavigate();
   return (
     <div className="relative w-full text-white min-h-screen overflow-hidden">
@@ -30,6 +33,28 @@ export default function AdminDashboard() {
         <h1 className="text-6xl font-semibold mb-6">
           Welcome to College Event Registration Admin Panel
         </h1>
+        <div>
+          <div>
+            {user ? <p>welcome,{user.user_metadata.full_name}</p> : <p></p>}
+          </div>
+          {user ? (
+            <Button
+              className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
+              onClick={async () => {
+                await supabase.auth.signOut();
+              }}
+            >
+              Sign Out
+            </Button>
+          ) : (
+            <Link
+              to="/signup"
+              className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
+            >
+              SignIn
+            </Link>
+          )}
+        </div>
       </header>
 
       {/* Main Content */}
@@ -93,7 +118,7 @@ export default function AdminDashboard() {
             </Button>
           </div>
 
-            <div className="perspective">
+          <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
               onClick={() => navigate("/admin/adminviewcontact")}
@@ -102,7 +127,7 @@ export default function AdminDashboard() {
             </Button>
           </div>
 
-            <div className="perspective">
+          <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
               onClick={() => navigate("/admin/adminuploadcertificates")}
@@ -120,7 +145,7 @@ export default function AdminDashboard() {
             </Button>
           </div>
 
-           <div className="perspective">
+          <div className="perspective">
             <Button
               className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
               onClick={() => navigate("/admin/adminresource")}

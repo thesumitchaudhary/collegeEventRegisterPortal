@@ -4,10 +4,12 @@ import {
   FaFutbol,
   FaClipboardList,
   FaCertificate,
+  FaReact,
 } from "react-icons/fa";
+import { SiDjango } from "react-icons/si";
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+import React, { useState , useEffect} from "react";
+import { Button } from "@/components/ui/button"; 
 import { Link, useNavigate } from "react-router-dom";
 import { Meteors } from "../components/ui/Meteors";
 import { Marquee } from "../components/magicui/Marquee";
@@ -26,6 +28,7 @@ import {
 import CursorShadow from "../components/ui/CursorShadow";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { useAuth } from "../context/AuthContext";
 
 // Importing all Images, icon and svg
 import herossectionImage from "../images/herossection-image.avif";
@@ -36,6 +39,10 @@ import firstImage from "../images/1-image.avif";
 import secondImage from "../images/2-image.avif";
 import thirdImage from "../images/3-image.avif";
 import reactLogo from "../images/react.png";
+import logo from "../images/logo-college.png";
+import Hackathon from "../images/collegeHackathon.png"; 
+import Orentiation from "../images/collegeOrentation.png";
+import sports from "../images/collegeSport.png";
 import { Icons } from "../components/ui/icons";
 import {
   ClipboardList,
@@ -45,6 +52,8 @@ import {
   Facebook,
   Instagram,
   Linkedin,
+  
+  
 } from "lucide-react";
 import { X } from "lucide-react";
 import { Menu as MenuIcon } from "lucide-react";
@@ -55,7 +64,7 @@ import CertificateSVG from "../images/SVGs/certificate.svg";
 
 // importing custom hooks
 
-import { useAuth } from "../hooks/useAuth";
+// import { useAuth } from "../hooks/useAuth";
 import { supabase } from "@/supabaseClient";
 
 export default function Dashboard() {
@@ -66,7 +75,22 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("coding");
 
   // custom hooks
-  const { user, loading } = useAuth();
+   const navigate = useNavigate(); 
+  const { user , role, loading } = useAuth();
+ 
+
+
+    useEffect(() => {
+    if (!loading && role) {
+      if (role === "admin") {
+        navigate("/admin");
+      } else if (role === "user") {
+        navigate("/");
+      }
+    }
+  }, [role, loading, navigate]);
+
+  
 
   const items = [
     {
@@ -144,7 +168,7 @@ export default function Dashboard() {
     },
   };
 
-  const navigate = useNavigate();
+
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   return (
     <div className="relative w-full overflow-hidden text-white min-h-screen">
@@ -160,7 +184,7 @@ export default function Dashboard() {
       {/* ------------------- Header ------------------- */}
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
-          <h1 className={`text-white text-[19px]  mt-[1.25rem]`}>C E R</h1>
+          <img src={logo} className="h-25 w-30" alt="website logo" />
           <nav className="lg:flex hidden gap-[20px] mt-[20px] text-sm font-medium">
             <Link to="/" className="text-white text-lg  no-underline">
               Home
@@ -321,14 +345,6 @@ export default function Dashboard() {
             >
               View My Events
             </Button>
-            <Button
-              size="lg"
-              className={"px-[.93rem] py-[.43rem] text-black rounded-[.31rem]"}
-              variant="outline"
-              onClick={() => navigate("/admin")}
-            >
-              View My Events
-            </Button>
           </div>
         </section>
         <section className="w-[25rem] h-[28.2rem] lg:w-[79.06rem] lg:h-[34.2rem]">
@@ -415,11 +431,12 @@ export default function Dashboard() {
                 <p>react</p>
               </div>
               <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
+                <SiDjango className="text-blue-600"/>
+                <p>Django</p>
               </div>
               <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
+                <FaReact className="text-blue-400"/>
+                {/* <img className="w-5 h-5" src={reactLogo} alt="" /> */}
                 <p>react</p>
               </div>
               <div className="flex align-center">
@@ -464,7 +481,7 @@ export default function Dashboard() {
                   </CardItem>
                   <CardItem translateZ="100" className="w-full mt-4">
                     <img
-                      src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      src={Hackathon}
                       height="1000"
                       width="1000"
                       className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -506,7 +523,7 @@ export default function Dashboard() {
                   </CardItem>
                   <CardItem translateZ="100" className="w-full mt-4">
                     <img
-                      src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      src={sports}
                       height="1000"
                       width="1000"
                       className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -548,7 +565,7 @@ export default function Dashboard() {
                   </CardItem>
                   <CardItem translateZ="100" className="w-full mt-4">
                     <img
-                      src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      src={Orentiation}
                       height="1000"
                       width="1000"
                       className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -912,7 +929,7 @@ export default function Dashboard() {
           </div>
           <div className="mx-30 lg:flex lg:justify-around lg:mt-[5rem]">
             <div>
-              <h2 className="mt-10 text-center text-white">CER</h2>
+                   <img src={logo} className="h-25 w-30" alt="website logo" />
               <div className="flex gap-5 mt-5">
                 <Facebook />
                 <Linkedin />
@@ -970,7 +987,7 @@ export default function Dashboard() {
               <div>
                 <h4 className="text-base mb-5 text-white">Utilities</h4>
                 <div className="flex flex-col gap-5">
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link to="/viewmyevents" className="text-white text-lg  no-underline">
                     Event Schedule
                   </Link>
                   <Link

@@ -95,7 +95,7 @@ export default function ManageAboutPage() {
       <img
         src={herossectionImage}
         alt="hero section"
-        className="absolute  w-full h-full object-cover -z-[10]"
+        className="absolute  w-full h-[220rem] object-cover -z-[10]"
       />
 
       <div>

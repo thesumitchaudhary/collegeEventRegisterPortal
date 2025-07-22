@@ -99,22 +99,24 @@ export default function EventAdmin() {
 
   return (
     <div className="relative w-full text-white min-h-screen overflow-hidden">
-        <img
-              src={herossectionImage}
-              alt="hero section"
-              className="absolute  w-full h-full object-cover -z-[10]"
-            />
+      <img
+        src={herossectionImage}
+        alt="hero section"
+        className="absolute  w-full h-full object-cover -z-[10]"
+      />
+      <header className="max-w-[50rem] mx-auto px-8 py-10  z-10 relative">
+        <h1 className="text-6xl font-semibold mb-6">
+          Welcome to College Event Manage Page
+        </h1>
+        <Link to="/admin">Home</Link>
+      </header>
       <div className="text-white ">
-        <header className="flex justify-between">
-          <h1>CER</h1>
-            <Link to="/admin">Home</Link>
-        </header>
         <main className="h-200 z-[10]">
-          <div className="max-w-xl mx-auto p-6   text-black shadow rounded-xl">
+          <div className="max-w-xl mx-auto p-6 bg-[#05101c]   text-white shadow rounded-xl">
             <h2 className="text-2xl font-bold mb-4 text-center">
               Add New Event
             </h2>
-            <form onSubmit={handleSubmit} className="space-y-4 bo ">
+            <form onSubmit={handleSubmit} className="space-y-4 bg-[#05101c] ">
               <Input
                 type="text"
                 name="title"

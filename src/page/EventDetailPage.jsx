@@ -10,9 +10,7 @@ function EventDetailPage() {
   const [alreadyRegistered, setAlreadyRegistered] = useState(false);
   const navigate = useNavigate();
 
-  console.log(message);
-
-  // Fetch event by slug
+  // ✅ Fetch event by slug
   useEffect(() => {
     const fetchEvent = async () => {
       const { data, error } = await supabase
@@ -22,7 +20,7 @@ function EventDetailPage() {
         .single();
 
       if (error) {
-        console.error("Error fetching event:", error);
+        console.error("Error fetching event:", error.message);
       } else {
         setEvent(data);
       }
@@ -31,10 +29,13 @@ function EventDetailPage() {
     fetchEvent();
   }, [slug]);
 
-  // Check registration status
+  // ✅ Check if user is already registered for this event
   useEffect(() => {
     const checkRegistration = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
       if (!user || !event) return;
 
       const { data: existing, error } = await supabase
@@ -42,54 +43,62 @@ function EventDetailPage() {
         .select("*")
         .eq("user_id", user.id)
         .eq("event_id", event.id)
-        .single();
+        .maybeSingle();
 
       if (existing) {
         setAlreadyRegistered(true);
+        setMessage("You are already registered for this event!");
       }
     };
 
     checkRegistration();
   }, [event]);
 
-  if (!event) return <p>Loading...</p>;
-
-  // Register user
+  // ✅ Handle Registration
   const register = async () => {
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
 
     if (!user) {
-      navigate("/signup"); // redirect directly
+      navigate("/signup");
       return;
     }
 
- // Check if already registered
-  const { data: existing, error: existingError } = await supabase
-    .from("registrations")
-    .select("*")
-    .eq("user_id", user.id)
-    .eq("event_id", event.id)
-    .maybeSingle(); // use maybeSingle to avoid throw if no match
+    // Check again before inserting (optional extra safety)
+    const { data: existing, error: existingError } = await supabase
+      .from("registrations")
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("event_id", event.id)
+      .maybeSingle();
 
-  if (existing) {
-    setMessage("You are already registered for this event!");
-    return;
-  }
+    if (existing) {
+      setAlreadyRegistered(true);
+      setMessage("You are already registered for this event!");
+      return;
+    }
 
-  // Register new
-  const { error } = await supabase.from("registrations").insert({
-    user_id: user.id,
-    event_id: event.id,
-    date: new Date().toISOString(),
-  });
+    // Insert new registration
+    const { error: insertError } = await supabase.from("registrations").insert([
+      {
+        user_id: user.id,
+        event_id: event.id,
+        date: new Date().toISOString(),
+      },
+    ]);
 
-  if (error) {
-    console.error("Registration error:", error);
-    setMessage("Failed to register. Try again.");
-  } else {
-    setMessage("Successfully registered!");
-  }
-};
+    if (insertError) {
+      console.error("Registration error:", insertError.message);
+      setMessage("Failed to register. Try again.");
+    } else {
+      setAlreadyRegistered(true);
+      setMessage("Successfully registered!");
+    }
+  };
+
+  if (!event) return <p className="p-4 text-white">Loading...</p>;
 
   return (
     <div className="p-4 bg-black text-white min-h-screen">
@@ -106,6 +115,7 @@ function EventDetailPage() {
         >
           {alreadyRegistered ? "Already Registered" : "Register"}
         </Button>
+
         {message && <p className="mt-2 text-sm">{message}</p>}
       </div>
     </div>

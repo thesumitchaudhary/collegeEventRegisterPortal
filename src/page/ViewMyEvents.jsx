@@ -62,9 +62,19 @@ export default function ViewMyEvents() {
     fetchEvents();
   }, [userId]);
 
+
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">My Registered Events</h1>
+      <h1 className="text-2xl font-bold mb-2">My Registered Events</h1>
+
+      {/* ✅ Add count summary here */}
+      {!loading && myEvents.length > 0 && (
+        <p className="mb-4 text-muted-foreground text-sm">
+          You have registered for <span className="font-semibold text-primary">{myEvents.length}</span>{" "}
+          event{myEvents.length !== 1 && "s"}.
+        </p>
+      )}
+
       {loading ? (
         <p>Loading your events...</p>
       ) : myEvents.length === 0 ? (
@@ -78,7 +88,7 @@ export default function ViewMyEvents() {
               </CardHeader>
               <CardContent>
                 <img
-                  src={events.image_url}
+                  src={events.imageurl}
                   alt={events.title}
                   className="w-full h-40 object-cover rounded mb-2"
                 />
