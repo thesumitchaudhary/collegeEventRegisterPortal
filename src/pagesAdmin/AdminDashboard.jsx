@@ -153,6 +153,16 @@ export default function AdminDashboard() {
               Resource Manage
             </Button>
           </div>
+
+          
+          <div className="perspective">
+            <Button
+              className="w-[12.5rem] h-[3rem] transform transition-transform duration-500 hover:rotate-y-180"
+              onClick={() => navigate("/admin/admingallerymanage")}
+            >
+              Gallery Manage
+            </Button>
+          </div>
         </div>
       </main>
     </div>

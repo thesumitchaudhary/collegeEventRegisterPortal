@@ -8,11 +8,10 @@ import {
 } from "react-icons/fa";
 import { SiDjango } from "react-icons/si";
 
-import React, { useState , useEffect} from "react";
-import { Button } from "@/components/ui/button"; 
+import React, { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { Meteors } from "../components/ui/Meteors";
-import { Marquee } from "../components/magicui/Marquee";
 import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
 import {
   DraggableCardBody,
@@ -25,10 +24,15 @@ import {
   MenuItem,
   ProductItem,
 } from "../components/ui/navbar-menu";
+import { Marquee } from "../components/magicui/Marquee";
+
 import CursorShadow from "../components/ui/CursorShadow";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { useAuth } from "../context/AuthContext";
+
+// for blog carousal
+import BlogCarousel from "../components/ui/BlogCarousel";
 
 // Importing all Images, icon and svg
 import herossectionImage from "../images/herossection-image.avif";
@@ -40,7 +44,7 @@ import secondImage from "../images/2-image.avif";
 import thirdImage from "../images/3-image.avif";
 import reactLogo from "../images/react.png";
 import logo from "../images/logo-college.png";
-import Hackathon from "../images/collegeHackathon.png"; 
+import Hackathon from "../images/collegeHackathon.png";
 import Orentiation from "../images/collegeOrentation.png";
 import sports from "../images/collegeSport.png";
 import { Icons } from "../components/ui/icons";
@@ -52,8 +56,6 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  
-  
 } from "lucide-react";
 import { X } from "lucide-react";
 import { Menu as MenuIcon } from "lucide-react";
@@ -67,6 +69,17 @@ import CertificateSVG from "../images/SVGs/certificate.svg";
 // import { useAuth } from "../hooks/useAuth";
 import { supabase } from "@/supabaseClient";
 
+// this css for draggable card
+const randomClasses = [
+  "absolute top-10 left-[20%] rotate-[-5deg]",
+  "absolute top-40 left-[25%] rotate-[-7deg]",
+  "absolute top-5 left-[40%] rotate-[8deg]",
+  "absolute top-32 left-[55%] rotate-[10deg]",
+  "absolute top-20 right-[35%] rotate-[2deg]",
+  "absolute top-24 left-[45%] rotate-[-7deg]",
+  "absolute top-8 left-[30%] rotate-[4deg]",
+];
+
 export default function Dashboard() {
   const [menuActive, setMenuActive] = useState();
   const [active, setActive] = useState();
@@ -75,12 +88,24 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("coding");
 
   // custom hooks
-   const navigate = useNavigate(); 
-  const { user , role, loading } = useAuth();
- 
+  const navigate = useNavigate();
+  const { user, role, loading } = useAuth();
 
+  // for draggable card
+  const [galleryItems, setGalleryItems] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
+    const fetchGallery = async () => {
+      const { data, error } = await supabase.from("gallery").select("*");
+
+      if (error) console.error("Error fetching gallery:", error);
+      else setGalleryItems(data);
+    };
+
+    fetchGallery();
+  }, []);
+
+  useEffect(() => {
     if (!loading && role) {
       if (role === "admin") {
         navigate("/admin");
@@ -89,8 +114,6 @@ export default function Dashboard() {
       }
     }
   }, [role, loading, navigate]);
-
-  
 
   const items = [
     {
@@ -168,7 +191,6 @@ export default function Dashboard() {
     },
   };
 
-
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   return (
     <div className="relative w-full overflow-hidden text-white min-h-screen">
@@ -205,7 +227,7 @@ export default function Dashboard() {
               </div>
               {user ? (
                 <Button
-                className ="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
+                  className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
                   onClick={async () => {
                     await supabase.auth.signOut();
                   }}
@@ -431,11 +453,11 @@ export default function Dashboard() {
                 <p>react</p>
               </div>
               <div className="flex align-center">
-                <SiDjango className="text-blue-600"/>
+                <SiDjango className="text-blue-600" />
                 <p>Django</p>
               </div>
               <div className="flex align-center">
-                <FaReact className="text-blue-400"/>
+                <FaReact className="text-blue-400" />
                 {/* <img className="w-5 h-5" src={reactLogo} alt="" /> */}
                 <p>react</p>
               </div>
@@ -748,17 +770,17 @@ export default function Dashboard() {
           <div className="w-[25rem] h-[37.5rem] bg-[#04060e] lg:w-[79.06rem]">
             <div className="lg:w-[79.09rem]">
               <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip">
-                <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
-                  If its your first day at Fight Club, you have to fight.
-                </p>
-                {items.map((item) => (
-                  <DraggableCardBody className={item.className}>
+                {galleryItems.map((item, index) => (
+                  <DraggableCardBody
+                    key={item.id}
+                    className={randomClasses[index % randomClasses.length]}
+                  >
                     <img
-                      src={item.image}
+                      src={item.imageurls}
                       alt={item.title}
-                      className="pointer-events-none relative z-10 h-80 w-80 object-cover"
+                      className="pointer-events-none relative z-10 h-80 w-80 object-cover rounded-lg shadow-xl"
                     />
-                    <h3 className="mt-4 text-center text-2xl  text-neutral-700 dark:text-neutral-300">
+                    <h3 className="mt-4 text-center text-2xl text-neutral-700 dark:text-neutral-300">
                       {item.title}
                     </h3>
                   </DraggableCardBody>
@@ -886,7 +908,12 @@ export default function Dashboard() {
           </div>
         </section>
         <section className="bg-[#070b15] text-white w-[79.09rem] h-[12rem]">
-          <h1 className="bg-[#070b15]">blogs</h1>
+          <div className="min-h-screen bg-background p-6">
+            <h1 className="text-3xl font-bold mb-6 text-center">
+              Latest Blogs
+            </h1>
+            <BlogCarousel />
+          </div>
         </section>
       </main>
 
@@ -929,7 +956,7 @@ export default function Dashboard() {
           </div>
           <div className="mx-30 lg:flex lg:justify-around lg:mt-[5rem]">
             <div>
-                   <img src={logo} className="h-25 w-30" alt="website logo" />
+              <img src={logo} className="h-25 w-30" alt="website logo" />
               <div className="flex gap-5 mt-5">
                 <Facebook />
                 <Linkedin />
@@ -953,7 +980,10 @@ export default function Dashboard() {
                   >
                     Features
                   </Link>
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/gallery"
+                    className="text-white text-lg  no-underline"
+                  >
                     Gallery
                   </Link>
                   <Link
@@ -987,7 +1017,10 @@ export default function Dashboard() {
               <div>
                 <h4 className="text-base mb-5 text-white">Utilities</h4>
                 <div className="flex flex-col gap-5">
-                  <Link to="/viewmyevents" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/viewmyevents"
+                    className="text-white text-lg  no-underline"
+                  >
                     Event Schedule
                   </Link>
                   <Link

@@ -14,6 +14,7 @@ import Features from './page/Features';
 import PrivacyPolicy from './page/PrivacyPolicys';
 import DownloadCertificate from './page/DownloadCertificate';
 import Feedback from './page/Feedback';
+import {Gallery} from './page/Gallery';
 import Signup  from './page/Signup';
 
 // for admin
@@ -29,6 +30,7 @@ import UploadCertificates from './pagesAdmin/UploadCertificates';
 import {EditPrivacyPolicy} from './pagesAdmin/EditPrivacyPolicy';
 import {ViewContactSubmissions} from './pagesAdmin/ViewContactSubmissions';
 import {ViewFeedback} from './pagesAdmin/ViewFeedback';
+import GalleryManage from './pagesAdmin/GalleryManage';
 
 // for css
 import { clsx } from "clsx";
@@ -61,6 +63,7 @@ function App() {
         <Route path="/policy" element={<PrivacyPolicy />} />
         <Route path="/certificate" element={<DownloadCertificate />} />
         <Route path="/feedback" element={<Feedback />} />
+        <Route path="/gallery" element={<Gallery />} />
 
 
         {/* for admin */}
@@ -76,6 +79,7 @@ function App() {
         <Route path="/admin/adminfeedbackview" element={<ViewFeedback />} />
         <Route path="/admin/adminviewcontact" element={<ViewContactSubmissions />} />
         <Route path="/admin/adminuploadcertificates" element={<UploadCertificates />} />
+        <Route path="/admin/admingallerymanage" element={<GalleryManage />} />
       </Routes> 
     </Router>
   );
