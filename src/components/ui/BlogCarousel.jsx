@@ -5,52 +5,95 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-
-
 export default function BlogCarousel() {
   const [blogs, setBlogs] = useState([]);
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [directionForward, setDirectionForward] = useState(true); // ✅ New state
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const { data, error } = await supabase.from("blog").select("*");
+      const { data, error } = await supabase.from("blogs").select("*");
+
+      console.log("✅ Fetched Data:", data);
+      console.log("❌ Fetch Error:", error);
 
       if (error) {
-        console.log(error);
-        // console.error("Error fetching blogs:", error);
+        alert("Supabase Error: " + error.message);
+      } else if (!data || data.length === 0) {
+        alert("No blogs returned from Supabase.");
       } else {
         setBlogs(data);
       }
+
+      setLoading(false);
     };
 
     fetchBlogs();
   }, []);
 
+  // ✅ Auto ping-pong slide
+  useEffect(() => {
+    if (blogs.length === 0) return;
+
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => {
+        if (directionForward) {
+          if (prevIndex === blogs.length - 1) {
+            setDirectionForward(false);
+            return prevIndex - 1;
+          } else {
+            return prevIndex + 1;
+          }
+        } else {
+          if (prevIndex === 0) {
+            setDirectionForward(true);
+            return prevIndex + 1;
+          } else {
+            return prevIndex - 1;
+          }
+        }
+      });
+    }, 10000); // 10 seconds
+
+    return () => clearInterval(interval);
+  }, [blogs, directionForward]);
+
   const nextSlide = () => {
+    setDirectionForward(true);
     setIndex((prev) => (prev + 1) % blogs.length);
   };
 
   const prevSlide = () => {
+    setDirectionForward(false);
     setIndex((prev) => (prev - 1 + blogs.length) % blogs.length);
   };
 
-  if (blogs.length === 0) return <p className="text-center">Loading...</p>;
+  if (loading) {
+    return (
+      <div className="text-center text-white animate-pulse p-4">
+        Loading blog posts...
+      </div>
+    );
+  }
+
+  if (blogs.length === 0) {
+    return <p className="text-center text-red-500">No blogs found.</p>;
+  }
 
   return (
     <div className="relative w-full max-w-3xl mx-auto mt-10">
-      <Card className="overflow-hidden rounded-2xl shadow-lg">
+      <Card className="overflow-hidden rounded-2xl shadow-lg bg-[#000]">
         <CardContent className="p-0">
           <img
             src={blogs[index].cover_image}
             alt={blogs[index].title}
-            className="w-full h-64 object-cover"
+            className="w-full h-64 object-cover transition-all duration-1000"
+            onError={(e) => {
+              e.target.src =
+                "https://via.placeholder.com/600x400?text=Image+Not+Found";
+            }}
           />
-          <div className="p-4">
-            <h2 className="text-xl font-semibold">{blogs[index].title}</h2>
-            <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-              {blogs[index].content}
-            </p>
-          </div>
         </CardContent>
       </Card>
 

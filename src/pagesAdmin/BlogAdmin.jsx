@@ -134,29 +134,34 @@ export default function BlogAdmin() {
             <CardContent className="space-y-4 p-4">
               <Input
                 name="title"
+                className={`text-white`}
                 placeholder="Enter blog title"
                 value={formData.title}
                 onChange={handleInputChange}
               />
               <Textarea
                 name="content"
+                className={`text-white`}
                 placeholder="Enter blog content"
                 value={formData.content}
                 onChange={handleInputChange}
               />
               <Input
                 name="author"
+                className={`text-white`}
                 placeholder="Enter author name"
                 value={formData.author}
                 onChange={handleInputChange}
               />
               <Input
                 name="status"
+                className={`text-white`}
                 placeholder="Enter status (e.g., draft, published)"
                 value={formData.status}
                 onChange={handleInputChange}
               />
               <Input
+              className={`text-white`}
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}

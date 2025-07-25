@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {
-  HoveredLink,
-  Menu,
-  MenuItem,
-  ProductItem,
-} from "../components/ui/navbar-menu";
+// import {
+//   HoveredLink,
+//   Menu,
+//   MenuItem,
+//   ProductItem,
+// } from "../components/ui/navbar-menu";
 import { Instagram } from "lucide-react";
 import { Facebook } from "lucide-react";
 import { Linkedin } from "lucide-react";
@@ -19,10 +19,11 @@ import { supabase } from "../supabaseClient";
 // importing image
 import headerImg from "../images/otherPageHeaderImage.avif";
 import footerImage from "../images/footer-img.avif";
+import logo from "../images/logo-college.png";
 
 export default function Feedback() {
-  const [active, setActive] =useState();
-  const [menuActive, setMenuActive] =useState();
+  const [active, setActive] = useState();
+  const [menuActive, setMenuActive] = useState();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -203,12 +204,13 @@ export default function Feedback() {
           )}
         </div>
       </main>
+
       {/* ------------------- Footer (optional) ------------------- */}
 
-      <footer className="h-[56.25rem] ">
+      <footer className="h-[56.25rem] lg:h-[47rem]">
         <div className="absolute -z-10">
           <img
-            className="h-[60rem] w-[25rem] lg:h-[60rem] lg:w-[79.06rem]"
+            className="h-[60rem] w-[25rem] lg:h-[50rem] lg:w-[79.06rem] "
             src={footerImage}
             alt=""
           />
@@ -242,7 +244,7 @@ export default function Feedback() {
           </div>
           <div className="mx-30 lg:flex lg:justify-around lg:mt-[5rem]">
             <div>
-              <h2 className="mt-10 text-center text-white">CER</h2>
+              <img src={logo} className="h-25 w-30" alt="website logo" />
               <div className="flex gap-5 mt-5">
                 <Facebook />
                 <Linkedin />
@@ -266,7 +268,10 @@ export default function Feedback() {
                   >
                     Features
                   </Link>
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/gallery"
+                    className="text-white text-lg  no-underline"
+                  >
                     Gallery
                   </Link>
                   <Link
@@ -300,7 +305,10 @@ export default function Feedback() {
               <div>
                 <h4 className="text-base mb-5 text-white">Utilities</h4>
                 <div className="flex flex-col gap-5">
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/viewmyevents"
+                    className="text-white text-lg  no-underline"
+                  >
                     Event Schedule
                   </Link>
                   <Link
@@ -309,7 +317,10 @@ export default function Feedback() {
                   >
                     Download Certificate
                   </Link>
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link
+                    to="/feedback"
+                    className="text-white text-lg  no-underline"
+                  >
                     Feedback
                   </Link>
                 </div>

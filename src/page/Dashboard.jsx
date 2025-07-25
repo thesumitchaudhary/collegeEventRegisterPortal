@@ -18,12 +18,7 @@ import {
   DraggableCardContainer,
 } from "../components/ui/draggable-card";
 import { OrbitingCircles } from "../components/magicui/orbiting-circles";
-import {
-  HoveredLink,
-  Menu,
-  MenuItem,
-  ProductItem,
-} from "../components/ui/navbar-menu";
+import Navbar from "../components/ui/navbar-menu";
 import { Marquee } from "../components/magicui/Marquee";
 
 import CursorShadow from "../components/ui/CursorShadow";
@@ -82,7 +77,6 @@ const randomClasses = [
 
 export default function Dashboard() {
   const [menuActive, setMenuActive] = useState();
-  const [active, setActive] = useState();
 
   // for feature selection
   const [activeTab, setActiveTab] = useState("coding");
@@ -115,51 +109,6 @@ export default function Dashboard() {
     }
   }, [role, loading, navigate]);
 
-  const items = [
-    {
-      title: "Tyler Durden",
-      image:
-        "https://images.unsplash.com/photo-1732310216648-603c0255c000?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      className: "absolute top-10 left-[20%] rotate-[-5deg]",
-    },
-    {
-      title: "The Narrator",
-      image:
-        "https://images.unsplash.com/photo-1697909623564-3dae17f6c20b?q=80&w=2667&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      className: "absolute top-40 left-[25%] rotate-[-7deg]",
-    },
-    {
-      title: "Iceland",
-      image:
-        "https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      className: "absolute top-5 left-[40%] rotate-[8deg]",
-    },
-    {
-      title: "Japan",
-      image:
-        "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=3648&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      className: "absolute top-32 left-[55%] rotate-[10deg]",
-    },
-    {
-      title: "Norway",
-      image:
-        "https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      className: "absolute top-20 right-[35%] rotate-[2deg]",
-    },
-    {
-      title: "New Zealand",
-      image:
-        "https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=3070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      className: "absolute top-24 left-[45%] rotate-[-7deg]",
-    },
-    {
-      title: "Canada",
-      image:
-        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      className: "absolute top-8 left-[30%] rotate-[4deg]",
-    },
-  ];
-
   const content = {
     coding: {
       title: "Join Coding Competitions & Hackathons",
@@ -190,8 +139,6 @@ export default function Dashboard() {
       image: CertificateSVG,
     },
   };
-
-  const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   return (
     <div className="relative w-full overflow-hidden text-white min-h-screen">
       <Meteors number={30} />
@@ -207,109 +154,41 @@ export default function Dashboard() {
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
           <img src={logo} className="h-25 w-30" alt="website logo" />
-          <nav className="lg:flex hidden gap-[20px] mt-[20px] text-sm font-medium">
-            <Link to="/" className="text-white text-lg  no-underline">
-              Home
-            </Link>
-            <Link to="/events" className="text-white text-lg  no-underline">
-              Events
-            </Link>
-            <Link to="/resource" className="text-white text-lg  no-underline">
-              Resource
-            </Link>
-            <Link to="/blog" className="text-white text-lg  no-underline">
-              Blog
-            </Link>
 
+          {/* this nav for laptop */}
+          <Navbar />
+          <div>
             <div>
-              <div>
-                {user ? <p>welcome,{user.user_metadata.full_name}</p> : <p></p>}
-              </div>
-              {user ? (
-                <Button
-                  className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
-                  onClick={async () => {
-                    await supabase.auth.signOut();
-                  }}
-                >
-                  Sign Out
-                </Button>
-              ) : (
-                <Link
-                  to="/signup"
-                  className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
-                >
-                  SignIn
-                </Link>
-              )}
+              {user ? <p>welcome,{user.user_metadata.full_name}</p> : <p></p>}
             </div>
-          </nav>
+            {user ? (
+              <Button
+                className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
+                onClick={async () => {
+                  await supabase.auth.signOut();
+                }}
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <Link
+                to="/signup"
+                className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
+              >
+                SignIn
+              </Link>
+            )}
+          </div>
+          {/* this nav for mobile */}
           <nav className="lg:hidden block">
             <div
               className={`max-w-2xl  mx-auto text-[10px]  ${
                 menuActive ? "block" : "hidden"
               }`}
             >
-              <Menu setActive={setActive}>
-                <MenuItem setActive={setActive} active={active} item="Home">
-                  <div className="flex flex-col space-y-4 text-sm  bg-black ">
-                    <HoveredLink to="/">Web Development</HoveredLink>
-                    <HoveredLink to="/">Interface Design</HoveredLink>
-                    <HoveredLink to="/">Search Engine Optimization</HoveredLink>
-                    <HoveredLink href="/branding">Branding</HoveredLink>
-                  </div>
-                </MenuItem>
-                <MenuItem setActive={setActive} active={active} item="Event">
-                  <div className="flex flex-col space-y-4 text-sm  bg-black ">
-                    <HoveredLink href="/web-dev">Web Development</HoveredLink>
-                    <HoveredLink href="/interface-design">
-                      Interface Design
-                    </HoveredLink>
-                    <HoveredLink href="/seo">
-                      Search Engine Optimization
-                    </HoveredLink>
-                    <HoveredLink href="/branding">Branding</HoveredLink>
-                  </div>
-                </MenuItem>
-                <MenuItem setActive={setActive} active={active} item="Resource">
-                  <div className="  text-sm grid grid-cols-2 gap-10 p-4">
-                    <ProductItem
-                      title="Algochurn"
-                      href="https://algochurn.com"
-                      src="https://assets.aceternity.com/demos/algochurn.webp"
-                      description="Prepare for tech interviews like never before."
-                    />
-                    <ProductItem
-                      title="Tailwind Master Kit"
-                      href="https://tailwindmasterkit.com"
-                      src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-                      description="Production ready Tailwind css components for your next project"
-                    />
-                    <ProductItem
-                      title="Moonbeam"
-                      href="https://gomoonbeam.com"
-                      src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-                      description="Never write from scratch again. Go from idea to blog in minutes."
-                    />
-                    <ProductItem
-                      title="Rogue"
-                      href="https://userogue.com"
-                      src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
-                      description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
-                    />
-                  </div>
-                </MenuItem>
-                <MenuItem setActive={setActive} active={active} item="Blog">
-                  <div className="flex flex-col space-y-4 text-sm">
-                    <HoveredLink to="/hobby">Hobby</HoveredLink>
-                    <HoveredLink to="/individual">Individual</HoveredLink>
-                    <HoveredLink to="/team">Team</HoveredLink>
-                    <HoveredLink to="/enterprise">Enterprise</HoveredLink>
-                  </div>
-                </MenuItem>
-              </Menu>
+              <Navbar />
             </div>
-            <div className={`${menuActive ? "block" : "hidden"}`}>
+            <div>
               <Link
                 to="/signup"
                 className="text-black bg-[#ffffff] py-[.4rem] px-[1rem] mt-[1.25rem] rounded-[.43rem] font-[700] tracking-[.06rem]"
@@ -317,18 +196,10 @@ export default function Dashboard() {
                 SignIn
               </Link>
             </div>
-            <Button
-              size={"icon"}
-              className={`${menuActive ? "hidden" : "block"}`}
-              onClick={() => setMenuActive(true)}
-            >
+            <Button size={"icon"} onClick={() => setMenuActive(true)}>
               <MenuIcon />
             </Button>
-            <Button
-              size={"icon"}
-              className={`${menuActive ? "block" : "hidden"}`}
-              onClick={() => setMenuActive(false)}
-            >
+            <Button size={"icon"} onClick={() => setMenuActive(false)}>
               <X />
             </Button>
           </nav>
@@ -907,8 +778,8 @@ export default function Dashboard() {
             </div>
           </div>
         </section>
-        <section className="bg-[#070b15] text-white w-[79.09rem] h-[12rem]">
-          <div className="min-h-screen bg-background p-6">
+        <section className="bg-[#070b15] w-[79.09rem] h-[52rem]">
+          <div className="h-[10rem] bg-black p-6">
             <h1 className="text-3xl font-bold mb-6 text-center">
               Latest Blogs
             </h1>
@@ -919,10 +790,10 @@ export default function Dashboard() {
 
       {/* ------------------- Footer (optional) ------------------- */}
 
-      <footer className="h-[56.25rem] ">
+      <footer className="h-[56.25rem] lg:h-[47rem]">
         <div className="absolute -z-10">
           <img
-            className="h-[60rem] w-[25rem] lg:h-[60rem] lg:w-[79.06rem]"
+            className="h-[60rem] w-[25rem] lg:h-[50rem] lg:w-[79.06rem] "
             src={footerImage}
             alt=""
           />

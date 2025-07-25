@@ -7,6 +7,7 @@ import ViewMyEvents from './page/ViewMyEvents';
 import EventDetailPage from './page/EventDetailPage'
 import About from './page/About';
 import Blog from './page/Blog';
+// import BlogDetailPage from './page/BLogDetailPage'
 import Contact from './page/ContactUs';
 import FAQ from './page/FAQs';
 import Resource from './page/Resource';
@@ -56,6 +57,7 @@ function App() {
         <Route path="/event/:slug" element={<EventDetailPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
+        {/* <Route path="/blog/:slug" element={<BlogDetailPage />} /> */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/resource" element={<Resource />} />
         <Route path="/feature" element={<Features />} />

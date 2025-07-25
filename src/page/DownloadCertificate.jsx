@@ -59,5 +59,6 @@ export default function DownloadCertificate() {
         <p>No certificate available.</p>
       )}
     </div>
+
   );
 }
