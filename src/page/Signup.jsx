@@ -47,6 +47,7 @@ function Signin() {
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
          redirectTo={`${import.meta.VITE_APP_URL}`}
+        //  redirectTo="http://localhost:517  3"
         theme="default"
       />
       </div>

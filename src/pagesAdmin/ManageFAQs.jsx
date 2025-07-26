@@ -3,20 +3,23 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Textarea } from "../components/ui/textarea";
 import { Link } from "react-router-dom";
-import { supabase } from "../supabaseClient"; // ✅ Fixed path
-
+import { supabase } from "../supabaseClient";
 import herossectionImage from "../images/herossection-image.avif";
 
 export default function ManageFAQs() {
   const [faqs, setFaqs] = useState([]);
   const [formData, setFormData] = useState({ question: "", answer: "" });
   const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
+  // Fetch FAQs on component mount
   useEffect(() => {
     fetchFAQs();
   }, []);
 
+  // READ
   const fetchFAQs = async () => {
+    setLoading(true);
     const { data, error } = await supabase
       .from("faqs")
       .select("*")
@@ -27,19 +30,21 @@ export default function ManageFAQs() {
     } else {
       setFaqs(data);
     }
+    setLoading(false);
   };
 
+  // INSERT or UPDATE
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting form:", formData); // ✅ Debug
-
     const timestamp = new Date().toISOString();
 
     if (editingId) {
+      // UPDATE
       const { error } = await supabase
         .from("faqs")
         .update({
-          ...formData,
+          question: formData.question,
+          answer: formData.answer,
           updated_at: timestamp,
         })
         .eq("id", editingId);
@@ -50,9 +55,11 @@ export default function ManageFAQs() {
         console.log("FAQ updated successfully");
       }
     } else {
+      // INSERT
       const { error } = await supabase.from("faqs").insert([
         {
-          ...formData,
+          question: formData.question,
+          answer: formData.answer,
           created_at: timestamp,
           updated_at: timestamp,
         },
@@ -70,16 +77,24 @@ export default function ManageFAQs() {
     fetchFAQs();
   };
 
+  // Edit
   const handleEdit = (faq) => {
     setFormData({ question: faq.question, answer: faq.answer });
     setEditingId(faq.id);
   };
 
+  // Delete
   const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this FAQ?"
+    );
+    if (!confirmDelete) return;
+
     const { error } = await supabase.from("faqs").delete().eq("id", id);
     if (error) {
       console.error("Failed to delete FAQ:", error.message);
     } else {
+      console.log("FAQ deleted successfully");
       fetchFAQs();
     }
   };
@@ -91,14 +106,17 @@ export default function ManageFAQs() {
         alt="hero section"
         className="absolute w-full h-full object-cover -z-[10]"
       />
-      <header className="flex justify-between p-4 text-white z-[10]">
-        <h1 className="text-xl font-bold">CER</h1>
-        <Link to="/admin" className="hover:underline">Home</Link>
+      <header className="max-w-[50rem] mx-auto px-8 py-10 z-10 relative">
+        <h1 className="text-6xl font-semibold mb-6">
+          Welcome to College FAQs Manage Page
+        </h1>
+        <Link to="/admin">Home</Link>
       </header>
 
       <div className="max-w-3xl mx-auto px-4 py-8 z-[10]">
-        <h2 className="text-2xl font-bold mb-4">Admin: Manage FAQs</h2>
+        <h2 className="text-2xl font-bold mb-4">Manage FAQs</h2>
 
+        {/* INSERT / UPDATE FORM */}
         <form onSubmit={handleSubmit} className="space-y-4 mb-6">
           <Input
             placeholder="Question"
@@ -116,27 +134,58 @@ export default function ManageFAQs() {
             }
             required
           />
-          <Button type="submit">{editingId ? "Update FAQ" : "Add FAQ"}</Button>
+          <div className="flex gap-2">
+            <Button type="submit">
+              {editingId ? "Update FAQ" : "Add FAQ"}
+            </Button>
+            {editingId && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setFormData({ question: "", answer: "" });
+                  setEditingId(null);
+                }}
+              >
+                Cancel
+              </Button>
+            )}
+          </div>
         </form>
 
-        <div className="space-y-4">
-          {faqs.map((faq) => (
-            <div key={faq.id} className="border bg-white text-black p-4 rounded shadow-sm">
-              <h3 className="font-semibold">{faq.question}</h3>
-              <p className="text-gray-700">{faq.answer}</p>
-              <p className="text-sm text-gray-500 mt-1">
-                Created: {new Date(faq.created_at).toLocaleString()}<br />
-                Updated: {faq.updated_at ? new Date(faq.updated_at).toLocaleString() : "—"}
-              </p>
-              <div className="flex gap-2 mt-2">
-                <Button onClick={() => handleEdit(faq)}>Edit</Button>
-                <Button variant="destructive" onClick={() => handleDelete(faq.id)}>
-                  Delete
-                </Button>
+        {/* FAQ LIST */}
+        {loading ? (
+          <p className="text-center text-gray-300">Loading FAQs...</p>
+        ) : (
+          <div className="space-y-4">
+            {faqs.map((faq) => (
+              <div
+                key={faq.id}
+                className="border bg-white text-black p-4 rounded shadow-sm"
+              >
+                <h3 className="font-semibold">{faq.question}</h3>
+                <p className="text-gray-700">{faq.answer}</p>
+                <p className="text-sm text-gray-500 mt-1">
+                  Created: {new Date(faq.created_at).toLocaleString()}
+                  <br />
+                  Updated:{" "}
+                  {faq.updated_at
+                    ? new Date(faq.updated_at).toLocaleString()
+                    : "—"}
+                </p>
+                <div className="flex gap-2 mt-2">
+                  <Button onClick={() => handleEdit(faq)}>Edit</Button>
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleDelete(faq.id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

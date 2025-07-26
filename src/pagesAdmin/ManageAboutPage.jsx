@@ -51,7 +51,7 @@ export default function ManageAboutPage() {
     }
 
     setLoading(false);
-    setContent("")
+    setContent("");
   };
 
   // Update existing
@@ -99,9 +99,11 @@ export default function ManageAboutPage() {
       />
 
       <div>
-        <header className="flex justify-between p-4  text-white z-[10]">
-          <h1 className="text-xl font-bold">CER</h1>
-          <Link to="/admin">Home</Link>
+        <header className="max-w-[50rem] mx-auto px-8 py-10 z-10 relative">
+          <h1 className="text-6xl text-white font-semibold mb-6">
+            Welcome to College About Manage Page
+          </h1>
+          <Link to="/admin" className="text-white">Home</Link>
         </header>
         <main>
           <div className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-xl shadow space-y-4">

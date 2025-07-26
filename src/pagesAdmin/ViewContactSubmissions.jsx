@@ -43,8 +43,10 @@ export const ViewContactSubmissions = () => {
       />
 
       <div>
-        <header className="flex justify-between p-4 text-white z-[10]">
-          <h1 className="text-xl font-bold">CER</h1>
+        <header className="max-w-[50rem] mx-auto px-8 py-10 z-10 relative">
+          <h1 className="text-6xl font-semibold mb-6">
+            Welcome to College Contact Submission Manage Page
+          </h1>
           <Link to="/admin">Home</Link>
         </header>
 
@@ -55,11 +57,22 @@ export const ViewContactSubmissions = () => {
             </h2>
             <ul className="space-y-4">
               {messages.map((msg) => (
-                <li key={msg.id} className="bg-white text-black shadow p-4 rounded border">
-                  <p><strong>Name:</strong> {msg.name}</p>
-                  <p><strong>Email:</strong> {msg.email}</p>
-                  <p><strong>Message:</strong> {msg.message}</p>
-                  <p><strong>Message At:</strong> {msg.message_at || "N/A"}</p>
+                <li
+                  key={msg.id}
+                  className="bg-white text-black shadow p-4 rounded border"
+                >
+                  <p>
+                    <strong>Name:</strong> {msg.name}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {msg.email}
+                  </p>
+                  <p>
+                    <strong>Message:</strong> {msg.message}
+                  </p>
+                  <p>
+                    <strong>Message At:</strong> {msg.message_at || "N/A"}
+                  </p>
                   <p className="text-sm text-gray-500">
                     <strong>Created At:</strong>{" "}
                     {new Date(msg.created_at).toLocaleString()}

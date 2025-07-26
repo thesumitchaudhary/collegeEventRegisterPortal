@@ -62,19 +62,19 @@ export default function Navbar() {
             className="absolute top-full left-0 mt-2 w-48 bg-blue  border rounded-md shadow-xl z-50"
           >
             <Link
-              to="/docs"
+              to="/resource"
               className="block px-4 py-2 text-sm text-white"
             >
               Documentation
             </Link>
             <Link
-              to="/tutorials"
+              to="/resource"
               className="block px-4 py-2 text-sm text-white"
             >
               Tutorials
             </Link>
             <Link
-              to="/community"
+              to="/resource"
               className="block px-4 py-2 text-sm text-white dark:hover:bg-gray-800"
             >
               Community

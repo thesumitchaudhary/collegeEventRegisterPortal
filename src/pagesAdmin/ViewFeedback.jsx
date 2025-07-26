@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
@@ -38,8 +38,10 @@ export const ViewFeedback = () => {
         className="absolute w-full h-full object-cover -z-[10]"
       />
       <div>
-        <header className="flex justify-between p-4 text-white z-[10]">
-          <h1 className="text-xl font-bold">CER</h1>
+        <header className="max-w-[50rem] mx-auto px-8 py-10 z-10 relative">
+          <h1 className="text-6xl font-semibold mb-6">
+            Welcome to College Feedback Manage Page
+          </h1>
           <Link to="/admin">Home</Link>
         </header>
         <main>
@@ -51,11 +53,22 @@ export const ViewFeedback = () => {
               <ul className="space-y-2">
                 {data.length > 0 ? (
                   data.map((item) => (
-                    <li key={item.id} className="p-4 border rounded bg-white text-black">
-                      <p><strong>ID:</strong> {item.id}</p>
-                      <p><strong>Name:</strong> {item.name || "N/A"}</p>
-                      <p><strong>Email:</strong> {item.email || "N/A"}</p>
-                      <p><strong>Feedback:</strong> {item.message || "N/A"}</p>
+                    <li
+                      key={item.id}
+                      className="p-4 border rounded bg-white text-black"
+                    >
+                      <p>
+                        <strong>ID:</strong> {item.id}
+                      </p>
+                      <p>
+                        <strong>Name:</strong> {item.name || "N/A"}
+                      </p>
+                      <p>
+                        <strong>Email:</strong> {item.email || "N/A"}
+                      </p>
+                      <p>
+                        <strong>Feedback:</strong> {item.message || "N/A"}
+                      </p>
                     </li>
                   ))
                 ) : (

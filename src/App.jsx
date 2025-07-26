@@ -32,6 +32,7 @@ import {EditPrivacyPolicy} from './pagesAdmin/EditPrivacyPolicy';
 import {ViewContactSubmissions} from './pagesAdmin/ViewContactSubmissions';
 import {ViewFeedback} from './pagesAdmin/ViewFeedback';
 import GalleryManage from './pagesAdmin/GalleryManage';
+import {UserDashboardControl} from './pagesAdmin/UserDashboardControl';
 
 // for css
 import { clsx } from "clsx";
@@ -82,6 +83,7 @@ function App() {
         <Route path="/admin/adminviewcontact" element={<ViewContactSubmissions />} />
         <Route path="/admin/adminuploadcertificates" element={<UploadCertificates />} />
         <Route path="/admin/admingallerymanage" element={<GalleryManage />} />
+        <Route path="/admin/admincontroluserdashboard" element={<UserDashboardControl />} />
       </Routes> 
     </Router>
   );

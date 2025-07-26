@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 
 // Importing image
 import herossectionImage from "../images/herossection-image.avif";
@@ -14,8 +14,10 @@ export const ManageFeaturesSection = () => {
       />
 
       <div>
-        <header className="flex justify-between p-4  text-white z-[10]">
-          <h1 className="text-xl font-bold">CER</h1>
+        <header className="max-w-[50rem] mx-auto px-8 py-10 z-10 relative">
+          <h1 className="text-6xl font-semibold mb-6">
+            Welcome to College Features Manage Page
+          </h1>
           <Link to="/admin">Home</Link>
         </header>
         <main>
