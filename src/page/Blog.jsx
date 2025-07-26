@@ -250,7 +250,7 @@ export default function Blog() {
                  <h4 className="text-base mb-5 text-white">Utilities</h4>
                  <div className="flex flex-col gap-5">
                    <Link
-                     to="/viewmyevents"
+                     to="/eventschedules"
                      className="text-white text-lg  no-underline"
                    >
                      Event Schedule

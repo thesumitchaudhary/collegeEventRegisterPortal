@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './page/Dashboard';
 import RegisterForm from './page/RegisterForm';
 import EventsList from './page/EventList';
+import {EventSchedules} from './page/EventSchedules';
 import ViewMyEvents from './page/ViewMyEvents';
 import EventDetailPage from './page/EventDetailPage'
 import About from './page/About';
@@ -67,6 +68,7 @@ function App() {
         <Route path="/certificate" element={<DownloadCertificate />} />
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/eventschedules" element={<EventSchedules />} />
 
 
         {/* for admin */}

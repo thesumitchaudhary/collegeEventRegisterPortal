@@ -43,7 +43,6 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  console.log(role);
 
   return (
     <AuthContext.Provider value={{ user, role, loading }}>

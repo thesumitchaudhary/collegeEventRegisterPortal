@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "../components/ui/navbar-menu";
 import { useAuth } from "../context/AuthContext";
+import { supabase } from "@/supabaseClient";
 
 // import image,logo,icon
 import headerImg from "../images/otherPageHeaderImage.avif";
@@ -16,9 +17,55 @@ import logo from "../images/logo-college.png";
 import { X as cross } from "lucide-react";
 import { Menu as MenuIcon } from "lucide-react";
 
+import { FaCode, FaFutbol, FaClipboardList, FaCertificate } from "react-icons/fa";
+
+// Icon mapping based on Supabase `icon` field
+const iconMap = {
+  code: <FaCode className="text-3xl text-blue-400" />,
+  futbol: <FaFutbol className="text-3xl text-green-400" />,
+  clipboard: <FaClipboardList className="text-3xl text-yellow-400" />,
+  certificate: <FaCertificate className="text-3xl text-purple-400" />,
+};
+
 export default function Features() {
   const [menuActive, setMenuActive] = useState();
   const { user, role } = useAuth();
+   const [features, setFeatures] = useState({});
+  const [activeTab, setActiveTab] = useState("");
+
+  useEffect(() => {
+    const fetchFeatures = async () => {
+      const { data, error } = await supabase.from("features").select("*");
+
+      if (error) {
+        console.log(error)        
+        console.error("Error fetching features:", error);
+        return;
+      }
+
+      const mappedData = {};
+      data.forEach((item) => {
+        mappedData[item.key] = {
+          title: item.title,
+          description: item.description,
+          icon: iconMap[item.icon] || null,
+          image: item.image_url,
+        };
+      });
+
+      setFeatures(mappedData);
+
+      // Set first tab as active
+      if (data.length > 0) {
+        setActiveTab(data[0].key);
+      }
+    };
+
+    fetchFeatures();
+  }, []);
+
+  if (!features || !activeTab) return <div className="text-white">Loading...</div>;
+
   return (
     <div className="">
       <CursorShadow />
@@ -81,7 +128,42 @@ export default function Features() {
           </nav>
         </div>
       </header>
-      <main className="h-[700px] bg-[#04060e]"></main>
+      <main className="h-[700px] bg-[#04060e]">
+         <div className="flex gap-10 bg-[#04060e] p-10 rounded-lg">
+      {/* Left Menu */}
+      <div className="flex flex-col gap-4 w-60">
+        {Object.keys(features).map((key) => (
+          <button
+            key={key}
+            onClick={() => setActiveTab(key)}
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg text-left text-lg font-medium transition ${
+              activeTab === key
+                ? "bg-gray-900 text-white"
+                : "hover:bg-gray-800 text-gray-300"
+            }`}
+          >
+            {features[key].icon}
+            <span className="capitalize">{key}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Right Content */}
+      <div className="bg-[#070b15] w-[50rem] p-8 rounded-xl flex-1 shadow-lg">
+        <h2 className="text-2xl font-semibold mb-4 text-white">
+          {features[activeTab].title}
+        </h2>
+        <p className="text-lg text-gray-300 leading-relaxed">
+          {features[activeTab].description}
+        </p>
+        <img
+          src={features[activeTab].image}
+          alt={activeTab}
+          className="object-fill mt-5 w-full h-[270px] rounded-xl border border-gray-700 shadow-md"
+        />
+      </div>
+    </div>
+      </main>
       {/* ------------------- Footer (optional) ------------------- */}
       <footer className="h-[56.25rem] lg:h-[47rem]">
         <div className="absolute -z-10">
@@ -182,7 +264,7 @@ export default function Features() {
                 <h4 className="text-base mb-5 text-white">Utilities</h4>
                 <div className="flex flex-col gap-5">
                   <Link
-                    to="/viewmyevents"
+                    to="/eventschedules"
                     className="text-white text-lg  no-underline"
                   >
                     Event Schedule

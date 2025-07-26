@@ -1,60 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { supabase } from "../supabaseClient";
+import CursorShadow from "../components/ui/CursorShadow";
+import { Instagram, Facebook, Linkedin, X } from "lucide-react";
+import { supabase } from "@/supabaseClient";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navbar from "../components/ui/navbar-menu";
 import { useAuth } from "../context/AuthContext";
-import { Input } from "../components/ui/input";
-import { Textarea } from "../components/ui/textarea";
 
-// import images,svg,icon
-import { Icons } from "../components/ui/icons";
-import { Instagram } from "lucide-react";
-import { Facebook } from "lucide-react";
-import { Linkedin } from "lucide-react";
-import { X } from "lucide-react";
-import { Menu as MenuIcon } from "lucide-react";
-
-// importing image , logo
-import headerImg from "../images/otherPageHeaderImage.avif";
+// import image,svg,icon
+import blogHeader from "../images/blog-header.avif";
 import footerImage from "../images/footer-img.avif";
 import logo from "../images/logo-college.png";
+import { X as cross } from "lucide-react";
+import { Menu as MenuIcon } from "lucide-react";
 
-export default function ContactUs() {
+export const EventSchedules = () => {
+  const [events, setEvents] = useState([]);
   const [menuActive, setMenuActive] = useState();
-     const { user, role} = useAuth();
-  const [active, setActive] = useState();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const { user, role } = useAuth();
 
-  const [success, setSuccess] = useState("");
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  async function fetchEvents() {
+    const { data, error } = await supabase
+      .from("eventschedule")
+      .select("*")
+      .order("event_date", { ascending: true });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const { error } = await supabase.from("contactus").insert([formData]);
-
-    if (error) {
-      alert("Error sending message: " + error.message);
-    } else {
-      setSuccess("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    }
-  };
+    if (!error) setEvents(data);
+  }
 
   return (
-    <div className="relative w-full overflow-hidden text-white min-h-screen">
+    <div className="relative w-full text-white min-h-screen xs:w-[370px] lg:bg-transparent">
       <img
-        className="absolute block -z-10 h-[14rem] object-center object-cover w-[80.10rem]"
-        src={headerImg}
-        alt="header image"
+        className="absolute w-[1265px] h-[1400px] -z-10 xs:w-[370px] xs:bg-[#ff00ff]"
+        src={blogHeader}
+        alt=""
       />
       <header className="w-full shadow-sm top-0 z-10">
         <div className="max-w-8xl flex items-center justify-between px-6 py-4">
@@ -64,7 +48,7 @@ export default function ContactUs() {
           <Navbar />
           <div>
             <div>
-              {user ? <p>welcome,{user.user_metadata.full_name}</p> : <p></p>}
+              {user ? <p>welcome, {user.user_metadata.full_name}</p> : null}
             </div>
             {user ? (
               <Button
@@ -84,10 +68,11 @@ export default function ContactUs() {
               </Link>
             )}
           </div>
+
           {/* this nav for mobile */}
           <nav className="lg:hidden block">
             <div
-              className={`max-w-2xl  mx-auto text-[10px]  ${
+              className={`max-w-2xl  mx-auto text-[10px] ${
                 menuActive ? "block" : "hidden"
               }`}
             >
@@ -110,54 +95,49 @@ export default function ContactUs() {
           </nav>
         </div>
       </header>
-      <main className="h-[1000px] bg-[#000] mt-[10rem]">
-        <div className="max-w-xl mx-auto p-4 mt-10">
-          <h2 className="text-2xl font-semibold mb-4 text-center">
-            Contact Us
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <Textarea
-              name="message"
-              placeholder="Your Message"
-              rows="5"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            />
-            <Button type="submit" className="bg-white text-black">
-              Send Message
-            </Button>
-            {success && <p className="text-green-600">{success}</p>}
-          </form>
-        </div>
-      </main>
 
-      {/* ------------------- Footer (optional) ------------------- */}
+      <main className="min-h-[900px] bg-black p-6">
+        <h2 className="text-3xl font-bold mb-6 text-center">Scheduled Events</h2>
+
+        {events.length === 0 ? (
+          <p className="text-sm text-white/60">No events available yet.</p>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {events.map((event) => (
+              <Card
+                key={event.id}
+                className="bg-white/10 border border-white/20 shadow-md text-white"
+              >
+                <CardContent className="p-4">
+                  <h4 className="text-xl font-semibold mb-2">{event.title}</h4>
+                  {event.imagesurl && (
+                    <img
+                      src={event.imagesurl}
+                      alt="Event"
+                      className="w-full h-40 object-cover rounded mb-3"
+                    />
+                  )}
+                  <p className="text-sm mb-2">{event.description}</p>
+                  <p className="text-sm italic mb-1">
+                    📅 {event.event_date} | 🕒 {event.event_time}
+                  </p>
+                  <p className="text-sm">📍 {event.location}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+      </main>
 
       <footer className="h-[56.25rem] lg:h-[47rem]">
         <div className="absolute -z-10">
           <img
-            className="h-[60rem] w-[25rem] lg:h-[50rem] lg:w-[79.06rem] "
+            className="h-[60rem] w-[25rem] lg:h-[50rem] lg:w-[79.06rem]"
             src={footerImage}
             alt=""
           />
         </div>
-        <div className=" z-10">
+        <div className="z-10">
           <div className="p-[1rem] lg:w-[80rem]">
             <h2 className="text-xl lg:mx-auto text-center lg:w-[20rem]">
               Enter your Email for getting Event Notification Timely
@@ -193,33 +173,24 @@ export default function ContactUs() {
                 <X />
                 <Instagram />
               </div>
-              <p className="text-whie p-[.75rem] text-[10px]">
+              <p className="text-white p-[.75rem] text-[10px]">
                 Developed by Chaudhary Sumit And Chaudhary Raj
               </p>
             </div>
             <div className="flex gap-10 mt-10">
               <div>
-                <h4 className="text-base mb-5 text-white">Main mages</h4>
+                <h4 className="text-base mb-5 text-white">Main Pages</h4>
                 <div className="flex flex-col gap-3">
-                  <Link to="/" className="text-white text-lg  no-underline">
+                  <Link to="/" className="text-white text-lg no-underline">
                     Home
                   </Link>
-                  <Link
-                    to="/feature"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/feature" className="text-white text-lg no-underline">
                     Features
                   </Link>
-                  <Link
-                    to="/gallery"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/gallery" className="text-white text-lg no-underline">
                     Gallery
                   </Link>
-                  <Link
-                    to="/contact"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/contact" className="text-white text-lg no-underline">
                     Contact Us
                   </Link>
                 </div>
@@ -227,19 +198,13 @@ export default function ContactUs() {
               <div>
                 <h4 className="text-base mb-5 text-white">Information</h4>
                 <div className="flex flex-col gap-5">
-                  <Link
-                    to="/about"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/about" className="text-white text-lg no-underline">
                     About
                   </Link>
-                  <Link to="/faq" className="text-white text-lg  no-underline">
+                  <Link to="/faq" className="text-white text-lg no-underline">
                     FAQ
                   </Link>
-                  <Link
-                    to="/policy"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/policy" className="text-white text-lg no-underline">
                     Privacy Policy
                   </Link>
                 </div>
@@ -247,22 +212,13 @@ export default function ContactUs() {
               <div>
                 <h4 className="text-base mb-5 text-white">Utilities</h4>
                 <div className="flex flex-col gap-5">
-                  <Link
-                    to="/eventschedules"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/eventschedules" className="text-white text-lg no-underline">
                     Event Schedule
                   </Link>
-                  <Link
-                    to="/certificate"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/certificate" className="text-white text-lg no-underline">
                     Download Certificate
                   </Link>
-                  <Link
-                    to="/feedback"
-                    className="text-white text-lg  no-underline"
-                  >
+                  <Link to="/feedback" className="text-white text-lg no-underline">
                     Feedback
                   </Link>
                 </div>
@@ -270,7 +226,7 @@ export default function ContactUs() {
             </div>
           </div>
           <div className="mt-5 flex lg:justify-center lg:mt-[4rem] gap-10">
-            <p className="text-white ">
+            <p className="text-white">
               2025 College Event Registration Portal. All rights reserved.
             </p>
           </div>
@@ -278,4 +234,4 @@ export default function ContactUs() {
       </footer>
     </div>
   );
-}
+};
