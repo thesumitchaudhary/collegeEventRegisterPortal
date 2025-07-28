@@ -42,7 +42,7 @@ export default function GalleryManage() {
 
     const { error: uploadError } = await supabase.storage
       .from("gallery")
-      .insert(filePath, imageFile);
+      .upload(filePath, imageFile);
 
     if (uploadError) {
       setMessage("Upload failed: " + uploadError.message);

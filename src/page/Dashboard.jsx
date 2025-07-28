@@ -502,7 +502,7 @@ export default function Dashboard() {
                   </Button>
                 </div>
 
-                <div className="flex gap-10 bg-[#04060e]">
+                <div className="flex lg:w-[69.06rem] gap-10 bg-[#04060e]">
                   {/* Left Menu */}
                   <div className="flex flex-col gap-4 w-60">
                     {Object.keys(content).map((key) => (
@@ -543,7 +543,7 @@ export default function Dashboard() {
         <section>
           <div className="w-[25rem] h-[50rem] lg:w-[79.09rem]">
             <img
-              className="absolute w-[26rem] h-[50rem] -z-10v lg:w-[79.09rem]"
+              className="absolute w-[26rem] h-[50rem] -z-10 lg:w-[79.09rem]"
               src={herossectionMiddleImage}
               alt=""
             />
