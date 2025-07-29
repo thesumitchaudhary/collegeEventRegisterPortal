@@ -240,7 +240,7 @@ export default function Dashboard() {
             </Button>
           </div>
         </section>
-        <section className="w-[25rem] h-[28.2rem] lg:w-[79.06rem] lg:h-[34.2rem]">
+        <section className="w-[25rem] h-[28.2rem] lg:w-[72.50rem] lg:mx-[auto] lg:h-[34.2rem]">
           <div
             className="mt-[2.5rem] grid grid-cols-3"
             style={{
@@ -353,8 +353,8 @@ export default function Dashboard() {
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 from-background"></div>
           </div>
         </section>
-        <section className="h-[98.5rem] w-[25rem] bg-[#04060e] lg:w-[79.06rem] lg:h-[40rem] ">
-          <div className=" text-white">
+        <section className="h-[98.5rem] w-[25rem] bg-[#04060e] lg:w-[79.06rem]  lg:h-[40rem] ">
+          <div className=" text-white lg:w-[72.50rem] lg:mx-[auto] ">
             <h2>The smartest way to automate your tasks</h2>
             <div className="lg:flex lg:gap-10">
               <CardContainer className="inter-var w-90">
@@ -549,10 +549,12 @@ export default function Dashboard() {
             />
             <div className="z-10 ">
               <div className="relative flex h-[31.25rem] w-full flex-col items-center justify-center overflow-hidden rounded-lg ">
+                <div className="mt-30">
                 <OrbitingCircles
                   className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-3s]"
                   radius={180}
                   duration={20}
+                  delay={-3}
                 >
                   <Icons.notion />
                 </OrbitingCircles>
@@ -560,6 +562,7 @@ export default function Dashboard() {
                   className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-9s]"
                   radius={180}
                   duration={20}
+                  delay={-6}
                 >
                   <Icons.whatsapp />
                 </OrbitingCircles>
@@ -567,6 +570,7 @@ export default function Dashboard() {
                   className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-15s]"
                   radius={180}
                   duration={20}
+                  delay={-9}
                 >
                   <Icons.googleDrive />
                 </OrbitingCircles>
@@ -574,6 +578,7 @@ export default function Dashboard() {
                   className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-21s]"
                   radius={180}
                   duration={20}
+                  delay={-12}
                 >
                   <Icons.openai />
                 </OrbitingCircles>
@@ -581,6 +586,7 @@ export default function Dashboard() {
                   className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-27s]"
                   radius={180}
                   duration={20}
+                  delay={-15}
                 >
                   <Icons.notion />
                 </OrbitingCircles>
@@ -588,6 +594,7 @@ export default function Dashboard() {
                   className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-33s]"
                   radius={180}
                   duration={20}
+                  delay={-18}
                 >
                   <Icons.whatsapp />
                 </OrbitingCircles>
@@ -595,44 +602,11 @@ export default function Dashboard() {
                   className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-39s]"
                   radius={180}
                   duration={20}
+                  delay={-21}
                 >
                   <Icons.googleDrive />
                 </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-45s]"
-                  radius={180}
-                  duration={20}
-                >
-                  <Icons.openai />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-51s]"
-                  radius={180}
-                  duration={20}
-                >
-                  <Icons.notion />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-57s]"
-                  radius={180}
-                  duration={20}
-                >
-                  <Icons.whatsapp />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-63s]"
-                  radius={180}
-                  duration={20}
-                >
-                  <Icons.googleDrive />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-69s]"
-                  radius={180}
-                  duration={20}
-                >
-                  <Icons.openai />
-                </OrbitingCircles>
+                </div>
               </div>
             </div>
           </div>

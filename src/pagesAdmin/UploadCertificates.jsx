@@ -18,10 +18,13 @@ export default function UploadCertificates() {
         .from("registrations")
         .select(`
           id,
-          user:user_id!fk_user ( name ),
-          event:event_id!fk_event ( title, date ),
+          user:users!fk_user ( name ),
+          event:events!fk_event ( title, date ),
           certificates ( id, certificate_url )
         `);
+        // .select(`*`);
+
+        console.log(data);
 
       if (error) throw error;
 
@@ -53,8 +56,8 @@ export default function UploadCertificates() {
             >
               <div>
                 <p><strong>Name:</strong> {reg.user.name}</p>
-                <p><strong>Event:</strong> {reg.event.event_name}</p>
-                <p><strong>Date:</strong> {reg.event.event_date}</p>
+                <p><strong>Event:</strong> {reg.event.title}</p>
+                <p><strong>Date:</strong> {reg.event.date}</p>
                 {reg.certificates.length > 0 && (
                   <a
                     href={`https://<your-project>.supabase.co/storage/v1/object/public/certificates/${reg.certificates[0].certificate_url}`}

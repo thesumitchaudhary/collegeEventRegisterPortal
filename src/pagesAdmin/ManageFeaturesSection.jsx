@@ -11,10 +11,10 @@ export const ManageFeaturesSection = () => {
   const [message, setMessage] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
-    key: "coding",
-    title: "Join Coding Competitions & Hackathons",
-    description: "Participate in technical fests, hackathons, and code challenges organized by various departments and clubs.",
-    icon: "FaCode",
+    key: "",
+    title: "",
+    description: "",
+    icon: "",
     image_url: "",
   });
   const [imageFile, setImageFile] = useState(null);

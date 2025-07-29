@@ -10,12 +10,12 @@ export async function issueCertificate(registration_id) {
       .select(
         `
         id,
-        user:user_id (
+        user:users (
           name
         ),
-        event:event_id (
+        event:events (
           title,
-          event_date
+          date
         )
       `
       )

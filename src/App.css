@@ -178,9 +178,14 @@
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(180deg); /* only half a circle */
+    transform: rotate(360deg);
   }
 }
+
+.animate-halfOrbit {
+  animation: halfOrbit linear infinite;
+}
+
 
 .animate-halfOrbit {
   animation-name: halfOrbit;
