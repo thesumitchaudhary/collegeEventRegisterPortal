@@ -1,5 +1,5 @@
 // // components/magicui/HalfOrbitingCircle.jsx
-// import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 // export function OrbitingCircles({ radius = 150, duration = 20, children, delay = 0 }) {
 //   const ref = useRef(null);
@@ -36,8 +36,6 @@
 //   );
 // }
 
-import React, { useEffect, useRef } from "react";
-
 export function OrbitingCircles({ radius = 150, duration = 20, children, delay = 0 }) {
   const ref = useRef(null);
 
@@ -54,15 +52,15 @@ export function OrbitingCircles({ radius = 150, duration = 20, children, delay =
       ref={ref}
       className="absolute animate-halfOrbit"
       style={{
-        top: `50%`, // center vertically
-        left: `50%`, // center horizontally
-        transformOrigin: `center -${radius}px`, // orbit **below** center
+        top: "50%",
+        left: "50%",
+        transformOrigin: `center -${radius}px`,
       }}
     >
       <div
         className="w-16 h-16 rounded-full flex items-center justify-center bg-black"
         style={{
-          transform: `translate(-50%, ${radius}px)`, // push it below center
+          transform: `translate(-50%, ${radius}px)`,
         }}
       >
         {children}

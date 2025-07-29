@@ -486,7 +486,7 @@ export default function Dashboard() {
             </div>
           </div>
         </section>
-        <section className="h-[89.75rem] bg-[#04060e] lg:w-[79.06rem] lg:h-[43rem]">
+        <section className="h-[89.75rem] bg-[#04060e] lg:w-[79.06rem] lg:h-[44rem]">
           <div className="mt-[20rem] text-white px-10 lg:mt-[5rem]">
             <div className="flex mt-20 justify-between">
               <div className="bg-[#04060e] text-white min-h-screen p-10">
@@ -502,7 +502,7 @@ export default function Dashboard() {
                   </Button>
                 </div>
 
-                <div className="flex lg:w-[69.06rem] gap-10 bg-[#04060e]">
+                <div className="flex lg:w-[79.06rem] gap-10 bg-[#04060e]">
                   {/* Left Menu */}
                   <div className="flex flex-col gap-4 w-60">
                     {Object.keys(content).map((key) => (
@@ -541,76 +541,81 @@ export default function Dashboard() {
           </div>
         </section>
         <section>
-          <div className="w-[25rem] h-[50rem] lg:w-[79.09rem]">
+          <div className="w-[25rem] h-[50rem] lg:w-[79.09rem] lg:h-[60rem]">
             <img
-              className="absolute w-[26rem] h-[50rem] -z-10 lg:w-[79.09rem]"
+              className="absolute lg:w-[79.09rem]   -z-10"
               src={herossectionMiddleImage}
               alt=""
             />
-            <div className="z-10 ">
-              <div className="relative flex h-[31.25rem] w-full flex-col items-center justify-center overflow-hidden rounded-lg ">
-                <div className="mt-30">
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-3s]"
-                  radius={180}
-                  duration={20}
-                  delay={-3}
-                >
-                  <Icons.notion />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-9s]"
-                  radius={180}
-                  duration={20}
-                  delay={-6}
-                >
-                  <Icons.whatsapp />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-15s]"
-                  radius={180}
-                  duration={20}
-                  delay={-9}
-                >
-                  <Icons.googleDrive />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-21s]"
-                  radius={180}
-                  duration={20}
-                  delay={-12}
-                >
-                  <Icons.openai />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-27s]"
-                  radius={180}
-                  duration={20}
-                  delay={-15}
-                >
-                  <Icons.notion />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-33s]"
-                  radius={180}
-                  duration={20}
-                  delay={-18}
-                >
-                  <Icons.whatsapp />
-                </OrbitingCircles>
-                <OrbitingCircles
-                  className="h-[3.125rem] w-[3.125rem] border-none [animation-delay:-39s]"
-                  radius={180}
-                  duration={20}
-                  delay={-21}
-                >
-                  <Icons.googleDrive />
-                </OrbitingCircles>
+
+            <div className="relative w-full h-[31.25rem]  grid place-items-center  z-10">
+              <div className="relative h-[22rem] w-[22rem]">
+                  <OrbitingCircles
+                    className="h-[3.125rem] w-[3.125rem] border-none"
+                    radius={180}
+                    duration={20}
+                    delay={-3}
+                  >
+                    <Icons.notion />
+                  </OrbitingCircles>
+                  <OrbitingCircles
+                    className="h-[3.125rem] w-[3.125rem] border-none"
+                    radius={180}
+                    duration={20}
+                    delay={-6}
+                  >
+                    <Icons.whatsapp />
+                  </OrbitingCircles>
+                  <OrbitingCircles
+                    className="h-[3.125rem] w-[3.125rem] border-none"
+                    radius={180}
+                    duration={20}
+                    delay={-9}
+                  >
+                    <Icons.googleDrive />
+                  </OrbitingCircles>
+                  <OrbitingCircles
+                    className="h-[3.125rem] w-[3.125rem] border-none"
+                    radius={180}
+                    duration={20}
+                    delay={-12}
+                  >
+                    <Icons.googleDrive />
+                  </OrbitingCircles>
+                  <OrbitingCircles
+                    className="h-[3.125rem] w-[3.125rem] border-none"
+                    radius={180}
+                    duration={20}
+                    delay={-15}
+                  >
+                    <Icons.notion />
+                  </OrbitingCircles>
+                  <OrbitingCircles
+                    className="h-[3.125rem] w-[3.125rem] border-none"
+                    radius={180}
+                    duration={20}
+                    delay={-18}
+                  >
+                    <Icons.whatsapp />
+                  </OrbitingCircles>
+                  <OrbitingCircles
+                    className="h-[3.125rem] w-[3.125rem] border-none"
+                    radius={180}
+                    duration={20}
+                    delay={-21}
+                  >
+                    <Icons.googleDrive />
+                  </OrbitingCircles>
                 </div>
               </div>
+
+              {/* Optional: core circle at the center bottom */}
+              <div className="absolute bottom-[5.5rem] flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full  z-10" />
+              </div>
             </div>
-          </div>
         </section>
+
         <section>
           <div className="w-[25rem] h-[37.5rem] bg-[#04060e] lg:w-[79.06rem]">
             <div className="lg:w-[79.09rem]">
