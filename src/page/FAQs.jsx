@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/ui/navbar-menu";
 import { Button } from "../components/ui/button";
+import { supabase } from "@/supabaseClient";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { useAuth } from "../context/AuthContext";
@@ -96,7 +97,7 @@ export default function FAQs() {
                </nav>
              </div>
            </header>
-      <main className="bg-[#000] lg:h-[20rem]">
+      <main className="bg-[#000] lg:h-[95rem]">
         <div className="max-w-3xl mx-auto px-4 py-8">
           <h2 className="text-3xl font-bold text-center mb-6">
             Frequently Asked Questions
@@ -104,7 +105,7 @@ export default function FAQs() {
           <div className="space-y-4">
             {faqs.map((faq) => (
               <div key={faq.id} className="border rounded-lg shadow-sm">
-                <button className="w-full text-left px-4 py-3 font-medium text-lg bg-gray-100">
+                <button className="w-full text-left px-4 py-3 font-medium text-lg bg-gray-900">
                   {faq.question}
                 </button>
                 <div className="px-4 py-3 text-gray-700 bg-white border-t">

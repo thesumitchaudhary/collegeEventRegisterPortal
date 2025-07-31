@@ -548,10 +548,10 @@ export default function Dashboard() {
               alt=""
             />
 
-            <div className="relative w-full h-[31.25rem]  grid place-items-center  z-10">
-              <div className="relative h-[22rem] w-[22rem]">
+            <div className="relative w-full h-[31.25rem]  grid place-items-center overflow-hidden z-10">
+              <div className="relative h-[22rem] w-[22rem] mt-130">
                   <OrbitingCircles
-                    className="h-[3.125rem] w-[3.125rem] border-none"
+                    className="h-[3.125rem] w-[3.125rem] border-none "
                     radius={180}
                     duration={20}
                     delay={-3}

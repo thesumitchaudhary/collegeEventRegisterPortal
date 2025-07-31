@@ -36,7 +36,7 @@ import React, { useEffect, useRef } from "react";
 //   );
 // }
 
-export function OrbitingCircles({ radius = 150, duration = 20, children, delay = 0 }) {
+export function OrbitingCircles({ radius = 150, duration = 20000, children, delay = 0 }) {
   const ref = useRef(null);
 
   useEffect(() => {
