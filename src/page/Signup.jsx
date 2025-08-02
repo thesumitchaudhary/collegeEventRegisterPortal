@@ -3,6 +3,7 @@ import { supabase } from "../supabaseClient";
 import { Auth } from "@supabase/auth-ui-react";
 import { Navigate } from 'react-router-dom';
 import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { Button } from "@/components/ui/button";
 
 function Signin() {
   const [session, setSession] = useState(null);
@@ -47,7 +48,7 @@ function Signin() {
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
          redirectTo={`${import.meta.VITE_APP_URL}`}
-        //  redirectTo="http://localhost:517  3"
+        //  redirectTo="http://localhost:517  "
         theme="default"
       />
       </div>
