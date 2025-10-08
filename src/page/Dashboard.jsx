@@ -19,7 +19,7 @@ import {
 } from "../components/ui/draggable-card";
 import { OrbitingCircles } from "../components/magicui/orbiting-circles";
 import Navbar from "../components/ui/navbar-menu";
-import { Marquee } from "../components/magicui/Marquee";
+import Marquee from "../components/marquee";
 
 import CursorShadow from "../components/ui/CursorShadow";
 import useEmblaCarousel from "embla-carousel-react";
@@ -146,7 +146,7 @@ export default function Dashboard() {
         <CursorShadow />
       </div>
       <img
-        className="absolute w-[25rem] h-[57.5rem] 2xl:w-[120rem] -z-10 lg:h-[68rem] lg:w-[79.06rem]"
+        className="absolute  xl:w-full -z-10 lg:h-[68rem] lg:w-[79.06rem]  h-[57.5rem]"
         src={herossectionImage}
         alt=""
       />
@@ -180,7 +180,7 @@ export default function Dashboard() {
             )}
           </div>
           {/* this nav for mobile */}
-          <nav className="lg:hidden block">
+          {/* <nav className="lg:hidden block">
             <div
               className={`max-w-2xl  mx-auto text-[10px]  ${
                 menuActive ? "block" : "hidden"
@@ -202,7 +202,7 @@ export default function Dashboard() {
             <Button size={"icon"} onClick={() => setMenuActive(false)}>
               <X />
             </Button>
-          </nav>
+          </nav> */}
         </div>
       </header>
 
@@ -291,63 +291,7 @@ export default function Dashboard() {
           </p>
           <div className="relative flex w-full h-20 flex-col items-center justify-center overflow-hidden">
             <Marquee className="[--duration:20s]">
-              <div className="flex justify-around align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <SiDjango className="text-blue-600" />
-                <p>Django</p>
-              </div>
-              <div className="flex align-center">
-                <FaReact className="text-blue-400" />
-                {/* <img className="w-5 h-5" src={reactLogo} alt="" /> */}
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
-              <div className="flex align-center">
-                <img className="w-5 h-5" src={reactLogo} alt="" />
-                <p>react</p>
-              </div>
+          
             </Marquee>
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 from-background"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 from-background"></div>

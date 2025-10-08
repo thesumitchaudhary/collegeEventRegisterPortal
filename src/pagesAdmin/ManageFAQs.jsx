@@ -107,85 +107,128 @@ export default function ManageFAQs() {
         className="absolute w-full h-full object-cover -z-[10]"
       />
       <header className="max-w-[50rem] mx-auto px-8 py-10 z-10 relative">
-        <h1 className="text-6xl font-semibold mb-6">
+        <h1 className="text-6xl font-semibold mb-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
           Welcome to College FAQs Manage Page
         </h1>
-        <Link to="/admin">Home</Link>
+        <Link 
+          to="/admin" 
+          className="inline-block bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+        >
+          🏠 Home
+        </Link>
       </header>
 
-      <div className="max-w-3xl mx-auto px-4 py-8 z-[10]">
-        <h2 className="text-2xl font-bold mb-4">Manage FAQs</h2>
+      <div className="max-w-5xl mx-auto px-4 py-8 z-[10] space-y-8">
+        <div className="bg-gradient-to-br from-slate-800 via-purple-900 to-slate-900 border-purple-500/20 shadow-2xl rounded-xl p-8">
+          <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-red-500 to-yellow-500 bg-clip-text text-transparent">
+            ❓ Manage FAQs
+          </h2>
 
-        {/* INSERT / UPDATE FORM */}
-        <form onSubmit={handleSubmit} className="space-y-4 mb-6">
-          <Input
-            placeholder="Question"
-            value={formData.question}
-            onChange={(e) =>
-              setFormData({ ...formData, question: e.target.value })
-            }
-            required
-          />
-          <Textarea
-            placeholder="Answer"
-            value={formData.answer}
-            onChange={(e) =>
-              setFormData({ ...formData, answer: e.target.value })
-            }
-            required
-          />
-          <div className="flex gap-2">
-            <Button type="submit">
-              {editingId ? "Update FAQ" : "Add FAQ"}
-            </Button>
-            {editingId && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  setFormData({ question: "", answer: "" });
-                  setEditingId(null);
-                }}
+          {/* INSERT / UPDATE FORM */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <Input
+              placeholder="❓ Enter your question..."
+              value={formData.question}
+              onChange={(e) =>
+                setFormData({ ...formData, question: e.target.value })
+              }
+              required
+              className="text-white bg-slate-700/50 border-purple-400/30 focus:border-purple-400 focus:ring-purple-400/20 placeholder:text-gray-300"
+            />
+            <Textarea
+              placeholder="💬 Enter the answer..."
+              value={formData.answer}
+              onChange={(e) =>
+                setFormData({ ...formData, answer: e.target.value })
+              }
+              required
+              rows={5}
+              className="text-white bg-slate-700/50 border-purple-400/30 focus:border-purple-400 focus:ring-purple-400/20 placeholder:text-gray-300 resize-none"
+            />
+            <div className="flex gap-4">
+              <Button 
+                type="submit"
+                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white border-0 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
-                Cancel
+                {editingId ? "✏️ Update FAQ" : "➕ Add FAQ"}
               </Button>
-            )}
-          </div>
-        </form>
+              {editingId && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setFormData({ question: "", answer: "" });
+                    setEditingId(null);
+                  }}
+                  className="bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white border-0 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                >
+                  ❌ Cancel
+                </Button>
+              )}
+            </div>
+          </form>
+        </div>
 
         {/* FAQ LIST */}
-        {loading ? (
-          <p className="text-center text-gray-300">Loading FAQs...</p>
-        ) : (
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <div
-                key={faq.id}
-                className="border bg-white text-black p-4 rounded shadow-sm"
-              >
-                <h3 className="font-semibold">{faq.question}</h3>
-                <p className="text-gray-700">{faq.answer}</p>
-                <p className="text-sm text-gray-500 mt-1">
-                  Created: {new Date(faq.created_at).toLocaleString()}
-                  <br />
-                  Updated:{" "}
-                  {faq.updated_at
-                    ? new Date(faq.updated_at).toLocaleString()
-                    : "—"}
-                </p>
-                <div className="flex gap-2 mt-2">
-                  <Button onClick={() => handleEdit(faq)}>Edit</Button>
-                  <Button
-                    variant="destructive"
-                    onClick={() => handleDelete(faq.id)}
-                  >
-                    Delete
-                  </Button>
+        <div>
+          <h3 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
+            📋 All FAQs
+          </h3>
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-gray-300 text-lg bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-8 inline-block">
+                ⏳ Loading FAQs...
+              </p>
+            </div>
+          ) : faqs.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-300 text-lg bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-8 inline-block">
+                ❓ No FAQs found. Add your first FAQ above!
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {faqs.map((faq) => (
+                <div
+                  key={faq.id}
+                  className="bg-gradient-to-br from-slate-800 via-indigo-900 to-slate-900 border-indigo-500/20 shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 p-6 rounded-xl hover:scale-[1.02] group"
+                >
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                      ❓ {faq.question}
+                    </h3>
+                    <p className="text-gray-200 leading-relaxed pl-6">
+                      💬 {faq.answer}
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                      <p className="text-cyan-300 flex items-center gap-2">
+                        🕒 Created: {new Date(faq.created_at).toLocaleString()}
+                      </p>
+                      <p className="text-emerald-300 flex items-center gap-2">
+                        ✏️ Updated: {faq.updated_at ? new Date(faq.updated_at).toLocaleString() : "—"}
+                      </p>
+                    </div>
+                    <div className="flex gap-3 pt-4 border-t border-gray-600/30">
+                      <Button 
+                        onClick={() => handleEdit(faq)}
+                        className="flex-1 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white border-0 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      >
+                        ✏️ Edit
+                      </Button>
+                      <Button
+                        variant="destructive"
+                        onClick={() => handleDelete(faq.id)}
+                        className="flex-1 bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white border-0 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      >
+                        🗑️ Delete
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

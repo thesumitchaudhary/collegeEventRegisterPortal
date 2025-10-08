@@ -1,4 +1,3 @@
-// components/BlogCarousel.jsx
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabaseClient";
 import { Button } from "@/components/ui/button";
@@ -9,8 +8,9 @@ export default function BlogCarousel() {
   const [blogs, setBlogs] = useState([]);
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [directionForward, setDirectionForward] = useState(true); // ✅ New state
+  const [directionForward, setDirectionForward] = useState(true);
 
+  // ✅ Fetch blogs
   useEffect(() => {
     const fetchBlogs = async () => {
       const { data, error } = await supabase.from("blogs").select("*");
@@ -54,10 +54,17 @@ export default function BlogCarousel() {
           }
         }
       });
-    }, 10000); // 10 seconds
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [blogs, directionForward]);
+
+  // ✅ Reset index if blogs length changes
+  useEffect(() => {
+    if (index >= blogs.length && blogs.length > 0) {
+      setIndex(0);
+    }
+  }, [blogs, index]);
 
   const nextSlide = () => {
     setDirectionForward(true);
@@ -81,13 +88,19 @@ export default function BlogCarousel() {
     return <p className="text-center text-red-500">No blogs found.</p>;
   }
 
+  // ✅ Safe blog reference
+  const currentBlog = blogs[index] || {};
+
   return (
     <div className="relative w-full max-w-3xl mx-auto mt-10">
       <Card className="overflow-hidden rounded-2xl shadow-lg bg-[#000]">
         <CardContent className="p-0">
           <img
-            src={blogs[index].cover_image}
-            alt={blogs[index].title}
+            src={
+              currentBlog.cover_image ||
+              "https://via.placeholder.com/600x400?text=No+Image"
+            }
+            alt={currentBlog.title || "Untitled"}
             className="w-full h-64 object-cover transition-all duration-1000"
             onError={(e) => {
               e.target.src =

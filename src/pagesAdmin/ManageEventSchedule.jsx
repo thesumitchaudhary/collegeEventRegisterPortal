@@ -146,103 +146,154 @@ export const ManageEventSchedule = () => {
       />
 
       <header className="max-w-[50rem] mx-auto px-8 py-10 z-10 relative">
-        <h1 className="text-6xl font-semibold mb-6">
+        <h1 className="text-6xl font-semibold mb-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
           Welcome to College Event Schedule Manage Page
         </h1>
-        <Link to="/admin">Home</Link>
+        <Link 
+          to="/admin" 
+          className="inline-block bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+        >
+          🏠 Home
+        </Link>
       </header>
 
-      <main className="p-6 max-w-4xl mx-auto space-y-6 z-[10]">
-        <h2 className="text-2xl font-bold">Manage Event Schedule</h2>
+      <main className="p-6 max-w-6xl mx-auto space-y-8 z-[10]">
+        <div className="bg-gradient-to-br from-slate-800 via-purple-900 to-slate-900 border-purple-500/20 shadow-2xl rounded-xl p-8">
+          <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-red-500 to-yellow-500 bg-clip-text text-transparent">
+            📅 Manage Event Schedule
+          </h2>
 
-        <form onSubmit={uploadImageAndInsert} className="grid gap-4">
-          <Input
-            type="text"
-            placeholder="Event Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-          <Textarea
-            placeholder="Event Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={3}
-          />
-          <Input
-            type="date"
-            value={eventDate}
-            onChange={(e) => setEventDate(e.target.value)}
-            required
-          />
-          <Input
-            type="time"
-            value={eventTime}
-            onChange={(e) => setEventTime(e.target.value)}
-            required
-          />
-          <Input
-            type="text"
-            placeholder="Location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-          <Input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImageFile(e.target.files[0])}
-          />
-          <Button type="submit">
-            {editingId ? "Update Event" : "Add Event"}
-          </Button>
-        </form>
+          <form onSubmit={uploadImageAndInsert} className="space-y-6">
+            <Input
+              type="text"
+              placeholder="🎯 Event Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              className="text-white bg-slate-700/50 border-purple-400/30 focus:border-purple-400 focus:ring-purple-400/20 placeholder:text-gray-300"
+            />
+            <Textarea
+              placeholder="📝 Event Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={4}
+              className="text-white bg-slate-700/50 border-purple-400/30 focus:border-purple-400 focus:ring-purple-400/20 placeholder:text-gray-300 resize-none"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Input
+                type="date"
+                value={eventDate}
+                onChange={(e) => setEventDate(e.target.value)}
+                required
+                className="text-white bg-slate-700/50 border-purple-400/30 focus:border-purple-400 focus:ring-purple-400/20"
+              />
+              <Input
+                type="time"
+                value={eventTime}
+                onChange={(e) => setEventTime(e.target.value)}
+                required
+                className="text-white bg-slate-700/50 border-purple-400/30 focus:border-purple-400 focus:ring-purple-400/20"
+              />
+            </div>
+            <Input
+              type="text"
+              placeholder="📍 Location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              className="text-white bg-slate-700/50 border-purple-400/30 focus:border-purple-400 focus:ring-purple-400/20 placeholder:text-gray-300"
+            />
+            <Input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImageFile(e.target.files[0])}
+              className="text-white bg-slate-700/50 border-purple-400/30 focus:border-purple-400 focus:ring-purple-400/20 file:bg-purple-600 file:text-white file:border-0 file:rounded-md file:px-4 file:py-2 file:mr-4"
+            />
+            <Button 
+              type="submit"
+              className="w-full bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white border-0 transform transition-all duration-300 hover:scale-105 hover:shadow-lg py-3"
+            >
+              {editingId ? "✏️ Update Event" : "📤 Add Event"}
+            </Button>
+          </form>
 
-        {message && <p className="mt-4 text-sm text-center">{message}</p>}
+          {message && (
+            <div className={`mt-6 p-4 rounded-lg border ${
+              message.includes('successfully') || message.includes('deleted') 
+                ? 'bg-green-500/10 border-green-500/30 text-green-300' 
+                : message.includes('failed') || message.includes('Failed')
+                ? 'bg-red-500/10 border-red-500/30 text-red-300'
+                : 'bg-blue-500/10 border-blue-500/30 text-blue-300'
+            }`}>
+              <p className="text-sm font-medium text-center">
+                {message}
+              </p>
+            </div>
+          )}
+        </div>
 
-        <hr className="my-6 border-white/30" />
-
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold">All Scheduled Events</h3>
+        <div className="space-y-6">
+          <h3 className="text-4xl font-bold text-center bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
+            📋 All Scheduled Events
+          </h3>
           {events.length === 0 ? (
-            <p className="text-sm text-white/60">No events added yet.</p>
+            <div className="text-center py-12">
+              <p className="text-gray-300 text-lg bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-8 inline-block">
+                📅 No events scheduled yet. Add your first event above!
+              </p>
+            </div>
           ) : (
-            <ul className="grid gap-4">
+            <div className="grid gap-6">
               {events.map((event) => (
-                <li key={event.id} className="bg-white/10 p-4 rounded-lg">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="text-lg font-bold">{event.title}</h4>
-                      <p className="text-sm">{event.description}</p>
-                      <p className="text-sm italic">
-                        {event.event_date} at {event.event_time}
+                <div key={event.id} className="bg-gradient-to-br from-slate-800 via-indigo-900 to-slate-900 border-indigo-500/20 shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 p-6 rounded-xl hover:scale-[1.02] group">
+                  <div className="flex flex-col lg:flex-row justify-between items-start gap-6">
+                    <div className="flex-1 space-y-4">
+                      <h4 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                        {event.title}
+                      </h4>
+                      <p className="text-gray-200 leading-relaxed">
+                        {event.description}
                       </p>
-                      <p className="text-sm">{event.location}</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <p className="text-cyan-300 flex items-center gap-2">
+                          🗓️ {event.event_date}
+                        </p>
+                        <p className="text-emerald-300 flex items-center gap-2">
+                          ⏰ {event.event_time}
+                        </p>
+                        <p className="text-yellow-300 flex items-center gap-2 md:col-span-2">
+                          📍 {event.location}
+                        </p>
+                      </div>
                       {event.imagesurl && (
-                        <img
-                          src={event.imagesurl}
-                          alt="Event"
-                          className="mt-2 w-32 rounded"
-                        />
+                        <div className="mt-4">
+                          <img
+                            src={event.imagesurl}
+                            alt="Event"
+                            className="w-48 h-32 object-cover rounded-lg border-2 border-indigo-500/20 group-hover:border-indigo-400/40 transition-all duration-300"
+                          />
+                        </div>
                       )}
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-col gap-3 min-w-[120px]">
                       <Button
                         onClick={() => startEdit(event)}
                         variant="secondary"
+                        className="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white border-0 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
                       >
-                        Edit
+                        ✏️ Edit
                       </Button>
                       <Button
                         onClick={() => deleteEvent(event.id)}
                         variant="destructive"
+                        className="w-full bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white border-0 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
                       >
-                        Delete
+                        🗑️ Delete
                       </Button>
                     </div>
                   </div>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </div>
       </main>

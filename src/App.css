@@ -166,8 +166,25 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 16px;       /* ✅ Standard base size */
+    line-height: 1.5;      /* ✅ Balanced spacing */
+    font-family: system-ui, sans-serif; /* ✅ Prevents inconsistent scaling */
+  }
+
+  h1 {
+    @apply text-2xl font-bold; /* ~24px */
+  }
+  h2 {
+    @apply text-xl font-semibold; /* ~20px */
+  }
+  p {
+    @apply text-base; /* ~16px */
+  }
+  small {
+    @apply text-sm; /* ~14px */
   }
 }
+
 
 .other-pages::-webkit-scrollbar{
   display: none;
